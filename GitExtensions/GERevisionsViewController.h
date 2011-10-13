@@ -1,5 +1,5 @@
 //
-//  GitExtensionsAppDelegate.h
+//  GERevisionsViewController.h
 //  GitExtensions
 //
 //  Created by Cristian Kocza on 13.10.2011.
@@ -8,11 +8,12 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface GitExtensionsAppDelegate : NSObject <NSApplicationDelegate> {
+
+@interface GERevisionsViewController : NSViewController {
 @private
-    NSWindow *window;
+    
 }
 
-@property (assign) IBOutlet NSWindow *window;
++ (id)controller;
 
 @end

@@ -7,28 +7,50 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B64E6CC11447260D003F03A8 /* RevisionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B64E6CC01447260D003F03A8 /* RevisionsView.xib */; };
 		B6E7DBA5144723D900D48DE9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6E7DBA4144723D900D48DE9 /* Cocoa.framework */; };
 		B6E7DBAF144723D900D48DE9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B6E7DBAD144723D900D48DE9 /* InfoPlist.strings */; };
 		B6E7DBB2144723D900D48DE9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E7DBB1144723D900D48DE9 /* main.m */; };
 		B6E7DBB5144723D900D48DE9 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = B6E7DBB3144723D900D48DE9 /* Credits.rtf */; };
-		B6E7DBB8144723D900D48DE9 /* GitExtensionsAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E7DBB7144723D900D48DE9 /* GitExtensionsAppDelegate.m */; };
+		B6E7DBB8144723D900D48DE9 /* GEAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E7DBB7144723D900D48DE9 /* GEAppDelegate.m */; };
 		B6E7DBBB144723DA00D48DE9 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6E7DBB9144723DA00D48DE9 /* MainMenu.xib */; };
+		B6E8243214472CEA0095945F /* GEDvcsGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E8243114472CEA0095945F /* GEDvcsGraphView.m */; };
+		B6E8243614472D510095945F /* GEView.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E8243514472D510095945F /* GEView.m */; };
+		B6E8243914472D670095945F /* GERevisionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E8243814472D670095945F /* GERevisionsView.m */; };
+		B6E8243D144732C40095945F /* GERevisionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E8243B144732C40095945F /* GERevisionsViewController.m */; };
+		B6E824411447353A0095945F /* loadingpanel.gif in Resources */ = {isa = PBXBuildFile; fileRef = B6E824431447353A0095945F /* loadingpanel.gif */; };
+		B6E82446144736000095945F /* GEMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E82445144736000095945F /* GEMainWindowController.m */; };
+		B6E8244914473AA50095945F /* GEImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E8244814473AA50095945F /* GEImageView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B64E6CC01447260D003F03A8 /* RevisionsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RevisionsView.xib; sourceTree = "<group>"; };
 		B6E7DBA0144723D900D48DE9 /* GitExtensions.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitExtensions.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6E7DBA4144723D900D48DE9 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		B6E7DBA7144723D900D48DE9 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		B6E7DBA8144723D900D48DE9 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		B6E7DBA9144723D900D48DE9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		B6E7DBAC144723D900D48DE9 /* GitExtensions-Info.plist */ = {isa = PBXFileReference; path = "GitExtensions-Info.plist"; sourceTree = "<group>"; };
+		B6E7DBAC144723D900D48DE9 /* GitExtensions-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GitExtensions-Info.plist"; sourceTree = "<group>"; };
 		B6E7DBAE144723D900D48DE9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B6E7DBB0144723D900D48DE9 /* GitExtensions-Prefix.pch */ = {isa = PBXFileReference; path = "GitExtensions-Prefix.pch"; sourceTree = "<group>"; };
+		B6E7DBB0144723D900D48DE9 /* GitExtensions-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GitExtensions-Prefix.pch"; sourceTree = "<group>"; };
 		B6E7DBB1144723D900D48DE9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B6E7DBB4144723D900D48DE9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		B6E7DBB6144723D900D48DE9 /* GitExtensionsAppDelegate.h */ = {isa = PBXFileReference; path = GitExtensionsAppDelegate.h; sourceTree = "<group>"; };
-		B6E7DBB7144723D900D48DE9 /* GitExtensionsAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GitExtensionsAppDelegate.m; sourceTree = "<group>"; };
+		B6E7DBB6144723D900D48DE9 /* GEAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GEAppDelegate.h; sourceTree = "<group>"; };
+		B6E7DBB7144723D900D48DE9 /* GEAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GEAppDelegate.m; sourceTree = "<group>"; };
 		B6E7DBBA144723DA00D48DE9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		B6E8243014472CEA0095945F /* GEDvcsGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEDvcsGraphView.h; sourceTree = "<group>"; };
+		B6E8243114472CEA0095945F /* GEDvcsGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEDvcsGraphView.m; sourceTree = "<group>"; };
+		B6E8243414472D510095945F /* GEView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEView.h; sourceTree = "<group>"; };
+		B6E8243514472D510095945F /* GEView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEView.m; sourceTree = "<group>"; };
+		B6E8243714472D670095945F /* GERevisionsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GERevisionsView.h; sourceTree = "<group>"; };
+		B6E8243814472D670095945F /* GERevisionsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GERevisionsView.m; sourceTree = "<group>"; };
+		B6E8243A144732C40095945F /* GERevisionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GERevisionsViewController.h; sourceTree = "<group>"; };
+		B6E8243B144732C40095945F /* GERevisionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GERevisionsViewController.m; sourceTree = "<group>"; };
+		B6E824421447353A0095945F /* en */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = en; path = en.lproj/loadingpanel.gif; sourceTree = "<group>"; };
+		B6E82444144735FF0095945F /* GEMainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEMainWindowController.h; sourceTree = "<group>"; };
+		B6E82445144736000095945F /* GEMainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEMainWindowController.m; sourceTree = "<group>"; };
+		B6E8244714473AA50095945F /* GEImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEImageView.h; sourceTree = "<group>"; };
+		B6E8244814473AA50095945F /* GEImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEImageView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,10 +104,24 @@
 		B6E7DBAA144723D900D48DE9 /* GitExtensions */ = {
 			isa = PBXGroup;
 			children = (
-				B6E7DBB6144723D900D48DE9 /* GitExtensionsAppDelegate.h */,
-				B6E7DBB7144723D900D48DE9 /* GitExtensionsAppDelegate.m */,
+				B6E7DBB6144723D900D48DE9 /* GEAppDelegate.h */,
+				B6E7DBB7144723D900D48DE9 /* GEAppDelegate.m */,
 				B6E7DBB9144723DA00D48DE9 /* MainMenu.xib */,
 				B6E7DBAB144723D900D48DE9 /* Supporting Files */,
+				B6E8243014472CEA0095945F /* GEDvcsGraphView.h */,
+				B6E8243114472CEA0095945F /* GEDvcsGraphView.m */,
+				B6E8243414472D510095945F /* GEView.h */,
+				B6E8243514472D510095945F /* GEView.m */,
+				B6E8243714472D670095945F /* GERevisionsView.h */,
+				B6E8243814472D670095945F /* GERevisionsView.m */,
+				B64E6CC01447260D003F03A8 /* RevisionsView.xib */,
+				B6E824431447353A0095945F /* loadingpanel.gif */,
+				B6E8243A144732C40095945F /* GERevisionsViewController.h */,
+				B6E8243B144732C40095945F /* GERevisionsViewController.m */,
+				B6E82444144735FF0095945F /* GEMainWindowController.h */,
+				B6E82445144736000095945F /* GEMainWindowController.m */,
+				B6E8244714473AA50095945F /* GEImageView.h */,
+				B6E8244814473AA50095945F /* GEImageView.m */,
 			);
 			path = GitExtensions;
 			sourceTree = "<group>";
@@ -152,6 +188,8 @@
 				B6E7DBAF144723D900D48DE9 /* InfoPlist.strings in Resources */,
 				B6E7DBB5144723D900D48DE9 /* Credits.rtf in Resources */,
 				B6E7DBBB144723DA00D48DE9 /* MainMenu.xib in Resources */,
+				B64E6CC11447260D003F03A8 /* RevisionsView.xib in Resources */,
+				B6E824411447353A0095945F /* loadingpanel.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,7 +201,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6E7DBB2144723D900D48DE9 /* main.m in Sources */,
-				B6E7DBB8144723D900D48DE9 /* GitExtensionsAppDelegate.m in Sources */,
+				B6E7DBB8144723D900D48DE9 /* GEAppDelegate.m in Sources */,
+				B6E8243214472CEA0095945F /* GEDvcsGraphView.m in Sources */,
+				B6E8243614472D510095945F /* GEView.m in Sources */,
+				B6E8243914472D670095945F /* GERevisionsView.m in Sources */,
+				B6E8243D144732C40095945F /* GERevisionsViewController.m in Sources */,
+				B6E82446144736000095945F /* GEMainWindowController.m in Sources */,
+				B6E8244914473AA50095945F /* GEImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -192,6 +236,14 @@
 				B6E7DBBA144723DA00D48DE9 /* en */,
 			);
 			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		B6E824431447353A0095945F /* loadingpanel.gif */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B6E824421447353A0095945F /* en */,
+			);
+			name = loadingpanel.gif;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -278,6 +330,7 @@
 				B6E7DBC0144723DA00D48DE9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

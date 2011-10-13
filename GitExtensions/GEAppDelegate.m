@@ -6,14 +6,13 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "GitExtensionsAppDelegate.h"
+#import "GEAppDelegate.h"
 
-@implementation GitExtensionsAppDelegate
+@implementation GEAppDelegate
 
 @synthesize window;
 
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
-{
+- (void)applicationDidFinishLaunching:(NSNotification *)aNotification{
     // Insert code here to initialize your application
 }
 
