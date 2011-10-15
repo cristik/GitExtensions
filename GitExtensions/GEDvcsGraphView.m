@@ -7,7 +7,7 @@
 //
 
 #import "GEDvcsGraphView.h"
-
+#import "GEGraph.h"
 
 @implementation GEDvcsGraphView
 
@@ -25,3 +25,8 @@
 }
 
 @end
+
+
+
+
+

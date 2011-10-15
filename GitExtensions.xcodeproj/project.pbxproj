@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B6183A1D14480B9100EC144E /* GENode.m in Sources */ = {isa = PBXBuildFile; fileRef = B6183A1C14480B9100EC144E /* GENode.m */; };
+		B6183A20144811A700EC144E /* GEJunction.m in Sources */ = {isa = PBXBuildFile; fileRef = B6183A1F144811A700EC144E /* GEJunction.m */; };
+		B6183A23144811D600EC144E /* GELanes.m in Sources */ = {isa = PBXBuildFile; fileRef = B6183A22144811D600EC144E /* GELanes.m */; };
+		B6183A261448120200EC144E /* GEGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = B6183A251448120200EC144E /* GEGraph.m */; };
 		B64E6CC11447260D003F03A8 /* RevisionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B64E6CC01447260D003F03A8 /* RevisionsView.xib */; };
 		B6E7DBA5144723D900D48DE9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6E7DBA4144723D900D48DE9 /* Cocoa.framework */; };
 		B6E7DBAF144723D900D48DE9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B6E7DBAD144723D900D48DE9 /* InfoPlist.strings */; };
@@ -24,6 +28,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B6183A1C14480B9100EC144E /* GENode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GENode.m; sourceTree = "<group>"; };
+		B6183A1F144811A700EC144E /* GEJunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEJunction.m; sourceTree = "<group>"; };
+		B6183A22144811D600EC144E /* GELanes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GELanes.m; sourceTree = "<group>"; };
+		B6183A241448120200EC144E /* GEGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEGraph.h; sourceTree = "<group>"; };
+		B6183A251448120200EC144E /* GEGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEGraph.m; sourceTree = "<group>"; };
 		B64E6CC01447260D003F03A8 /* RevisionsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RevisionsView.xib; sourceTree = "<group>"; };
 		B6E7DBA0144723D900D48DE9 /* GitExtensions.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitExtensions.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6E7DBA4144723D900D48DE9 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -65,6 +74,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B6183A1A14480B7300EC144E /* DcvsGraph */ = {
+			isa = PBXGroup;
+			children = (
+				B6E8243014472CEA0095945F /* GEDvcsGraphView.h */,
+				B6E8243114472CEA0095945F /* GEDvcsGraphView.m */,
+				B6183A241448120200EC144E /* GEGraph.h */,
+				B6183A1C14480B9100EC144E /* GENode.m */,
+				B6183A1F144811A700EC144E /* GEJunction.m */,
+				B6183A22144811D600EC144E /* GELanes.m */,
+				B6183A251448120200EC144E /* GEGraph.m */,
+			);
+			name = DcvsGraph;
+			sourceTree = "<group>";
+		};
 		B6E7DB95144723D900D48DE9 = {
 			isa = PBXGroup;
 			children = (
@@ -108,8 +131,7 @@
 				B6E7DBB7144723D900D48DE9 /* GEAppDelegate.m */,
 				B6E7DBB9144723DA00D48DE9 /* MainMenu.xib */,
 				B6E7DBAB144723D900D48DE9 /* Supporting Files */,
-				B6E8243014472CEA0095945F /* GEDvcsGraphView.h */,
-				B6E8243114472CEA0095945F /* GEDvcsGraphView.m */,
+				B6183A1A14480B7300EC144E /* DcvsGraph */,
 				B6E8243414472D510095945F /* GEView.h */,
 				B6E8243514472D510095945F /* GEView.m */,
 				B6E8243714472D670095945F /* GERevisionsView.h */,
@@ -208,6 +230,10 @@
 				B6E8243D144732C40095945F /* GERevisionsViewController.m in Sources */,
 				B6E82446144736000095945F /* GEMainWindowController.m in Sources */,
 				B6E8244914473AA50095945F /* GEImageView.m in Sources */,
+				B6183A1D14480B9100EC144E /* GENode.m in Sources */,
+				B6183A20144811A700EC144E /* GEJunction.m in Sources */,
+				B6183A23144811D600EC144E /* GELanes.m in Sources */,
+				B6183A261448120200EC144E /* GEGraph.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
