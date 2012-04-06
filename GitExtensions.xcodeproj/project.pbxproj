@@ -1,0 +1,305 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B6427EF7152F28C800A47657 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6427EF6152F28C800A47657 /* Cocoa.framework */; };
+		B6427F01152F28C800A47657 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B6427EFF152F28C800A47657 /* InfoPlist.strings */; };
+		B6427F03152F28C800A47657 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B6427F02152F28C800A47657 /* main.m */; };
+		B6427F07152F28C800A47657 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = B6427F05152F28C800A47657 /* Credits.rtf */; };
+		B6427F0A152F28C800A47657 /* GEDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = B6427F09152F28C800A47657 /* GEDocument.m */; };
+		B6427F0D152F28C800A47657 /* GEDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6427F0B152F28C800A47657 /* GEDocument.xib */; };
+		B6427F10152F28C800A47657 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6427F0E152F28C800A47657 /* MainMenu.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		B6427EF2152F28C800A47657 /* GitExtensions.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitExtensions.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6427EF6152F28C800A47657 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		B6427EF9152F28C800A47657 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		B6427EFA152F28C800A47657 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		B6427EFB152F28C800A47657 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		B6427EFE152F28C800A47657 /* GitExtensions-Info.plist */ = {isa = PBXFileReference; path = "GitExtensions-Info.plist"; sourceTree = "<group>"; };
+		B6427F00152F28C800A47657 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B6427F02152F28C800A47657 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B6427F04152F28C800A47657 /* GitExtensions-Prefix.pch */ = {isa = PBXFileReference; path = "GitExtensions-Prefix.pch"; sourceTree = "<group>"; };
+		B6427F06152F28C800A47657 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		B6427F08152F28C800A47657 /* GEDocument.h */ = {isa = PBXFileReference; path = GEDocument.h; sourceTree = "<group>"; };
+		B6427F09152F28C800A47657 /* GEDocument.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GEDocument.m; sourceTree = "<group>"; };
+		B6427F0C152F28C800A47657 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/GEDocument.xib; sourceTree = "<group>"; };
+		B6427F0F152F28C800A47657 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B6427EEF152F28C700A47657 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B6427EF7152F28C800A47657 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B6427EE7152F28C700A47657 = {
+			isa = PBXGroup;
+			children = (
+				B6427EFC152F28C800A47657 /* GitExtensions */,
+				B6427EF5152F28C800A47657 /* Frameworks */,
+				B6427EF3152F28C800A47657 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B6427EF3152F28C800A47657 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B6427EF2152F28C800A47657 /* GitExtensions.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B6427EF5152F28C800A47657 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B6427EF6152F28C800A47657 /* Cocoa.framework */,
+				B6427EF8152F28C800A47657 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B6427EF8152F28C800A47657 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B6427EF9152F28C800A47657 /* AppKit.framework */,
+				B6427EFA152F28C800A47657 /* CoreData.framework */,
+				B6427EFB152F28C800A47657 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		B6427EFC152F28C800A47657 /* GitExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				B6427F08152F28C800A47657 /* GEDocument.h */,
+				B6427F09152F28C800A47657 /* GEDocument.m */,
+				B6427F0B152F28C800A47657 /* GEDocument.xib */,
+				B6427F0E152F28C800A47657 /* MainMenu.xib */,
+				B6427EFD152F28C800A47657 /* Supporting Files */,
+			);
+			path = GitExtensions;
+			sourceTree = "<group>";
+		};
+		B6427EFD152F28C800A47657 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B6427EFE152F28C800A47657 /* GitExtensions-Info.plist */,
+				B6427EFF152F28C800A47657 /* InfoPlist.strings */,
+				B6427F02152F28C800A47657 /* main.m */,
+				B6427F04152F28C800A47657 /* GitExtensions-Prefix.pch */,
+				B6427F05152F28C800A47657 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B6427EF1152F28C800A47657 /* GitExtensions */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B6427F13152F28C800A47657 /* Build configuration list for PBXNativeTarget "GitExtensions" */;
+			buildPhases = (
+				B6427EEE152F28C700A47657 /* Sources */,
+				B6427EEF152F28C700A47657 /* Frameworks */,
+				B6427EF0152F28C800A47657 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GitExtensions;
+			productName = GitExtensions;
+			productReference = B6427EF2152F28C800A47657 /* GitExtensions.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B6427EE9152F28C700A47657 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = B6427EEC152F28C700A47657 /* Build configuration list for PBXProject "GitExtensions" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = B6427EE7152F28C700A47657;
+			productRefGroup = B6427EF3152F28C800A47657 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B6427EF1152F28C800A47657 /* GitExtensions */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B6427EF0152F28C800A47657 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B6427F01152F28C800A47657 /* InfoPlist.strings in Resources */,
+				B6427F07152F28C800A47657 /* Credits.rtf in Resources */,
+				B6427F0D152F28C800A47657 /* GEDocument.xib in Resources */,
+				B6427F10152F28C800A47657 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B6427EEE152F28C700A47657 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B6427F03152F28C800A47657 /* main.m in Sources */,
+				B6427F0A152F28C800A47657 /* GEDocument.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		B6427EFF152F28C800A47657 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B6427F00152F28C800A47657 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		B6427F05152F28C800A47657 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B6427F06152F28C800A47657 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		B6427F0B152F28C800A47657 /* GEDocument.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B6427F0C152F28C800A47657 /* en */,
+			);
+			name = GEDocument.xib;
+			sourceTree = "<group>";
+		};
+		B6427F0E152F28C800A47657 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B6427F0F152F28C800A47657 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B6427F11152F28C800A47657 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		B6427F12152F28C800A47657 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		B6427F14152F28C800A47657 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GitExtensions/GitExtensions-Prefix.pch";
+				INFOPLIST_FILE = "GitExtensions/GitExtensions-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		B6427F15152F28C800A47657 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GitExtensions/GitExtensions-Prefix.pch";
+				INFOPLIST_FILE = "GitExtensions/GitExtensions-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B6427EEC152F28C700A47657 /* Build configuration list for PBXProject "GitExtensions" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B6427F11152F28C800A47657 /* Debug */,
+				B6427F12152F28C800A47657 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B6427F13152F28C800A47657 /* Build configuration list for PBXNativeTarget "GitExtensions" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B6427F14152F28C800A47657 /* Debug */,
+				B6427F15152F28C800A47657 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B6427EE9152F28C700A47657 /* Project object */;
+}
