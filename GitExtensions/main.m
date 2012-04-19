@@ -2,7 +2,7 @@
 //  main.m
 //  GitExtensions
 //
-//  Created by Cristian Kocza on 06.04.2012.
+//  Created by Cristian Kocza on 18.04.2012.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 

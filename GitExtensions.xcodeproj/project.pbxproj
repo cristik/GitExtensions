@@ -7,114 +7,176 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B6427EF7152F28C800A47657 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6427EF6152F28C800A47657 /* Cocoa.framework */; };
-		B6427F01152F28C800A47657 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B6427EFF152F28C800A47657 /* InfoPlist.strings */; };
-		B6427F03152F28C800A47657 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B6427F02152F28C800A47657 /* main.m */; };
-		B6427F07152F28C800A47657 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = B6427F05152F28C800A47657 /* Credits.rtf */; };
-		B6427F0A152F28C800A47657 /* GEDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = B6427F09152F28C800A47657 /* GEDocument.m */; };
-		B6427F0D152F28C800A47657 /* GEDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6427F0B152F28C800A47657 /* GEDocument.xib */; };
-		B6427F10152F28C800A47657 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6427F0E152F28C800A47657 /* MainMenu.xib */; };
+		B6D42F5D153EC2A300485FFD /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6D42F5C153EC2A300485FFD /* Cocoa.framework */; };
+		B6D42F67153EC2A300485FFD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B6D42F65153EC2A300485FFD /* InfoPlist.strings */; };
+		B6D42F69153EC2A300485FFD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D42F68153EC2A300485FFD /* main.m */; };
+		B6D42F6D153EC2A300485FFD /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = B6D42F6B153EC2A300485FFD /* Credits.rtf */; };
+		B6D42F70153EC2A300485FFD /* GEAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D42F6F153EC2A300485FFD /* GEAppDelegate.m */; };
+		B6D42F73153EC2A300485FFD /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6D42F71153EC2A300485FFD /* MainMenu.xib */; };
+		B6D42F7F153EC34A00485FFD /* GEGitRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D42F7E153EC34A00485FFD /* GEGitRepository.m */; };
+		B6D62147153EF7CB006521B2 /* GECommit.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D62146153EF7CB006521B2 /* GECommit.m */; };
+		B6D6214A153F13E4006521B2 /* Commit.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6D62149153F13E4006521B2 /* Commit.xib */; };
+		B6D6214D153F19D0006521B2 /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = B6D6214C153F19D0006521B2 /* refresh.png */; };
+		B6D6214F153F1ACB006521B2 /* open.png in Resources */ = {isa = PBXBuildFile; fileRef = B6D6214E153F1ACB006521B2 /* open.png */; };
+		B6D62151153F1C56006521B2 /* commit.png in Resources */ = {isa = PBXBuildFile; fileRef = B6D62150153F1C56006521B2 /* commit.png */; };
+		B6D62154153F1E77006521B2 /* GECommitController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D62153153F1E77006521B2 /* GECommitController.m */; };
+		B6D6215A153F2AB8006521B2 /* file_status_none.png in Resources */ = {isa = PBXBuildFile; fileRef = B6D62155153F2AB8006521B2 /* file_status_none.png */; };
+		B6D6215D153F2AB8006521B2 /* file_status_deleted.png in Resources */ = {isa = PBXBuildFile; fileRef = B6D62158153F2AB8006521B2 /* file_status_deleted.png */; };
+		B6D6215E153F2AB8006521B2 /* file_status_added.png in Resources */ = {isa = PBXBuildFile; fileRef = B6D62159153F2AB8006521B2 /* file_status_added.png */; };
+		B6FA8080153FF07800F8F67A /* GERepositoryFile.m in Sources */ = {isa = PBXBuildFile; fileRef = B6FA807F153FF07800F8F67A /* GERepositoryFile.m */; };
+		B6FA80841540013100F8F67A /* file_status_updated_unmerged.png in Resources */ = {isa = PBXBuildFile; fileRef = B6FA80821540013100F8F67A /* file_status_updated_unmerged.png */; };
+		B6FA80851540013100F8F67A /* file_status_modified.png in Resources */ = {isa = PBXBuildFile; fileRef = B6FA80831540013100F8F67A /* file_status_modified.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		B6427EF2152F28C800A47657 /* GitExtensions.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitExtensions.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B6427EF6152F28C800A47657 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
-		B6427EF9152F28C800A47657 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		B6427EFA152F28C800A47657 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		B6427EFB152F28C800A47657 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		B6427EFE152F28C800A47657 /* GitExtensions-Info.plist */ = {isa = PBXFileReference; path = "GitExtensions-Info.plist"; sourceTree = "<group>"; };
-		B6427F00152F28C800A47657 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B6427F02152F28C800A47657 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		B6427F04152F28C800A47657 /* GitExtensions-Prefix.pch */ = {isa = PBXFileReference; path = "GitExtensions-Prefix.pch"; sourceTree = "<group>"; };
-		B6427F06152F28C800A47657 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		B6427F08152F28C800A47657 /* GEDocument.h */ = {isa = PBXFileReference; path = GEDocument.h; sourceTree = "<group>"; };
-		B6427F09152F28C800A47657 /* GEDocument.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GEDocument.m; sourceTree = "<group>"; };
-		B6427F0C152F28C800A47657 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/GEDocument.xib; sourceTree = "<group>"; };
-		B6427F0F152F28C800A47657 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		B6D42F58153EC2A300485FFD /* GitExtensions.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitExtensions.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6D42F5C153EC2A300485FFD /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		B6D42F5F153EC2A300485FFD /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		B6D42F60153EC2A300485FFD /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		B6D42F61153EC2A300485FFD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		B6D42F64153EC2A300485FFD /* GitExtensions-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GitExtensions-Info.plist"; sourceTree = "<group>"; };
+		B6D42F66153EC2A300485FFD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B6D42F68153EC2A300485FFD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B6D42F6A153EC2A300485FFD /* GitExtensions-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GitExtensions-Prefix.pch"; sourceTree = "<group>"; };
+		B6D42F6C153EC2A300485FFD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		B6D42F6E153EC2A300485FFD /* GEAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GEAppDelegate.h; sourceTree = "<group>"; };
+		B6D42F6F153EC2A300485FFD /* GEAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GEAppDelegate.m; sourceTree = "<group>"; };
+		B6D42F72153EC2A300485FFD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		B6D42F7D153EC34A00485FFD /* GEGitRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEGitRepository.h; sourceTree = "<group>"; };
+		B6D42F7E153EC34A00485FFD /* GEGitRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEGitRepository.m; sourceTree = "<group>"; };
+		B6D62145153EF7CB006521B2 /* GECommit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GECommit.h; sourceTree = "<group>"; };
+		B6D62146153EF7CB006521B2 /* GECommit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GECommit.m; sourceTree = "<group>"; };
+		B6D62149153F13E4006521B2 /* Commit.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Commit.xib; sourceTree = "<group>"; };
+		B6D6214C153F19D0006521B2 /* refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = refresh.png; sourceTree = "<group>"; };
+		B6D6214E153F1ACB006521B2 /* open.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = open.png; sourceTree = "<group>"; };
+		B6D62150153F1C56006521B2 /* commit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = commit.png; sourceTree = "<group>"; };
+		B6D62152153F1E77006521B2 /* GECommitController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GECommitController.h; sourceTree = "<group>"; };
+		B6D62153153F1E77006521B2 /* GECommitController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GECommitController.m; sourceTree = "<group>"; };
+		B6D62155153F2AB8006521B2 /* file_status_none.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = file_status_none.png; sourceTree = "<group>"; };
+		B6D62158153F2AB8006521B2 /* file_status_deleted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = file_status_deleted.png; sourceTree = "<group>"; };
+		B6D62159153F2AB8006521B2 /* file_status_added.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = file_status_added.png; sourceTree = "<group>"; };
+		B6FA807E153FF07800F8F67A /* GERepositoryFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GERepositoryFile.h; sourceTree = "<group>"; };
+		B6FA807F153FF07800F8F67A /* GERepositoryFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GERepositoryFile.m; sourceTree = "<group>"; };
+		B6FA8081153FF08800F8F67A /* GitObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GitObjects.h; sourceTree = "<group>"; };
+		B6FA80821540013100F8F67A /* file_status_updated_unmerged.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = file_status_updated_unmerged.png; sourceTree = "<group>"; };
+		B6FA80831540013100F8F67A /* file_status_modified.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = file_status_modified.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		B6427EEF152F28C700A47657 /* Frameworks */ = {
+		B6D42F55153EC2A300485FFD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B6427EF7152F28C800A47657 /* Cocoa.framework in Frameworks */,
+				B6D42F5D153EC2A300485FFD /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B6427EE7152F28C700A47657 = {
+		B6D42F4D153EC2A300485FFD = {
 			isa = PBXGroup;
 			children = (
-				B6427EFC152F28C800A47657 /* GitExtensions */,
-				B6427EF5152F28C800A47657 /* Frameworks */,
-				B6427EF3152F28C800A47657 /* Products */,
+				B6D42F62153EC2A300485FFD /* GitExtensions */,
+				B6D42F5B153EC2A300485FFD /* Frameworks */,
+				B6D42F59153EC2A300485FFD /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		B6427EF3152F28C800A47657 /* Products */ = {
+		B6D42F59153EC2A300485FFD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B6427EF2152F28C800A47657 /* GitExtensions.app */,
+				B6D42F58153EC2A300485FFD /* GitExtensions.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B6427EF5152F28C800A47657 /* Frameworks */ = {
+		B6D42F5B153EC2A300485FFD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B6427EF6152F28C800A47657 /* Cocoa.framework */,
-				B6427EF8152F28C800A47657 /* Other Frameworks */,
+				B6D42F5C153EC2A300485FFD /* Cocoa.framework */,
+				B6D42F5E153EC2A300485FFD /* Other Frameworks */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		B6427EF8152F28C800A47657 /* Other Frameworks */ = {
+		B6D42F5E153EC2A300485FFD /* Other Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B6427EF9152F28C800A47657 /* AppKit.framework */,
-				B6427EFA152F28C800A47657 /* CoreData.framework */,
-				B6427EFB152F28C800A47657 /* Foundation.framework */,
+				B6D42F5F153EC2A300485FFD /* AppKit.framework */,
+				B6D42F60153EC2A300485FFD /* CoreData.framework */,
+				B6D42F61153EC2A300485FFD /* Foundation.framework */,
 			);
 			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
-		B6427EFC152F28C800A47657 /* GitExtensions */ = {
+		B6D42F62153EC2A300485FFD /* GitExtensions */ = {
 			isa = PBXGroup;
 			children = (
-				B6427F08152F28C800A47657 /* GEDocument.h */,
-				B6427F09152F28C800A47657 /* GEDocument.m */,
-				B6427F0B152F28C800A47657 /* GEDocument.xib */,
-				B6427F0E152F28C800A47657 /* MainMenu.xib */,
-				B6427EFD152F28C800A47657 /* Supporting Files */,
+				B6FA807C153FF01F00F8F67A /* GitObjects */,
+				B6D6214B153F19D0006521B2 /* Images */,
+				B6D42F6E153EC2A300485FFD /* GEAppDelegate.h */,
+				B6D42F6F153EC2A300485FFD /* GEAppDelegate.m */,
+				B6D42F71153EC2A300485FFD /* MainMenu.xib */,
+				B6D42F63153EC2A300485FFD /* Supporting Files */,
+				B6D62149153F13E4006521B2 /* Commit.xib */,
+				B6D62152153F1E77006521B2 /* GECommitController.h */,
+				B6D62153153F1E77006521B2 /* GECommitController.m */,
 			);
 			path = GitExtensions;
 			sourceTree = "<group>";
 		};
-		B6427EFD152F28C800A47657 /* Supporting Files */ = {
+		B6D42F63153EC2A300485FFD /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				B6427EFE152F28C800A47657 /* GitExtensions-Info.plist */,
-				B6427EFF152F28C800A47657 /* InfoPlist.strings */,
-				B6427F02152F28C800A47657 /* main.m */,
-				B6427F04152F28C800A47657 /* GitExtensions-Prefix.pch */,
-				B6427F05152F28C800A47657 /* Credits.rtf */,
+				B6D42F64153EC2A300485FFD /* GitExtensions-Info.plist */,
+				B6D42F65153EC2A300485FFD /* InfoPlist.strings */,
+				B6D42F68153EC2A300485FFD /* main.m */,
+				B6D42F6A153EC2A300485FFD /* GitExtensions-Prefix.pch */,
+				B6D42F6B153EC2A300485FFD /* Credits.rtf */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B6D6214B153F19D0006521B2 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				B6FA80821540013100F8F67A /* file_status_updated_unmerged.png */,
+				B6FA80831540013100F8F67A /* file_status_modified.png */,
+				B6D62155153F2AB8006521B2 /* file_status_none.png */,
+				B6D62158153F2AB8006521B2 /* file_status_deleted.png */,
+				B6D62159153F2AB8006521B2 /* file_status_added.png */,
+				B6D62150153F1C56006521B2 /* commit.png */,
+				B6D6214E153F1ACB006521B2 /* open.png */,
+				B6D6214C153F19D0006521B2 /* refresh.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		B6FA807C153FF01F00F8F67A /* GitObjects */ = {
+			isa = PBXGroup;
+			children = (
+				B6D42F7D153EC34A00485FFD /* GEGitRepository.h */,
+				B6D42F7E153EC34A00485FFD /* GEGitRepository.m */,
+				B6D62145153EF7CB006521B2 /* GECommit.h */,
+				B6D62146153EF7CB006521B2 /* GECommit.m */,
+				B6FA807E153FF07800F8F67A /* GERepositoryFile.h */,
+				B6FA807F153FF07800F8F67A /* GERepositoryFile.m */,
+				B6FA8081153FF08800F8F67A /* GitObjects.h */,
+			);
+			name = GitObjects;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		B6427EF1152F28C800A47657 /* GitExtensions */ = {
+		B6D42F57153EC2A300485FFD /* GitExtensions */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B6427F13152F28C800A47657 /* Build configuration list for PBXNativeTarget "GitExtensions" */;
+			buildConfigurationList = B6D42F76153EC2A300485FFD /* Build configuration list for PBXNativeTarget "GitExtensions" */;
 			buildPhases = (
-				B6427EEE152F28C700A47657 /* Sources */,
-				B6427EEF152F28C700A47657 /* Frameworks */,
-				B6427EF0152F28C800A47657 /* Resources */,
+				B6D42F54153EC2A300485FFD /* Sources */,
+				B6D42F55153EC2A300485FFD /* Frameworks */,
+				B6D42F56153EC2A300485FFD /* Resources */,
 			);
 			buildRules = (
 			);
@@ -122,89 +184,93 @@
 			);
 			name = GitExtensions;
 			productName = GitExtensions;
-			productReference = B6427EF2152F28C800A47657 /* GitExtensions.app */;
+			productReference = B6D42F58153EC2A300485FFD /* GitExtensions.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		B6427EE9152F28C700A47657 /* Project object */ = {
+		B6D42F4F153EC2A300485FFD /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0420;
 			};
-			buildConfigurationList = B6427EEC152F28C700A47657 /* Build configuration list for PBXProject "GitExtensions" */;
+			buildConfigurationList = B6D42F52153EC2A300485FFD /* Build configuration list for PBXProject "GitExtensions" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = B6427EE7152F28C700A47657;
-			productRefGroup = B6427EF3152F28C800A47657 /* Products */;
+			mainGroup = B6D42F4D153EC2A300485FFD;
+			productRefGroup = B6D42F59153EC2A300485FFD /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B6427EF1152F28C800A47657 /* GitExtensions */,
+				B6D42F57153EC2A300485FFD /* GitExtensions */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		B6427EF0152F28C800A47657 /* Resources */ = {
+		B6D42F56153EC2A300485FFD /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B6427F01152F28C800A47657 /* InfoPlist.strings in Resources */,
-				B6427F07152F28C800A47657 /* Credits.rtf in Resources */,
-				B6427F0D152F28C800A47657 /* GEDocument.xib in Resources */,
-				B6427F10152F28C800A47657 /* MainMenu.xib in Resources */,
+				B6D42F67153EC2A300485FFD /* InfoPlist.strings in Resources */,
+				B6D42F6D153EC2A300485FFD /* Credits.rtf in Resources */,
+				B6D42F73153EC2A300485FFD /* MainMenu.xib in Resources */,
+				B6D6214A153F13E4006521B2 /* Commit.xib in Resources */,
+				B6D6214D153F19D0006521B2 /* refresh.png in Resources */,
+				B6D6214F153F1ACB006521B2 /* open.png in Resources */,
+				B6D62151153F1C56006521B2 /* commit.png in Resources */,
+				B6D6215A153F2AB8006521B2 /* file_status_none.png in Resources */,
+				B6D6215D153F2AB8006521B2 /* file_status_deleted.png in Resources */,
+				B6D6215E153F2AB8006521B2 /* file_status_added.png in Resources */,
+				B6FA80841540013100F8F67A /* file_status_updated_unmerged.png in Resources */,
+				B6FA80851540013100F8F67A /* file_status_modified.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		B6427EEE152F28C700A47657 /* Sources */ = {
+		B6D42F54153EC2A300485FFD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B6427F03152F28C800A47657 /* main.m in Sources */,
-				B6427F0A152F28C800A47657 /* GEDocument.m in Sources */,
+				B6D42F69153EC2A300485FFD /* main.m in Sources */,
+				B6D42F70153EC2A300485FFD /* GEAppDelegate.m in Sources */,
+				B6D42F7F153EC34A00485FFD /* GEGitRepository.m in Sources */,
+				B6D62147153EF7CB006521B2 /* GECommit.m in Sources */,
+				B6D62154153F1E77006521B2 /* GECommitController.m in Sources */,
+				B6FA8080153FF07800F8F67A /* GERepositoryFile.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		B6427EFF152F28C800A47657 /* InfoPlist.strings */ = {
+		B6D42F65153EC2A300485FFD /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				B6427F00152F28C800A47657 /* en */,
+				B6D42F66153EC2A300485FFD /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		B6427F05152F28C800A47657 /* Credits.rtf */ = {
+		B6D42F6B153EC2A300485FFD /* Credits.rtf */ = {
 			isa = PBXVariantGroup;
 			children = (
-				B6427F06152F28C800A47657 /* en */,
+				B6D42F6C153EC2A300485FFD /* en */,
 			);
 			name = Credits.rtf;
 			sourceTree = "<group>";
 		};
-		B6427F0B152F28C800A47657 /* GEDocument.xib */ = {
+		B6D42F71153EC2A300485FFD /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				B6427F0C152F28C800A47657 /* en */,
-			);
-			name = GEDocument.xib;
-			sourceTree = "<group>";
-		};
-		B6427F0E152F28C800A47657 /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B6427F0F152F28C800A47657 /* en */,
+				B6D42F72153EC2A300485FFD /* en */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
@@ -212,7 +278,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		B6427F11152F28C800A47657 /* Debug */ = {
+		B6D42F74153EC2A300485FFD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -238,7 +304,7 @@
 			};
 			name = Debug;
 		};
-		B6427F12152F28C800A47657 /* Release */ = {
+		B6D42F75153EC2A300485FFD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -257,7 +323,7 @@
 			};
 			name = Release;
 		};
-		B6427F14152F28C800A47657 /* Debug */ = {
+		B6D42F77153EC2A300485FFD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -268,7 +334,7 @@
 			};
 			name = Debug;
 		};
-		B6427F15152F28C800A47657 /* Release */ = {
+		B6D42F78153EC2A300485FFD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -282,24 +348,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B6427EEC152F28C700A47657 /* Build configuration list for PBXProject "GitExtensions" */ = {
+		B6D42F52153EC2A300485FFD /* Build configuration list for PBXProject "GitExtensions" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B6427F11152F28C800A47657 /* Debug */,
-				B6427F12152F28C800A47657 /* Release */,
+				B6D42F74153EC2A300485FFD /* Debug */,
+				B6D42F75153EC2A300485FFD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B6427F13152F28C800A47657 /* Build configuration list for PBXNativeTarget "GitExtensions" */ = {
+		B6D42F76153EC2A300485FFD /* Build configuration list for PBXNativeTarget "GitExtensions" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B6427F14152F28C800A47657 /* Debug */,
-				B6427F15152F28C800A47657 /* Release */,
+				B6D42F77153EC2A300485FFD /* Debug */,
+				B6D42F78153EC2A300485FFD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = B6427EE9152F28C700A47657 /* Project object */;
+	rootObject = B6D42F4F153EC2A300485FFD /* Project object */;
 }
