@@ -10,7 +10,7 @@
 
 @implementation GECommit
 
-@synthesize sha1,parents,author,authorDate,commiter,commitDate,subject,message;
+@synthesize repository, sha1,parents,author,authorDate,commiter,commitDate,subject,message;
 
 + (id)commitWithLines:(NSArray*)lines index:(int*)index{
     return [[[self alloc] initWithLines:lines index:index] autorelease];
@@ -25,7 +25,8 @@
             [self autorelease];
             return nil;
         }
-        sha1 = [[comps objectAtIndex:1] retain];
+        //TODO: add -[NSArray trimmedStringAtIndex:]
+        sha1 = [[[comps objectAtIndex:1] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] retain];
         idx++;
         
         //get the rest of details
@@ -76,5 +77,15 @@
 
 - (NSString*)description{
     return [NSString stringWithFormat:@"%@: %@",self.sha1,self.message];
+}
+
+#pragma mark UI
+
+- (NSString*)fullDescription{
+    NSArray *branches = [[self.repository branchesHashed:self.sha1] valueForKey:@"name"];
+    if(branches.count)
+        return [NSString stringWithFormat:@"[%@] %@",[branches componentsJoinedByString:@"]["], self.subject];
+    else
+        return self.subject;
 }
 @end

@@ -89,7 +89,8 @@
     }
 }
 
-- (void)show{
+- (void)showForRepository:(GEGitRepository*)aRepository{
+    self.repository = aRepository;
     [self updateFiles];
     [NSApp runModalForWindow:self.window];   
 }

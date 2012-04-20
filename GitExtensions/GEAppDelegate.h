@@ -8,14 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class GEGitRepository;
-
 @interface GEAppDelegate : NSObject <NSApplicationDelegate>
-
-@property (assign) IBOutlet NSWindow *window;
-@property (assign) IBOutlet GEGitRepository *repository;
-
-- (IBAction)onOpenRepository:(id)sender;
-- (IBAction)onCommit:(id)sender;
 
 @end

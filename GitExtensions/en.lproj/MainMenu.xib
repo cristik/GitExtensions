@@ -12,6 +12,7 @@
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>NSTabView</string>
+			<string>NSPopUpButton</string>
 			<string>NSMenu</string>
 			<string>NSToolbarItem</string>
 			<string>NSToolbarFlexibleSpaceItem</string>
@@ -26,6 +27,7 @@
 			<string>NSTableColumn</string>
 			<string>NSToolbarSpaceItem</string>
 			<string>NSView</string>
+			<string>NSPopUpButtonCell</string>
 			<string>NSToolbar</string>
 			<string>NSScrollView</string>
 			<string>NSTabViewItem</string>
@@ -42,7 +44,7 @@
 		</object>
 		<array class="NSMutableArray" key="IBDocument.RootObjects" id="1048">
 			<object class="NSCustomObject" id="1021">
-				<string key="NSClassName">NSApplication</string>
+				<string key="NSClassName">GEAppDelegate</string>
 			</object>
 			<object class="NSCustomObject" id="1014">
 				<string key="NSClassName">FirstResponder</string>
@@ -1367,6 +1369,25 @@
 							<bool key="NSToolbarIsUserRemovable">YES</bool>
 							<int key="NSToolbarItemVisibilityPriority">0</int>
 						</object>
+						<object class="NSToolbarItem" key="8EBA174D-E862-442C-9B5F-7DD64E1DF384" id="1001711666">
+							<object class="NSMutableString" key="NSToolbarItemIdentifier">
+								<characters key="NS.bytes">8EBA174D-E862-442C-9B5F-7DD64E1DF384</characters>
+							</object>
+							<string key="NSToolbarItemLabel">Branches</string>
+							<string key="NSToolbarItemPaletteLabel">Branches</string>
+							<string key="NSToolbarItemToolTip"/>
+							<nil key="NSToolbarItemView"/>
+							<nil key="NSToolbarItemImage"/>
+							<nil key="NSToolbarItemTarget"/>
+							<nil key="NSToolbarItemAction"/>
+							<string key="NSToolbarItemMinSize">{0, 0}</string>
+							<string key="NSToolbarItemMaxSize">{0, 0}</string>
+							<bool key="NSToolbarItemEnabled">YES</bool>
+							<bool key="NSToolbarItemAutovalidates">YES</bool>
+							<int key="NSToolbarItemTag">-1</int>
+							<bool key="NSToolbarIsUserRemovable">YES</bool>
+							<int key="NSToolbarItemVisibilityPriority">0</int>
+						</object>
 						<object class="NSToolbarItem" key="A15AB9AE-0A84-4F50-804F-D234DB41F517" id="573026286">
 							<object class="NSMutableString" key="NSToolbarItemIdentifier">
 								<characters key="NS.bytes">A15AB9AE-0A84-4F50-804F-D234DB41F517</characters>
@@ -1562,11 +1583,13 @@
 						<reference ref="573026286"/>
 						<reference ref="681962638"/>
 						<reference ref="1044530217"/>
+						<reference ref="1001711666"/>
 					</array>
 					<array key="NSToolbarIBDefaultItems">
 						<reference ref="349376713"/>
 						<reference ref="1044530217"/>
 						<reference ref="573026286"/>
+						<reference ref="1001711666"/>
 						<reference ref="1044530217"/>
 						<reference ref="681962638"/>
 						<reference ref="582765473"/>
@@ -1992,7 +2015,7 @@
 																			<string key="NSFrame">{{96, 17}, {352, 45}}</string>
 																			<reference key="NSSuperview" ref="542871132"/>
 																			<reference key="NSWindow"/>
-																			<reference key="NSNextKeyView" ref="45381930"/>
+																			<reference key="NSNextKeyView"/>
 																			<bool key="NSEnabled">YES</bool>
 																			<object class="NSTextFieldCell" key="NSCell" id="82275368">
 																				<int key="NSCellFlags">67239424</int>
@@ -2097,6 +2120,85 @@
 				<string key="NSClassName">GEGitRepository</string>
 			</object>
 			<object class="NSArrayController" id="445548702">
+				<bool key="NSEditable">YES</bool>
+				<object class="_NSManagedProxy" key="_NSManagedProxy"/>
+				<bool key="NSAvoidsEmptySelection">YES</bool>
+				<bool key="NSPreservesSelection">YES</bool>
+				<bool key="NSSelectsInsertedObjects">YES</bool>
+				<bool key="NSFilterRestrictsInsertion">YES</bool>
+				<bool key="NSClearsFilterPredicateOnInsertion">YES</bool>
+			</object>
+			<object class="NSPopUpButton" id="473200083">
+				<reference key="NSNextResponder"/>
+				<int key="NSvFlags">268</int>
+				<string key="NSFrameSize">{112, 26}</string>
+				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
+				<reference key="NSNextKeyView"/>
+				<bool key="NSEnabled">YES</bool>
+				<object class="NSPopUpButtonCell" key="NSCell" id="587258134">
+					<int key="NSCellFlags">-2076049856</int>
+					<int key="NSCellFlags2">2048</int>
+					<reference key="NSSupport" ref="942247717"/>
+					<reference key="NSControlView" ref="473200083"/>
+					<int key="NSButtonFlags">109199615</int>
+					<int key="NSButtonFlags2">129</int>
+					<string key="NSAlternateContents"/>
+					<string key="NSKeyEquivalent"/>
+					<int key="NSPeriodicDelay">400</int>
+					<int key="NSPeriodicInterval">75</int>
+					<object class="NSMenuItem" key="NSMenuItem" id="901159174">
+						<reference key="NSMenu" ref="152520317"/>
+						<string key="NSTitle">Item 1</string>
+						<string key="NSKeyEquiv"/>
+						<int key="NSKeyEquivModMask">1048576</int>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<int key="NSState">1</int>
+						<reference key="NSOnImage" ref="35465992"/>
+						<reference key="NSMixedImage" ref="502551668"/>
+						<string key="NSAction">_popUpItemAction:</string>
+						<reference key="NSTarget" ref="587258134"/>
+					</object>
+					<bool key="NSMenuItemRespectAlignment">YES</bool>
+					<object class="NSMenu" key="NSMenu" id="152520317">
+						<string key="NSTitle">OtherViews</string>
+						<array class="NSMutableArray" key="NSMenuItems">
+							<reference ref="901159174"/>
+							<object class="NSMenuItem" id="944448735">
+								<reference key="NSMenu" ref="152520317"/>
+								<string key="NSTitle">Item 2</string>
+								<string key="NSKeyEquiv"/>
+								<int key="NSKeyEquivModMask">1048576</int>
+								<int key="NSMnemonicLoc">2147483647</int>
+								<reference key="NSOnImage" ref="35465992"/>
+								<reference key="NSMixedImage" ref="502551668"/>
+								<string key="NSAction">_popUpItemAction:</string>
+								<reference key="NSTarget" ref="587258134"/>
+							</object>
+							<object class="NSMenuItem" id="400962025">
+								<reference key="NSMenu" ref="152520317"/>
+								<string key="NSTitle">Item 3</string>
+								<string key="NSKeyEquiv"/>
+								<int key="NSKeyEquivModMask">1048576</int>
+								<int key="NSMnemonicLoc">2147483647</int>
+								<reference key="NSOnImage" ref="35465992"/>
+								<reference key="NSMixedImage" ref="502551668"/>
+								<string key="NSAction">_popUpItemAction:</string>
+								<reference key="NSTarget" ref="587258134"/>
+							</object>
+						</array>
+						<reference key="NSMenuFont" ref="942247717"/>
+					</object>
+					<int key="NSPreferredEdge">1</int>
+					<bool key="NSUsesItemFromMenu">YES</bool>
+					<bool key="NSAltersState">YES</bool>
+					<int key="NSArrowPosition">2</int>
+				</object>
+			</object>
+			<object class="NSCustomObject" id="661835050">
+				<string key="NSClassName">GEMainWindowController</string>
+			</object>
+			<object class="NSArrayController" id="1004540317">
 				<bool key="NSEditable">YES</bool>
 				<object class="_NSManagedProxy" key="_NSManagedProxy"/>
 				<bool key="NSAvoidsEmptySelection">YES</bool>
@@ -2781,36 +2883,12 @@
 					<int key="connectionID">532</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">onOpenRepository:</string>
-						<reference key="source" ref="976324537"/>
-						<reference key="destination" ref="722745758"/>
-					</object>
-					<int key="connectionID">545</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">repository</string>
 						<reference key="source" ref="976324537"/>
 						<reference key="destination" ref="463607120"/>
 					</object>
 					<int key="connectionID">546</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">onOpenRepository:</string>
-						<reference key="source" ref="976324537"/>
-						<reference key="destination" ref="573026286"/>
-					</object>
-					<int key="connectionID">644</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">onCommit:</string>
-						<reference key="source" ref="976324537"/>
-						<reference key="destination" ref="681962638"/>
-					</object>
-					<int key="connectionID">652</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -2827,14 +2905,6 @@
 						</object>
 					</object>
 					<int key="connectionID">544</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">reload:</string>
-						<reference key="source" ref="463607120"/>
-						<reference key="destination" ref="349376713"/>
-					</object>
-					<int key="connectionID">645</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -2870,19 +2940,19 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: arrangedObjects.subject</string>
+						<string key="label">value: arrangedObjects.fullDescription</string>
 						<reference key="source" ref="379835965"/>
 						<reference key="destination" ref="445548702"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="379835965"/>
 							<reference key="NSDestination" ref="445548702"/>
-							<string key="NSLabel">value: arrangedObjects.subject</string>
+							<string key="NSLabel">value: arrangedObjects.fullDescription</string>
 							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">arrangedObjects.subject</string>
+							<string key="NSKeyPath">arrangedObjects.fullDescription</string>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">601</int>
+					<int key="connectionID">703</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -3011,6 +3081,127 @@
 						</object>
 					</object>
 					<int key="connectionID">651</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">content: arrangedObjects.name</string>
+						<reference key="source" ref="473200083"/>
+						<reference key="destination" ref="1004540317"/>
+						<object class="NSNibBindingConnector" key="connector" id="333073987">
+							<reference key="NSSource" ref="473200083"/>
+							<reference key="NSDestination" ref="1004540317"/>
+							<string key="NSLabel">content: arrangedObjects.name</string>
+							<string key="NSBinding">content</string>
+							<string key="NSKeyPath">arrangedObjects.name</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">701</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">selectedValue: activeBranch.name</string>
+						<reference key="source" ref="473200083"/>
+						<reference key="destination" ref="463607120"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="473200083"/>
+							<reference key="NSDestination" ref="463607120"/>
+							<string key="NSLabel">selectedValue: activeBranch.name</string>
+							<string key="NSBinding">selectedValue</string>
+							<string key="NSKeyPath">activeBranch.name</string>
+							<reference key="NSPreviousConnector" ref="333073987"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">702</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">window</string>
+						<reference key="source" ref="661835050"/>
+						<reference key="destination" ref="972006081"/>
+					</object>
+					<int key="connectionID">662</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">branchesPopup</string>
+						<reference key="source" ref="661835050"/>
+						<reference key="destination" ref="473200083"/>
+					</object>
+					<int key="connectionID">663</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">branchesToolbarItem</string>
+						<reference key="source" ref="661835050"/>
+						<reference key="destination" ref="1001711666"/>
+					</object>
+					<int key="connectionID">664</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">repository</string>
+						<reference key="source" ref="661835050"/>
+						<reference key="destination" ref="463607120"/>
+					</object>
+					<int key="connectionID">689</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">onOpenRepository:</string>
+						<reference key="source" ref="661835050"/>
+						<reference key="destination" ref="722745758"/>
+					</object>
+					<int key="connectionID">690</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">onRefresh:</string>
+						<reference key="source" ref="661835050"/>
+						<reference key="destination" ref="349376713"/>
+					</object>
+					<int key="connectionID">691</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">onOpenRepository:</string>
+						<reference key="source" ref="661835050"/>
+						<reference key="destination" ref="573026286"/>
+					</object>
+					<int key="connectionID">692</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">onCommit:</string>
+						<reference key="source" ref="661835050"/>
+						<reference key="destination" ref="681962638"/>
+					</object>
+					<int key="connectionID">693</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">onChangeBranch:</string>
+						<reference key="source" ref="661835050"/>
+						<reference key="destination" ref="473200083"/>
+					</object>
+					<int key="connectionID">694</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">contentArray: branches</string>
+						<reference key="source" ref="1004540317"/>
+						<reference key="destination" ref="463607120"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="1004540317"/>
+							<reference key="NSDestination" ref="463607120"/>
+							<string key="NSLabel">contentArray: branches</string>
+							<string key="NSBinding">contentArray</string>
+							<string key="NSKeyPath">branches</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">666</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -4326,6 +4517,7 @@
 							<reference ref="349376713"/>
 							<reference ref="573026286"/>
 							<reference ref="681962638"/>
+							<reference ref="1001711666"/>
 						</array>
 						<reference key="parent" ref="972006081"/>
 					</object>
@@ -4378,6 +4570,63 @@
 						<int key="objectID">646</int>
 						<reference key="object" ref="681962638"/>
 						<reference key="parent" ref="297247653"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">654</int>
+						<reference key="object" ref="1001711666"/>
+						<reference key="parent" ref="297247653"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">655</int>
+						<reference key="object" ref="473200083"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="587258134"/>
+						</array>
+						<reference key="parent" ref="0"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">656</int>
+						<reference key="object" ref="587258134"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="152520317"/>
+						</array>
+						<reference key="parent" ref="473200083"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">657</int>
+						<reference key="object" ref="152520317"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="901159174"/>
+							<reference ref="944448735"/>
+							<reference ref="400962025"/>
+						</array>
+						<reference key="parent" ref="587258134"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">658</int>
+						<reference key="object" ref="901159174"/>
+						<reference key="parent" ref="152520317"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">659</int>
+						<reference key="object" ref="944448735"/>
+						<reference key="parent" ref="152520317"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">660</int>
+						<reference key="object" ref="400962025"/>
+						<reference key="parent" ref="152520317"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">661</int>
+						<reference key="object" ref="661835050"/>
+						<reference key="parent" ref="0"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">665</int>
+						<reference key="object" ref="1004540317"/>
+						<reference key="parent" ref="0"/>
+						<string key="objectName">Branches Controller</string>
 					</object>
 				</array>
 			</object>
@@ -4577,6 +4826,15 @@
 				<string key="642.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="643.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="646.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="654.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="655.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="656.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="657.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="658.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="659.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="660.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="661.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="665.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="72.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="73.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="74.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -4594,41 +4852,13 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">652</int>
+			<int key="maxID">703</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
 					<string key="className">GEAppDelegate</string>
 					<string key="superclassName">NSObject</string>
-					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="onCommit:">id</string>
-						<string key="onOpenRepository:">id</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="onCommit:">
-							<string key="name">onCommit:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="onOpenRepository:">
-							<string key="name">onOpenRepository:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="repository">GEGitRepository</string>
-						<string key="window">NSWindow</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="repository">
-							<string key="name">repository</string>
-							<string key="candidateClassName">GEGitRepository</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="window">
-							<string key="name">window</string>
-							<string key="candidateClassName">NSWindow</string>
-						</object>
-					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/GEAppDelegate.h</string>
@@ -4637,20 +4867,60 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">GEGitRepository</string>
 					<string key="superclassName">NSObject</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">reload:</string>
-						<string key="NS.object.0">id</string>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">reload:</string>
-						<object class="IBActionInfo" key="NS.object.0">
-							<string key="name">reload:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/GEGitRepository.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">GEMainWindowController</string>
+					<string key="superclassName">NSWindowController</string>
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="onChangeBranch:">id</string>
+						<string key="onCommit:">id</string>
+						<string key="onOpenRepository:">id</string>
+						<string key="onRefresh:">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="onChangeBranch:">
+							<string key="name">onChangeBranch:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="onCommit:">
+							<string key="name">onCommit:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="onOpenRepository:">
+							<string key="name">onOpenRepository:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="onRefresh:">
+							<string key="name">onRefresh:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="branchesPopup">NSPopUpButton</string>
+						<string key="branchesToolbarItem">NSToolbarItem</string>
+						<string key="repository">GEGitRepository</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="branchesPopup">
+							<string key="name">branchesPopup</string>
+							<string key="candidateClassName">NSPopUpButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="branchesToolbarItem">
+							<string key="name">branchesToolbarItem</string>
+							<string key="candidateClassName">NSToolbarItem</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="repository">
+							<string key="name">repository</string>
+							<string key="candidateClassName">GEGitRepository</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/GEMainWindowController.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">

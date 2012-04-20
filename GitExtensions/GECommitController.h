@@ -26,7 +26,7 @@
 @property(nonatomic,retain,readwrite) NSAttributedString *currentFileDiff;
 
 + (id)controller;
-- (void)show;
+- (void)showForRepository:(GEGitRepository*)aRepository;
 
 - (IBAction)onUnstagedDblClick:(id)sender;
 - (IBAction)onStagedDblClick:(id)sender;

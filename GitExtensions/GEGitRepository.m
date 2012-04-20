@@ -12,12 +12,18 @@
 @property(nonatomic,assign,readwrite) GERepositoryStatus status;
 @property(nonatomic,retain,readwrite) NSString *repositoryPath;
 @property(nonatomic,retain,readwrite) NSArray *commits;
+@property(nonatomic,retain,readwrite) NSArray *branches;
+@property(nonatomic,retain,readwrite) GEBranch *activeBranch;
 
+@property(nonatomic,retain,readwrite) NSString *commandInProgress; 
+@property(nonatomic,retain,readwrite) NSString *latestOutput;
+@property(nonatomic,assign,readwrite) int latestExitCode;
 @end
 
 @implementation GEGitRepository
 
-@synthesize status, repositoryPath, commits;
+@synthesize status, repositoryPath, commits, branches, activeBranch;
+@synthesize commandInProgress,latestOutput,latestExitCode;
 
 - (id)init{
     if((self = [super init])){
@@ -36,16 +42,37 @@
 
 - (void)openRepository:(NSString*)path{
     self.repositoryPath = path;
-    [self reload:self];
+    [self reload];
 }
 
-- (IBAction)reload:(id)sender{
+- (void)reloadBranches{
+    NSString *output = [self gitOutput:[NSArray arrayWithObjects:@"branch", @"--no-color", @"-v", @"--no-abbrev", nil]];
+    NSArray *lines = [output componentsSeparatedByString:@"\n"];
+    NSMutableArray *newBranches = [NSMutableArray array];
+    GEBranch *newActiveBranch = nil;
+    for(NSString *line in lines){
+        if(line.length < 3) continue;
+        GEBranch *branch = [GEBranch branchWithRepository:self];
+        if([branch parseLine:line]){
+            [newBranches addObject:branch];
+            if([line characterAtIndex:0] == '*')
+                newActiveBranch = branch;
+        }
+    }
+    self.activeBranch = newActiveBranch;
+    self.branches = newBranches;    
+}
+
+- (void)reload{
+    //parse the branches
+    [self reloadBranches];
     NSString *output = [self gitOutput:[NSArray arrayWithObjects:@"log", @"--parents", @"--no-color",@"--format=fuller", nil]];
     NSArray *lines = [output componentsSeparatedByString:@"\n"];
     int index = 0;
     NSMutableArray *repCommits = [NSMutableArray array];
     while(index<lines.count){
         GECommit *commit = [GECommit commitWithLines:lines index:&index];
+        commit.repository = self;
         if(commit == nil) break;
         [repCommits addObject:commit];
     }
@@ -82,6 +109,23 @@
     return result;
 }
 
+- (GEBranch*)branchNamed:(NSString*)name{
+    for(GEBranch *branch in self.branches){
+        if([branch.name isEqual:name]) return branch;
+    }
+    return nil;
+}
+
+- (NSArray*)branchesHashed:(NSString*)sha1{
+    NSMutableArray *result = [NSMutableArray array];
+    for(GEBranch *branch in self.branches){
+        if([branch.sha1 isEqual:sha1]) [result addObject:branch];;
+    }
+    return result;
+}
+
+#pragma mark Commands
+
 - (void)stageFile:(GERepositoryFile*)fileInfo{
     [self gitOutput:[NSArray arrayWithObjects:fileInfo.workTreeStatus==GEFileStatusDeleted?@"rm":@"add",fileInfo.path,nil]];
 }
@@ -90,8 +134,15 @@
     [self gitOutput:[NSArray arrayWithObjects:@"reset",@"--",fileInfo.path,nil]];    
 }
 
+- (void)checkoutBranch:(GEBranch*)branch{
+    [self gitOutput:[NSArray arrayWithObjects:@"checkout", branch.name, nil]];
+}
+    
+#pragma mark Helpers
+
 - (NSString*)gitOutput:(NSArray*)arguments{
     NSString *result = [[[NSString alloc] initWithData:[self rawGitOutput:arguments] encoding:NSUTF8StringEncoding] autorelease];
+    self.latestOutput = result;
     NSLog(@"git %@:\n%@",[arguments componentsJoinedByString:@" "],[result substringToIndex:MIN(result.length,512)]);
     return result;
 }
@@ -102,10 +153,20 @@
     task.launchPath = @"/usr/bin/git";
     task.arguments = arguments;
     task.currentDirectoryPath = self.repositoryPath;
-    NSPipe *pipe = [NSPipe pipe];
+    NSPipe *pipe = [[NSPipe alloc] init];
     task.standardOutput = pipe;
     task.standardError = pipe;
-    [task launch];
-    return [pipe.fileHandleForReading readDataToEndOfFile];   
+    [task launch];    
+    NSData *data = [pipe.fileHandleForReading readDataToEndOfFile];
+    [pipe release]; pipe = nil;
+    [task waitUntilExit];
+    self.latestExitCode = task.terminationStatus;
+    return data;
+}
+
+#pragma mark UI
+
+- (NSAttributedString*)latestOutputAttributed{
+    return [[[NSAttributedString alloc] initWithString:self.latestOutput] autorelease];
 }
 @end

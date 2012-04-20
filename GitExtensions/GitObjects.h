@@ -12,5 +12,6 @@
 #import "GEGitRepository.h"
 #import "GECommit.h"
 #import "GERepositoryFile.h"
+#import "GEBranch.h"
 
 #endif

@@ -8,8 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+@class GEGitRepository;
 @interface GECommit : NSObject{
     @private
+    GEGitRepository *repository;
     NSString *sha1;    
     NSArray *parents;
     NSString *author;
@@ -20,6 +22,8 @@
     NSString *message;
 }
 
+//TODO: make it readonly, create an initWithRepository initializer
+@property(nonatomic,retain,readwrite) GEGitRepository *repository;
 @property(nonatomic,retain,readonly) NSString *sha1;    
 @property(nonatomic,retain,readonly) NSArray *parents;
 @property(nonatomic,retain,readonly) NSString *author;
