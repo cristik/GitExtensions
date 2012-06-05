@@ -10,6 +10,7 @@
 #import "GitObjects.h"
 #import "GECommitController.h"
 #import "GEOperationResultController.h"
+#import "Cocoa+GitExtensions.h"
 
 @implementation GEMainWindowController
 
@@ -30,6 +31,7 @@
     [openPanel beginSheetModalForWindow:self.window completionHandler:^void(NSInteger result){
         if(result == NSFileHandlingPanelOKButton){
             [self.repository openRepository:openPanel.URL.path];
+            [[NSUserDefaults standardUserDefaults] addRepositoryToLatest:openPanel.URL.path];
         }
     }];
 }
