@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "GitObjects.h"
+#import "GEObjects.h"
 
 @interface GEBranch()
 @property(nonatomic, retain, readwrite) NSString *name;

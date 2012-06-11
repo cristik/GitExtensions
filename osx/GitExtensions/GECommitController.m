@@ -7,7 +7,7 @@
 //
 
 #import "GECommitController.h"
-#import "GitObjects.h"
+#import "GEObjects.h"
 
 @implementation GECommitController
 

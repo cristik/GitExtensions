@@ -7,10 +7,12 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#include "GitObjects.h"
 
 @class GEGitRepository;
 
 @interface GEMainWindowController : NSWindowController{
+    CGitRepository *gitRepository;
     IBOutlet GEGitRepository *repository;
     IBOutlet NSToolbarItem *branchesToolbarItem;
     IBOutlet NSPopUpButton *branchesPopup;

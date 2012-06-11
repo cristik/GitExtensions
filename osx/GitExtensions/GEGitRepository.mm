@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
+#import "GEObjects.h"
 #import "GitObjects.h"
 
 @interface GEGitRepository()
@@ -28,6 +29,7 @@
 - (id)init{
     if((self = [super init])){
         status = GERepositoryStatusNone;
+        gitCommands = new CGitCommands("/usr/bin/git");
     }
     return self;
 }
@@ -148,7 +150,16 @@
 }
 
 - (NSData*)rawGitOutput:(NSArray*)arguments{
-    NSTask *task = [[[NSTask alloc] init] autorelease];
+    char **argv = (char**)calloc(arguments.count+1,sizeof(char*));
+    char **ptr = argv;
+    for(NSString *argument in arguments){
+        *ptr = strdup([argument cStringUsingEncoding:NSUTF8StringEncoding]);
+        ptr++;
+    }
+    long len = 0;
+    uint8_t *result = ((CGitCommands*)gitCommands)->rawGitOutput(argv, &len, NULL);
+    return [NSData dataWithBytes:result length:len];
+    /*NSTask *task = [[[NSTask alloc] init] autorelease];
     //TODO: option to change this
     task.launchPath = @"/usr/bin/git";
     task.arguments = arguments;
@@ -161,7 +172,7 @@
     [pipe release]; pipe = nil;
     [task waitUntilExit];
     self.latestExitCode = task.terminationStatus;
-    return data;
+    return data;*/
 }
 
 #pragma mark UI

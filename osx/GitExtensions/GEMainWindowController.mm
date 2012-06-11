@@ -7,7 +7,7 @@
 //
 
 #import "GEMainWindowController.h"
-#import "GitObjects.h"
+#import "GEObjects.h"
 #import "GECommitController.h"
 #import "GEOperationResultController.h"
 #import "Cocoa+GitExtensions.h"

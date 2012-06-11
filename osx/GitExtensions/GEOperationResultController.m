@@ -7,7 +7,7 @@
 //
 
 #import "GEOperationResultController.h"
-#import "GitObjects.h"
+#import "GEObjects.h"
 
 @implementation GEOperationResultController
 
