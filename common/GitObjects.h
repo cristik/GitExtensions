@@ -22,6 +22,12 @@
 #include <iterator>
 using namespace std;
 
+#ifdef WIN32
+#define popen _popen
+#define pclose _pclose
+typedef unsigned char uint8_t;
+#endif
+
 class GITWRAPPER_API CGitCommands {
 private:
     char *gitPath;
@@ -54,18 +60,19 @@ class CGitFile;
 class GITWRAPPER_API CGitRepository{
 private:
     CGitCommands *gitCommands;
-    char *path;
+    char *_path;
     GitRepositoryStatus _status;
-    vector<CGitCommit*> _commits;
-    vector<CGitBranch*> _branches;
+    vector<CGitCommit*> *_commits;
+    vector<CGitBranch*> *_branches;
     CGitBranch *_activeBranch;
 public:
     CGitRepository(CGitCommands *gitCommands);
     ~CGitRepository(void);
     
+    char *path();
     GitRepositoryStatus status();
-    vector<CGitCommit*> &commits();
-    vector<CGitBranch*> &branches();
+    vector<CGitCommit*> *commits();
+    vector<CGitBranch*> *branches();
     CGitBranch *activeBranch();
     
     void open(const char* path);
@@ -74,7 +81,7 @@ public:
     void refreshStatus();
         
     CGitBranch *branchWithName(char* name);
-    vector<CGitBranch*> branchesWithHash(char *sha1);
+    vector<CGitBranch*> *branchesWithHash(char *sha1);
 
     //commands
     void stageFile(CGitFile *file);
@@ -110,4 +117,5 @@ char *strtrim(const char *str);
 vector<string> &split(const string &s, char delim, vector<string> &elems);
 vector<string> split(const string &s, char delim);
 
+void log(const char *text);
 #endif

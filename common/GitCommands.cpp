@@ -6,13 +6,15 @@
 // This is the constructor of a class that has been exported.
 // see GitWrapper.h for the class definition
 CGitCommands::CGitCommands(const char *gitPath){
-	this->gitPath = strdup(gitPath);
+    log("Creating CGitCommands");
+    log(gitPath);
+	this->gitPath = _strdup(gitPath);
 }
 
 uint8_t* CGitCommands::rawGitOutput(const char** argv, long *length, int *exitCode){
     const char **arg = argv;
     char cmd[65536];
-    bzero(cmd, 65536);
+    memset(cmd, 0, 65536);
     strcat(cmd, this->gitPath);
     while(*arg != NULL){
         bool hasSpace = strchr(*arg, ' ') != NULL;
@@ -57,6 +59,7 @@ char* CGitCommands::gitOutput(const char** argv, int *exitCode){
     char *res = (char*)malloc(length+1);
     memcpy(res,data, length);
     res[length] = 0;
+    log(res);
     return res;
 }
 
@@ -83,4 +86,10 @@ vector<string> &split(const string &s, char delim, vector<string> &elems){
 vector<string> split(const string &s, char delim){
     vector<string> elems;
     return split(s, delim, elems);
+}
+
+void log(const char *text){
+    FILE *f = fopen("c:\\gelog.txt","a");
+    fprintf(f,"%s\n",text);
+    fclose(f);
 }

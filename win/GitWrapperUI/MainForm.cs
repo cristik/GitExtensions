@@ -6,13 +6,14 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace MemeoGit
+namespace GitWrapperUI
 {
     public partial class MainForm : Form
     {
         public MainForm()
         {
             InitializeComponent();
+            new GitRepository().open(@"d:\Projects\Memeo\GitExtensions");
         }
     }
 }

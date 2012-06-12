@@ -3,6 +3,9 @@
 
 CGitRepository::CGitRepository(CGitCommands *gitCommands){
     this->gitCommands = gitCommands;
+    _path = NULL;
+    _branches = new vector<CGitBranch*>();
+    _commits = new vector<CGitCommit*>();
     _status = GitRepositoryStatusNone;
     _activeBranch = NULL;
 }
@@ -10,16 +13,20 @@ CGitRepository::CGitRepository(CGitCommands *gitCommands){
 CGitRepository::~CGitRepository(void){
 }
 
+char* CGitRepository::path(){
+    return _path;
+}
+
 GitRepositoryStatus CGitRepository::status(){
     return this->_status;
 }
 
-vector<CGitCommit*> &CGitRepository::commits(){
-    return this->_commits;
+vector<CGitCommit*> *CGitRepository::commits(){
+    return _commits;
 }
 
-vector<CGitBranch*> &CGitRepository::branches(){
-    return this->_branches;
+vector<CGitBranch*> *CGitRepository::branches(){
+    return _branches;
 }
 
 CGitBranch *CGitRepository::activeBranch(){
@@ -27,18 +34,18 @@ CGitBranch *CGitRepository::activeBranch(){
 }
 
 void CGitRepository::open(const char* path){
-    this->path = strdup(path);
+    _path = _strdup(path);
     this->refresh();
 }
 
 void CGitRepository::refresh(){
-    
+    refreshBranches();
 }
 
 void CGitRepository::refreshBranches(){
     const char *args[] = {"branch", "--no-color", "-v", "--no-abbrev", NULL};
     char *output = gitCommands->gitOutput(args, NULL);
-    _branches.clear();
+    _branches->clear();
     vector<string> lines = split(string(output),'\n');
     vector<string>::iterator iter;
     for(iter=lines.begin(); iter != lines.end(); ++iter){
@@ -46,7 +53,7 @@ void CGitRepository::refreshBranches(){
         if(line.length() < 3) continue;
         CGitBranch *branch = new CGitBranch(this);
         if(branch->parseString(line)) {
-            _branches.push_back(branch);
+            _branches->push_back(branch);
             if(branch->active())
                 _activeBranch = branch;
         }
@@ -61,8 +68,8 @@ CGitBranch *CGitRepository::branchWithName(char* name){
     return NULL;
 }
 
-vector<CGitBranch*> CGitRepository::branchesWithHash(char *sha1){
-    return vector<CGitBranch*>();
+vector<CGitBranch*> *CGitRepository::branchesWithHash(char *sha1){
+    return NULL;
 }
 
 //commands
