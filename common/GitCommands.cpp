@@ -8,7 +8,7 @@
 CGitCommands::CGitCommands(const char *gitPath){
     log("Creating CGitCommands");
     log(gitPath);
-	this->gitPath = _strdup(gitPath);
+	this->gitPath = strdup(gitPath);
 }
 
 uint8_t* CGitCommands::rawGitOutput(const char** argv, long *length, int *exitCode){

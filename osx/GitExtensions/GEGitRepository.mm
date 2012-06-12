@@ -52,11 +52,11 @@
 - (void)reloadBranches{
     CGitRepository *rep = (CGitRepository*)gitRepository;
     rep->refreshBranches();
-    vector<CGitBranch*> rawBranches = rep->branches();
+    vector<CGitBranch*> *rawBranches = rep->branches();
     vector<CGitBranch*>::iterator it;
     NSMutableArray *newBranches = [NSMutableArray array];
     GEBranch *newActiveBranch = nil;
-    for(it=rawBranches.begin(); it!=rawBranches.end(); ++it){
+    for(it=rawBranches->begin(); it!=rawBranches->end(); ++it){
         GEBranch *branch = [GEBranch branchWithRepository:self rawBranch:*it];
         if((*it)->active())
             newActiveBranch = branch;

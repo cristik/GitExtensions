@@ -21,7 +21,7 @@ bool CGitBranch::parseString(string s){
     unsigned int i = 1;
     while(i<comps.size() && comps[i].length()==0) i++;
     if(i>=comps.size()) return false;
-    _name = _strdup(comps[i].c_str());
+    _name = strdup(comps[i].c_str());
     while(i<comps.size() && comps[i].length()==0) i++;
     if(i>=comps.size()) return false;
     _sha1 = strtrim(comps[i].c_str());

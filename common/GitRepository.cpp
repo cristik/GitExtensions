@@ -34,7 +34,7 @@ CGitBranch *CGitRepository::activeBranch(){
 }
 
 void CGitRepository::open(const char* path){
-    _path = _strdup(path);
+    _path = strdup(path);
     this->refresh();
 }
 
