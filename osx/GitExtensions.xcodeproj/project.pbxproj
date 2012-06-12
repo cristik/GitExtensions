@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B604E79115863BB200F9CA64 /* NSArray+GitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = B604E79015863BB200F9CA64 /* NSArray+GitExtensions.m */; };
 		B651D5FC157F8C9C00B85A86 /* GitBranch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B651D5FB157F8C9C00B85A86 /* GitBranch.cpp */; };
 		B651D5FF157F8CA700B85A86 /* GitFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B651D5FE157F8CA700B85A86 /* GitFile.cpp */; };
 		B669586A15419B260010B6E6 /* GEMainWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = B669586915419B260010B6E6 /* GEMainWindowController.mm */; };
@@ -33,13 +34,18 @@
 		B6D6215A153F2AB8006521B2 /* file_status_none.png in Resources */ = {isa = PBXBuildFile; fileRef = B6D62155153F2AB8006521B2 /* file_status_none.png */; };
 		B6D6215D153F2AB8006521B2 /* file_status_deleted.png in Resources */ = {isa = PBXBuildFile; fileRef = B6D62158153F2AB8006521B2 /* file_status_deleted.png */; };
 		B6D6215E153F2AB8006521B2 /* file_status_added.png in Resources */ = {isa = PBXBuildFile; fileRef = B6D62159153F2AB8006521B2 /* file_status_added.png */; };
+		B6D7C4DA1587264B00EE5A14 /* bugfix.png in Resources */ = {isa = PBXBuildFile; fileRef = B6D7C4D91587264B00EE5A14 /* bugfix.png */; };
+		B6D7C4DE158726F200EE5A14 /* GEBugfixController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D7C4DD158726F200EE5A14 /* GEBugfixController.m */; };
+		B6D7C4E0158727A300EE5A14 /* Bugfix.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6D7C4DF158727A300EE5A14 /* Bugfix.xib */; };
 		B6FA8080153FF07800F8F67A /* GERepositoryFile.m in Sources */ = {isa = PBXBuildFile; fileRef = B6FA807F153FF07800F8F67A /* GERepositoryFile.m */; };
 		B6FA80841540013100F8F67A /* file_status_updated_unmerged.png in Resources */ = {isa = PBXBuildFile; fileRef = B6FA80821540013100F8F67A /* file_status_updated_unmerged.png */; };
 		B6FA80851540013100F8F67A /* file_status_modified.png in Resources */ = {isa = PBXBuildFile; fileRef = B6FA80831540013100F8F67A /* file_status_modified.png */; };
-		B6FA80881540128700F8F67A /* GEBranch.m in Sources */ = {isa = PBXBuildFile; fileRef = B6FA80871540128700F8F67A /* GEBranch.m */; };
+		B6FA80881540128700F8F67A /* GEBranch.mm in Sources */ = {isa = PBXBuildFile; fileRef = B6FA80871540128700F8F67A /* GEBranch.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B604E78F15863BB200F9CA64 /* NSArray+GitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+GitExtensions.h"; sourceTree = "<group>"; };
+		B604E79015863BB200F9CA64 /* NSArray+GitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+GitExtensions.m"; sourceTree = "<group>"; };
 		B651D5FB157F8C9C00B85A86 /* GitBranch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GitBranch.cpp; sourceTree = "<group>"; };
 		B651D5FE157F8CA700B85A86 /* GitFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GitFile.cpp; sourceTree = "<group>"; };
 		B669586815419B260010B6E6 /* GEMainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEMainWindowController.h; sourceTree = "<group>"; };
@@ -81,13 +87,17 @@
 		B6D62155153F2AB8006521B2 /* file_status_none.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = file_status_none.png; sourceTree = "<group>"; };
 		B6D62158153F2AB8006521B2 /* file_status_deleted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = file_status_deleted.png; sourceTree = "<group>"; };
 		B6D62159153F2AB8006521B2 /* file_status_added.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = file_status_added.png; sourceTree = "<group>"; };
+		B6D7C4D91587264B00EE5A14 /* bugfix.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bugfix.png; sourceTree = "<group>"; };
+		B6D7C4DC158726F200EE5A14 /* GEBugfixController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEBugfixController.h; sourceTree = "<group>"; };
+		B6D7C4DD158726F200EE5A14 /* GEBugfixController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEBugfixController.m; sourceTree = "<group>"; };
+		B6D7C4DF158727A300EE5A14 /* Bugfix.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Bugfix.xib; sourceTree = "<group>"; };
 		B6FA807E153FF07800F8F67A /* GERepositoryFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GERepositoryFile.h; sourceTree = "<group>"; };
 		B6FA807F153FF07800F8F67A /* GERepositoryFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GERepositoryFile.m; sourceTree = "<group>"; };
 		B6FA8081153FF08800F8F67A /* GEObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEObjects.h; sourceTree = "<group>"; };
 		B6FA80821540013100F8F67A /* file_status_updated_unmerged.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = file_status_updated_unmerged.png; sourceTree = "<group>"; };
 		B6FA80831540013100F8F67A /* file_status_modified.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = file_status_modified.png; sourceTree = "<group>"; };
 		B6FA80861540128600F8F67A /* GEBranch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEBranch.h; sourceTree = "<group>"; };
-		B6FA80871540128700F8F67A /* GEBranch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEBranch.m; sourceTree = "<group>"; };
+		B6FA80871540128700F8F67A /* GEBranch.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GEBranch.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +133,8 @@
 				B6BF1EFF1551196400AB50E6 /* Cocoa+GitExtensions.h */,
 				B6BF1F001551198600AB50E6 /* NSUserDefaults+GitExtensions.h */,
 				B6BF1F011551198600AB50E6 /* NSUserDefaults+GitExtensions.m */,
+				B604E78F15863BB200F9CA64 /* NSArray+GitExtensions.h */,
+				B604E79015863BB200F9CA64 /* NSArray+GitExtensions.m */,
 			);
 			name = "Cocoa+GitExtensions";
 			sourceTree = "<group>";
@@ -130,6 +142,9 @@
 		B6D42F4D153EC2A300485FFD = {
 			isa = PBXGroup;
 			children = (
+				B6D7C4DF158727A300EE5A14 /* Bugfix.xib */,
+				B6D7C4DC158726F200EE5A14 /* GEBugfixController.h */,
+				B6D7C4DD158726F200EE5A14 /* GEBugfixController.m */,
 				B6736CAB157E5A5500E7C02F /* common */,
 				B6D42F62153EC2A300485FFD /* GitExtensions */,
 				B6D42F5B153EC2A300485FFD /* Frameworks */,
@@ -201,6 +216,7 @@
 		B6D6214B153F19D0006521B2 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				B6D7C4D91587264B00EE5A14 /* bugfix.png */,
 				B6FA80821540013100F8F67A /* file_status_updated_unmerged.png */,
 				B6FA80831540013100F8F67A /* file_status_modified.png */,
 				B6D62155153F2AB8006521B2 /* file_status_none.png */,
@@ -224,7 +240,7 @@
 				B6FA807F153FF07800F8F67A /* GERepositoryFile.m */,
 				B6FA8081153FF08800F8F67A /* GEObjects.h */,
 				B6FA80861540128600F8F67A /* GEBranch.h */,
-				B6FA80871540128700F8F67A /* GEBranch.m */,
+				B6FA80871540128700F8F67A /* GEBranch.mm */,
 			);
 			name = GitObjects;
 			sourceTree = "<group>";
@@ -292,6 +308,8 @@
 				B6FA80841540013100F8F67A /* file_status_updated_unmerged.png in Resources */,
 				B6FA80851540013100F8F67A /* file_status_modified.png in Resources */,
 				B66958701541AEAE0010B6E6 /* OperationResult.xib in Resources */,
+				B6D7C4DA1587264B00EE5A14 /* bugfix.png in Resources */,
+				B6D7C4E0158727A300EE5A14 /* Bugfix.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,7 +326,7 @@
 				B6D62147153EF7CB006521B2 /* GECommit.m in Sources */,
 				B6D62154153F1E77006521B2 /* GECommitController.m in Sources */,
 				B6FA8080153FF07800F8F67A /* GERepositoryFile.m in Sources */,
-				B6FA80881540128700F8F67A /* GEBranch.m in Sources */,
+				B6FA80881540128700F8F67A /* GEBranch.mm in Sources */,
 				B669586A15419B260010B6E6 /* GEMainWindowController.mm in Sources */,
 				B669586E1541AE820010B6E6 /* GEOperationResultController.m in Sources */,
 				B6BF1F021551198600AB50E6 /* NSUserDefaults+GitExtensions.m in Sources */,
@@ -318,6 +336,8 @@
 				B6736CB6157E5C0700E7C02F /* GitCommit.cpp in Sources */,
 				B651D5FC157F8C9C00B85A86 /* GitBranch.cpp in Sources */,
 				B651D5FF157F8CA700B85A86 /* GitFile.cpp in Sources */,
+				B604E79115863BB200F9CA64 /* NSArray+GitExtensions.m in Sources */,
+				B6D7C4DE158726F200EE5A14 /* GEBugfixController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

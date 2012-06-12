@@ -28,8 +28,9 @@
 
 - (id)init{
     if((self = [super init])){
-        status = GERepositoryStatusNone;
         gitCommands = new CGitCommands("/usr/bin/git");
+        gitRepository = new CGitRepository((CGitCommands*)gitCommands);
+        status = (NSUInteger)((CGitRepository*)gitRepository)->status();
     }
     return self;
 }
@@ -43,24 +44,24 @@
 }
 
 - (void)openRepository:(NSString*)path{
-    self.repositoryPath = path;
+    ((CGitRepository*)gitRepository)->open([path cStringUsingEncoding:NSUTF8StringEncoding]);
+    self.repositoryPath = path;    
     [self reload];
 }
 
 - (void)reloadBranches{
-    NSString *output = [self gitOutput:[NSArray arrayWithObjects:@"branch", @"--no-color", @"-v", @"--no-abbrev", nil]];
-    NSArray *lines = [output componentsSeparatedByString:@"\n"];
+    CGitRepository *rep = (CGitRepository*)gitRepository;
+    rep->refreshBranches();
+    vector<CGitBranch*> rawBranches = rep->branches();
+    vector<CGitBranch*>::iterator it;
     NSMutableArray *newBranches = [NSMutableArray array];
     GEBranch *newActiveBranch = nil;
-    for(NSString *line in lines){
-        if(line.length < 3) continue;
-        GEBranch *branch = [GEBranch branchWithRepository:self];
-        if([branch parseLine:line]){
-            [newBranches addObject:branch];
-            if([line characterAtIndex:0] == '*')
-                newActiveBranch = branch;
-        }
-    }
+    for(it=rawBranches.begin(); it!=rawBranches.end(); ++it){
+        GEBranch *branch = [GEBranch branchWithRepository:self rawBranch:*it];
+        if((*it)->active())
+            newActiveBranch = branch;
+        [newBranches addObject:branch];
+    }    
     self.activeBranch = newActiveBranch;
     self.branches = newBranches;    
 }
@@ -150,29 +151,17 @@
 }
 
 - (NSData*)rawGitOutput:(NSArray*)arguments{
-    char **argv = (char**)calloc(arguments.count+1,sizeof(char*));
-    char **ptr = argv;
+    const char **argv = (const char**)calloc(arguments.count+1,sizeof(char*));
+    const char **ptr = argv;
     for(NSString *argument in arguments){
         *ptr = strdup([argument cStringUsingEncoding:NSUTF8StringEncoding]);
         ptr++;
     }
     long len = 0;
-    uint8_t *result = ((CGitCommands*)gitCommands)->rawGitOutput(argv, &len, NULL);
+    int exitCode = 0;
+    uint8_t *result = ((CGitCommands*)gitCommands)->rawGitOutput(argv, &len, &exitCode);
+    self.latestExitCode = exitCode;
     return [NSData dataWithBytes:result length:len];
-    /*NSTask *task = [[[NSTask alloc] init] autorelease];
-    //TODO: option to change this
-    task.launchPath = @"/usr/bin/git";
-    task.arguments = arguments;
-    task.currentDirectoryPath = self.repositoryPath;
-    NSPipe *pipe = [[NSPipe alloc] init];
-    task.standardOutput = pipe;
-    task.standardError = pipe;
-    [task launch];    
-    NSData *data = [pipe.fileHandleForReading readDataToEndOfFile];
-    [pipe release]; pipe = nil;
-    [task waitUntilExit];
-    self.latestExitCode = task.terminationStatus;
-    return data;*/
 }
 
 #pragma mark UI

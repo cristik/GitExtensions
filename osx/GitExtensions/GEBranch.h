@@ -12,9 +12,11 @@
 
 @interface GEBranch : NSObject{
 @private 
+    void *rawBranch;
     GEGitRepository *repository;
     NSString *name;
     NSString *sha1;
+    BOOL active;
 }
 
 @property(nonatomic, retain, readonly) GEGitRepository *repository;
@@ -22,8 +24,7 @@
 @property(nonatomic, retain, readonly) NSString *sha1;
 @property(nonatomic, assign, readonly) BOOL active;
 
-+ (id)branchWithRepository:(GEGitRepository*)repository;
-- (id)initWithRepository:(GEGitRepository*)repository;
++ (id)branchWithRepository:(GEGitRepository*)repository rawBranch:(void*)rawBranch;
+- (id)initWithRepository:(GEGitRepository*)repository rawBranch:(void*)rawBranch;
 
-- (BOOL)parseLine:(NSString*)line;
 @end

@@ -23,6 +23,7 @@ typedef NSUInteger GERepositoryStatus;
 @interface GEGitRepository : NSObject{
     @private
     void *gitCommands;
+    void *gitRepository;
     GERepositoryStatus status;
     NSString *repositoryPath;
     NSArray *commits;

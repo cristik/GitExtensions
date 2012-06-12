@@ -1411,6 +1411,28 @@
 							<bool key="NSToolbarIsUserRemovable">YES</bool>
 							<int key="NSToolbarItemVisibilityPriority">0</int>
 						</object>
+						<object class="NSToolbarItem" key="EF21B872-2C4A-4C8D-9212-34DE96AD1A14" id="152231065">
+							<object class="NSMutableString" key="NSToolbarItemIdentifier">
+								<characters key="NS.bytes">EF21B872-2C4A-4C8D-9212-34DE96AD1A14</characters>
+							</object>
+							<string key="NSToolbarItemLabel">Toolbar Item</string>
+							<string key="NSToolbarItemPaletteLabel">Toolbar Item</string>
+							<string key="NSToolbarItemToolTip"/>
+							<nil key="NSToolbarItemView"/>
+							<object class="NSCustomResource" key="NSToolbarItemImage">
+								<string key="NSClassName">NSImage</string>
+								<string key="NSResourceName">bugfix</string>
+							</object>
+							<nil key="NSToolbarItemTarget"/>
+							<nil key="NSToolbarItemAction"/>
+							<string key="NSToolbarItemMinSize">{0, 0}</string>
+							<string key="NSToolbarItemMaxSize">{0, 0}</string>
+							<bool key="NSToolbarItemEnabled">YES</bool>
+							<bool key="NSToolbarItemAutovalidates">YES</bool>
+							<int key="NSToolbarItemTag">-1</int>
+							<bool key="NSToolbarIsUserRemovable">YES</bool>
+							<int key="NSToolbarItemVisibilityPriority">0</int>
+						</object>
 						<object class="NSToolbarItem" key="NSToolbarCustomizeToolbarItem" id="24472515">
 							<string key="NSToolbarItemIdentifier">NSToolbarCustomizeToolbarItem</string>
 							<string key="NSToolbarItemLabel">Customize</string>
@@ -1585,6 +1607,7 @@
 						<reference ref="681962638"/>
 						<reference ref="1044530217"/>
 						<reference ref="1001711666"/>
+						<reference ref="152231065"/>
 					</array>
 					<array key="NSToolbarIBDefaultItems">
 						<reference ref="349376713"/>
@@ -1594,6 +1617,7 @@
 						<reference ref="1044530217"/>
 						<reference ref="681962638"/>
 						<reference ref="582765473"/>
+						<reference ref="152231065"/>
 						<reference ref="24472515"/>
 					</array>
 					<array class="NSMutableArray" key="NSToolbarIBSelectableItems"/>
@@ -2248,12 +2272,9 @@
 				<bool key="NSClearsFilterPredicateOnInsertion">YES</bool>
 			</object>
 			<object class="NSPopUpButton" id="473200083">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">268</int>
 				<string key="NSFrameSize">{112, 26}</string>
-				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView"/>
 				<bool key="NSEnabled">YES</bool>
 				<object class="NSPopUpButtonCell" key="NSCell" id="587258134">
 					<int key="NSCellFlags">-2076049856</int>
@@ -4659,6 +4680,7 @@
 							<reference ref="573026286"/>
 							<reference ref="681962638"/>
 							<reference ref="1001711666"/>
+							<reference ref="152231065"/>
 						</array>
 						<reference key="parent" ref="972006081"/>
 					</object>
@@ -4828,6 +4850,11 @@
 						<int key="objectID">713</int>
 						<reference key="object" ref="828131976"/>
 						<reference key="parent" ref="0"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">751</int>
+						<reference key="object" ref="152231065"/>
+						<reference key="parent" ref="297247653"/>
 					</object>
 				</array>
 			</object>
@@ -5049,6 +5076,7 @@
 				<string key="73.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="74.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="75.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="751.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="77.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="78.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="79.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -5062,7 +5090,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">750</int>
+			<int key="maxID">751</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -5187,6 +5215,7 @@
 			<string key="NSToolbarPrint">{32, 32}</string>
 			<string key="NSToolbarShowColorsItemImage">{32, 32}</string>
 			<string key="NSToolbarShowFontsItemImage">{32, 32}</string>
+			<string key="bugfix">{64, 64}</string>
 			<string key="commit">{64, 64}</string>
 			<string key="open">{64, 64}</string>
 			<string key="refresh">{64, 64}</string>

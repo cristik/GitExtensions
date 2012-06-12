@@ -5,12 +5,12 @@
 
 // This is the constructor of a class that has been exported.
 // see GitWrapper.h for the class definition
-CGitCommands::CGitCommands(char *gitPath){
+CGitCommands::CGitCommands(const char *gitPath){
 	this->gitPath = strdup(gitPath);
 }
 
-uint8_t* CGitCommands::rawGitOutput(char** argv, long *length, int *exitCode){
-    char **arg = argv;
+uint8_t* CGitCommands::rawGitOutput(const char** argv, long *length, int *exitCode){
+    const char **arg = argv;
     char cmd[65536];
     bzero(cmd, 65536);
     strcat(cmd, this->gitPath);
@@ -43,12 +43,13 @@ uint8_t* CGitCommands::rawGitOutput(char** argv, long *length, int *exitCode){
         memcpy(res+totalRead, buf, read);
         totalRead += read;
     }
-    pclose(file);
+    int code = pclose(file);
     if(length) *length = totalRead;
+    if(exitCode) *exitCode = code;
     return res;
 }
 
-char* CGitCommands::gitOutput(char** argv, int *exitCode){
+char* CGitCommands::gitOutput(const char** argv, int *exitCode){
     long length = 0;
     uint8_t *data = this->rawGitOutput(argv, &length, exitCode);
     if(data == NULL)
@@ -57,4 +58,29 @@ char* CGitCommands::gitOutput(char** argv, int *exitCode){
     memcpy(res,data, length);
     res[length] = 0;
     return res;
+}
+
+char *strtrim(const char *str){
+    const char *p1 = strchr(str, ' ');
+    const char *p2 = strrchr(str, ' ');
+    if(p1 == NULL) p1 = str;
+    if(p2 == NULL) p2 = str+strlen(str);
+    char *res = (char*)malloc(p2-p1+1);
+    memcpy(res,p1, p2-p1);
+    res[p2-p1] = 0;
+    return res;
+}
+
+vector<string> &split(const string &s, char delim, vector<string> &elems){
+    stringstream ss(s);
+    string item;
+    while(getline(ss, item, delim)){
+        elems.push_back(item);
+    }
+    return elems;
+}
+
+vector<string> split(const string &s, char delim){
+    vector<string> elems;
+    return split(s, delim, elems);
 }
