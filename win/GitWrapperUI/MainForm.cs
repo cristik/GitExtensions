@@ -10,10 +10,12 @@ namespace GitWrapperUI
 {
     public partial class MainForm : Form
     {
+        GitRepository repository = new GitRepository();
         public MainForm()
         {
             InitializeComponent();
-            new GitRepository().open(@"d:\Projects\Memeo\GitExtensions");
+            repository.open(@"d:\Projects\Memeo\PersonalSpace\git\personal-space");
+            gitBranchBindingSource.DataSource = repository.Branches;
         }
     }
 }

@@ -2,65 +2,80 @@
 //
 
 #include "GitObjects.h"
+#include <direct.h>
 
 // This is the constructor of a class that has been exported.
 // see GitWrapper.h for the class definition
 CGitCommands::CGitCommands(const char *gitPath){
-    log("Creating CGitCommands");
-    log(gitPath);
 	this->gitPath = strdup(gitPath);
+    this->workingDir = NULL;
 }
 
-uint8_t* CGitCommands::rawGitOutput(const char** argv, long *length, int *exitCode){
-    const char **arg = argv;
-    char cmd[65536];
-    memset(cmd, 0, 65536);
-    strcat(cmd, this->gitPath);
-    while(*arg != NULL){
-        bool hasSpace = strchr(*arg, ' ') != NULL;
-        if(hasSpace) strcat(cmd," \"");
-        else strcat(cmd," ");
-        strcat(cmd, *arg);
-        if(hasSpace) strcat(cmd,"\"");
-        arg++;
+bool CGitCommands::executeGitCommand(...){ 
+#ifdef WIN32
+    /*CreateProcess(NULL, //lpApplicationName
+        gitPath,*/        //lpCommandLine
+#else
+    int pipe_err[2], pipe_out[2], pipe_in[2];
+
+    if (pipe(pipe_err) || pipe(pipe_out) || pipe(pipe_in)) { // abbreviated error detection
+         perror("pipe");
+         return false;
     }
-    strcat(cmd, " 2>&1");
-    FILE *file = popen(cmd, "r");
-    if(file == NULL)
-        return NULL;
-    char buf[1024];
-    uint8_t *res = NULL;
-    long totalRead = 0;
-    while(!feof(file)){
-        long read = fread(buf, 1, 1024, file);
-        if(read == 0) continue;
-        if(res == NULL){
-            res = (uint8_t*)malloc(read);
-        } else{
-            uint8_t *tmp = res;
-            res = (uint8_t*)malloc(totalRead+read);
-            memcpy(res, tmp, totalRead);
-            free(tmp);
-        }
-        memcpy(res+totalRead, buf, read);
-        totalRead += read;
+
+    pid_t pid = fork();
+    if (!pid) { // in child
+        dup2(pipe_err[1], 2);
+        dup2(pipe_out[1], 1);
+        dup2(pipe_in[0], 0);
+        close(pipe_err[0]);
+        close(pipe_err[1]);
+        close(pipe_out[0]);
+        close(pipe_out[1]);
+        close(pipe_in[0]);
+        close(pipe_in[1]);
+
+        // close any other files that you don't want the new program
+        // to get access to here unless you know that they have the
+        // O_CLOEXE bit set
+
+        execl(program_path, program_name, arg1, arg2, arg3);
+        /* only gets here if there is an error executing the program */
+     } else { // in the parent
+         if (pid < 0) {
+               perror("fork");
+               return false;
+         }
+         child_err = pipe_err[0];
+         close(pipe_err[1]);
+         child_out = pipe_out[0];
+         close(pipe_out[1]);
+         child_in = pipe_in[1];
+         close(pipe_in[0]);
     }
-    int code = pclose(file);
-    if(length) *length = totalRead;
-    if(exitCode) *exitCode = code;
-    return res;
+#endif
+    return true;
 }
 
-char* CGitCommands::gitOutput(const char** argv, int *exitCode){
-    long length = 0;
-    uint8_t *data = this->rawGitOutput(argv, &length, exitCode);
-    if(data == NULL)
-        return NULL;
-    char *res = (char*)malloc(length+1);
-    memcpy(res,data, length);
-    res[length] = 0;
-    log(res);
-    return res;
+int CGitCommands::readFromOutput(uint8_t *buff, int length){
+    return 0;
+}
+
+int CGitCommands::readFromError(uint8_t *buff, int length){
+    return 0;
+}
+
+int CGitCommands::getExitCode(){
+    return this->exitCode;
+}
+
+char *CGitCommands::getWorkingDir(){
+    return workingDir;
+}
+
+void CGitCommands::setWorkingDir(const char *value){
+    if(workingDir != NULL) free(workingDir);
+    if(value) workingDir = strdup(value);
 }
 
 char *strtrim(const char *str){

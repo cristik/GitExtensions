@@ -25,16 +25,30 @@ using namespace std;
 #ifdef WIN32
 #define popen _popen
 #define pclose _pclose
+#define chdir _chdir
 typedef unsigned char uint8_t;
 #endif
 
 class GITWRAPPER_API CGitCommands {
 private:
     char *gitPath;
+    char *workingDir;
+    int outputStream;
+    int errorStream;
+    int exitCode;
+    bool commandInProgress;
 public:
 	CGitCommands(const char *gitPath);
-    uint8_t* rawGitOutput(const char** argv, long *length, int *exitCode);
-    char* gitOutput(const char** argv, int *exitCode);
+    char *getWorkingDir();
+    void setWorkingDir(const char *value);
+    
+    bool executeGitCommand(...);
+    bool hasCommandInProgress();
+    
+    int readFromOutput(uint8_t *buff, int length);
+    int readFromError(uint8_t *buff, int length);
+    int getExitCode();
+    
 };
 
 typedef void (PropChangedFunc)(char *propName, void *context);
@@ -76,6 +90,7 @@ public:
     CGitBranch *activeBranch();
     
     void open(const char* path);
+    void clone(const char *url);
     void refresh();
     void refreshBranches();
     void refreshStatus();

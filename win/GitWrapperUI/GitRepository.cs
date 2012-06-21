@@ -23,10 +23,10 @@ namespace GitWrapperUI
         private GitBranch activeBranch;
 
         public String Path { get { return path; } }
-        private GitRepositoryStatus Status { get { return status; } }
-        private List<GitCommit> Commits { get { return commits; } }
-        private List<GitBranch> Branches { get { return branches; } }
-        private GitBranch ActiveBranch { get { return activeBranch; } }
+        public GitRepositoryStatus Status { get { return status; } }
+        public List<GitCommit> Commits { get { return commits; } }
+        public List<GitBranch> Branches { get { return branches; } }
+        public GitBranch ActiveBranch { get { return activeBranch; } }
 
         [DllImport("GitWrapper", EntryPoint = "?CreateCGitCommands@@YAPAXPBD@Z")]
         private static extern IntPtr CreateCGitCommands(String path);
@@ -39,6 +39,9 @@ namespace GitWrapperUI
 
         [DllImport("GitWrapper", EntryPoint = "?CGitRepository_path@@YAPADPAX@Z")]
         private static extern string CGitRepository_path(IntPtr ptr);
+
+        [DllImport("GitWrapper", EntryPoint = "?CGitRepository_branches@@YAPAXPAXPAH@Z")]
+        private static extern IntPtr CGitRepository_branches(IntPtr ptr, out int len);
 
         public GitRepository()
             : base(CreateCGitRepository(CreateCGitCommands(@"d:\cygwin\bin\git.exe")))
@@ -54,6 +57,18 @@ namespace GitWrapperUI
 
         protected override void setupFromCppObject(IntPtr cppObject)
         {
+            branches = new List<GitBranch>();
+            int len;
+            IntPtr cppData = CGitRepository_branches(cppObject, out len);
+            if (len > 0)
+            {
+                IntPtr[] cppBranches = new IntPtr[len];
+                Marshal.Copy(cppData, cppBranches, 0, len);
+                foreach (IntPtr cppBranch in cppBranches)
+                {
+                    branches.Add(new GitBranch(this, cppBranch));
+                }
+            }            
         }
     }
 }

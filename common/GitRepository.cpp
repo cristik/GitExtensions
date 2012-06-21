@@ -35,6 +35,7 @@ CGitBranch *CGitRepository::activeBranch(){
 
 void CGitRepository::open(const char* path){
     _path = strdup(path);
+    this->gitCommands->setWorkingDir(path);
     this->refresh();
 }
 
@@ -44,9 +45,15 @@ void CGitRepository::refresh(){
 
 void CGitRepository::refreshBranches(){
     const char *args[] = {"branch", "--no-color", "-v", "--no-abbrev", NULL};
-    char *output = gitCommands->gitOutput(args, NULL);
+    char buf[1024];
+    int read;
+    string output;
+    if(gitCommands->executeGitCommand()){
+        while(read = gitCommands->readFromOutput((uint8_t*)buf, read)){
+        }
+    }
     _branches->clear();
-    vector<string> lines = split(string(output),'\n');
+    vector<string> lines = split(output,'\n');
     vector<string>::iterator iter;
     for(iter=lines.begin(); iter != lines.end(); ++iter){
         string line = *iter;

@@ -23,13 +23,13 @@ GITWRAPPER_API GitRepositoryStatus CGitRepository_status(void *ptr){
 GITWRAPPER_API CGitCommit **CGitRepository_commits(void *ptr, int *len){
     vector<CGitCommit*> commits = *((CGitRepository*)ptr)->commits();
     *len = commits.size();
-    return &commits[0];
+    return *len?&commits[0]:NULL;
 }
 
-GITWRAPPER_API CGitBranch **CGitRepository_branches(void *ptr, int *len){
-    vector<CGitBranch*> branches = *((CGitRepository*)ptr)->branches();
-    *len = branches.size();
-    return &branches[0];
+GITWRAPPER_API void *CGitRepository_branches(void *ptr, int *len){
+    vector<CGitBranch*> *branches = ((CGitRepository*)ptr)->branches();
+    if(len) *len = branches->size();
+    return branches->size()?&branches[0][0]:NULL;
 }
 
 GITWRAPPER_API CGitBranch *CGitRepository_activeBranch(void *ptr){
@@ -72,4 +72,18 @@ GITWRAPPER_API void CGitRepository_unstageFile(void *ptr, CGitFile *file){
 
 GITWRAPPER_API void CGitRepository_checkoutBranch(void *ptr, CGitBranch *branch){
     ((CGitRepository*)ptr)->checkoutBranch(branch);
+}
+
+
+
+GITWRAPPER_API const char *CGitBranch_name(void *ptr){
+    return ((CGitBranch*)ptr)->name();
+}
+
+GITWRAPPER_API const char *CGitBranch_sha1(void *ptr){
+    return ((CGitBranch*)ptr)->sha1();
+}
+
+GITWRAPPER_API bool CGitBranch_active(void *ptr){
+    return ((CGitBranch*)ptr)->active();
 }

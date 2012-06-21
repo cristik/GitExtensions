@@ -20,7 +20,7 @@ GITWRAPPER_API void DestroyCGitRepository(void *ptr);
 GITWRAPPER_API char *CGitRepository_path(void *ptr);
 GITWRAPPER_API GitRepositoryStatus CGitRepository_status(void *ptr);
 GITWRAPPER_API CGitCommit **CGitRepository_commits(void *ptr, int *len);
-GITWRAPPER_API CGitBranch **CGitRepository_branches(void *ptr, int *len);
+GITWRAPPER_API void *CGitRepository_branches(void *ptr, int *len);
 GITWRAPPER_API CGitBranch *CGitRepository_activeBranch(void *ptr);
     
 GITWRAPPER_API void CGitRepository_open(void *ptr,const char* path);
@@ -31,7 +31,10 @@ GITWRAPPER_API void CGitRepository_refreshStatus(void *ptr);
 GITWRAPPER_API CGitBranch *CGitRepository_branchWithName(void *ptr, char* name);
 GITWRAPPER_API CGitBranch **CGitRepository_branchesWithHash(void *ptr, char *sha1, int *len);
 
-    //commands
 GITWRAPPER_API void CGitRepository_stageFile(void *ptr, CGitFile *file);
 GITWRAPPER_API void CGitRepository_unstageFile(void *ptr, CGitFile *file);
 GITWRAPPER_API void CGitRepository_checkoutBranch(void *ptr, CGitBranch *branch);
+
+GITWRAPPER_API const char *CGitBranch_name(void *ptr);
+GITWRAPPER_API const char *CGitBranch_sha1(void *ptr);    
+GITWRAPPER_API bool CGitBranch_active(void *ptr);
