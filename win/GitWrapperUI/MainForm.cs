@@ -15,7 +15,7 @@ namespace GitWrapperUI
         {
             InitializeComponent();
             repository.open(@"d:\Projects\Memeo\PersonalSpace\git\personal-space");
-            gitBranchBindingSource.DataSource = repository.Branches;
+            //gitBranchBindingSource.DataSource = repository.Branches;
         }
     }
 }
