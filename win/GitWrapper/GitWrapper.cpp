@@ -87,3 +87,7 @@ GITWRAPPER_API const char *CGitBranch_sha1(void *ptr){
 GITWRAPPER_API bool CGitBranch_active(void *ptr){
     return ((CGitBranch*)ptr)->active();
 }
+
+GITWRAPPER_API void CGitBranch_checkout(void *ptr){
+	return ((CGitBranch*)ptr)->checkout();
+}
