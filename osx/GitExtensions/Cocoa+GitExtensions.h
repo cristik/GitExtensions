@@ -10,5 +10,7 @@
 #define GitExtensions_Cocoa_GitExtensions_h
 
 #import "NSUserDefaults+GitExtensions.h"
+#import "NSString+GitExtensions.h"
+#import "NSArray+GitExtensions.h"
 
 #endif

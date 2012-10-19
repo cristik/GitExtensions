@@ -33,8 +33,8 @@ private:
     char *gitPath;
 public:
 	CGitCommands(const char *gitPath);
-    uint8_t* rawGitOutput(const char** argv, long *length, int *exitCode);
-    char* gitOutput(const char** argv, int *exitCode);
+    uint8_t* rawGitOutput(const char *workingDir, const char** argv, long *length, int *exitCode);
+    char* gitOutput(const char *workingDir, const char** argv, int *exitCode);
 };
 
 typedef void (PropChangedFunc)(char *propName, void *context);

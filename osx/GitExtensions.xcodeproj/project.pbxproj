@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F254B4B1631BA2B0001D680 /* NSString+GitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F254B4A1631BA2B0001D680 /* NSString+GitExtensions.m */; };
+		0F254B4E1631CC410001D680 /* GELaneTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F254B4D1631CC410001D680 /* GELaneTableViewCell.m */; };
 		B604E79115863BB200F9CA64 /* NSArray+GitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = B604E79015863BB200F9CA64 /* NSArray+GitExtensions.m */; };
 		B651D5FC157F8C9C00B85A86 /* GitBranch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B651D5FB157F8C9C00B85A86 /* GitBranch.cpp */; };
 		B651D5FF157F8CA700B85A86 /* GitFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B651D5FE157F8CA700B85A86 /* GitFile.cpp */; };
@@ -44,6 +46,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0F254B491631BA2B0001D680 /* NSString+GitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+GitExtensions.h"; sourceTree = "<group>"; };
+		0F254B4A1631BA2B0001D680 /* NSString+GitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+GitExtensions.m"; sourceTree = "<group>"; };
+		0F254B4C1631CC410001D680 /* GELaneTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GELaneTableViewCell.h; sourceTree = "<group>"; };
+		0F254B4D1631CC410001D680 /* GELaneTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GELaneTableViewCell.m; sourceTree = "<group>"; };
 		B604E78F15863BB200F9CA64 /* NSArray+GitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+GitExtensions.h"; sourceTree = "<group>"; };
 		B604E79015863BB200F9CA64 /* NSArray+GitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+GitExtensions.m"; sourceTree = "<group>"; };
 		B651D5FB157F8C9C00B85A86 /* GitBranch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GitBranch.cpp; sourceTree = "<group>"; };
@@ -135,6 +141,8 @@
 				B6BF1F011551198600AB50E6 /* NSUserDefaults+GitExtensions.m */,
 				B604E78F15863BB200F9CA64 /* NSArray+GitExtensions.h */,
 				B604E79015863BB200F9CA64 /* NSArray+GitExtensions.m */,
+				0F254B491631BA2B0001D680 /* NSString+GitExtensions.h */,
+				0F254B4A1631BA2B0001D680 /* NSString+GitExtensions.m */,
 			);
 			name = "Cocoa+GitExtensions";
 			sourceTree = "<group>";
@@ -142,6 +150,8 @@
 		B6D42F4D153EC2A300485FFD = {
 			isa = PBXGroup;
 			children = (
+				0F254B4C1631CC410001D680 /* GELaneTableViewCell.h */,
+				0F254B4D1631CC410001D680 /* GELaneTableViewCell.m */,
 				B6D7C4DF158727A300EE5A14 /* Bugfix.xib */,
 				B6D7C4DC158726F200EE5A14 /* GEBugfixController.h */,
 				B6D7C4DD158726F200EE5A14 /* GEBugfixController.m */,
@@ -338,6 +348,8 @@
 				B651D5FF157F8CA700B85A86 /* GitFile.cpp in Sources */,
 				B604E79115863BB200F9CA64 /* NSArray+GitExtensions.m in Sources */,
 				B6D7C4DE158726F200EE5A14 /* GEBugfixController.m in Sources */,
+				0F254B4B1631BA2B0001D680 /* NSString+GitExtensions.m in Sources */,
+				0F254B4E1631CC410001D680 /* GELaneTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

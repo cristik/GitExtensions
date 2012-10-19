@@ -11,10 +11,11 @@ CGitCommands::CGitCommands(const char *gitPath){
 	this->gitPath = strdup(gitPath);
 }
 
-uint8_t* CGitCommands::rawGitOutput(const char** argv, long *length, int *exitCode){
+uint8_t* CGitCommands::rawGitOutput(const char *workingDir, const char** argv, long *length, int *exitCode){
     const char **arg = argv;
     char cmd[65536];
     memset(cmd, 0, 65536);
+    sprintf(cmd, "cd \"%s\" && ", workingDir);
     strcat(cmd, this->gitPath);
     while(*arg != NULL){
         bool hasSpace = strchr(*arg, ' ') != NULL;
@@ -51,9 +52,9 @@ uint8_t* CGitCommands::rawGitOutput(const char** argv, long *length, int *exitCo
     return res;
 }
 
-char* CGitCommands::gitOutput(const char** argv, int *exitCode){
+char* CGitCommands::gitOutput(const char *workingDir, const char** argv, int *exitCode){
     long length = 0;
-    uint8_t *data = this->rawGitOutput(argv, &length, exitCode);
+    uint8_t *data = this->rawGitOutput(workingDir, argv, &length, exitCode);
     if(data == NULL)
         return NULL;
     char *res = (char*)malloc(length+1);

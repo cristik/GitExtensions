@@ -7,10 +7,23 @@
 //
 
 #import "GEObjects.h"
+#import "Cocoa+GitExtensions.h"
+
+@interface GECommit()
+@property(nonatomic,retain,readwrite) NSString *sha1;
+//TODO: remove somehow the readwrite from here
+@property(nonatomic,retain,readwrite) NSString *author;
+@property(nonatomic,retain,readwrite) NSString *authorDate;
+@property(nonatomic,retain,readwrite) NSString *commiter;
+@property(nonatomic,retain,readwrite) NSString *commitDate;
+@property(nonatomic,retain,readwrite) NSString *subject;
+@property(nonatomic,retain,readwrite) NSString *message;
+@end
 
 @implementation GECommit
 
 @synthesize repository, sha1,parents,author,authorDate,commiter,commitDate,subject,message;
+@synthesize lane = _lane;
 
 + (id)commitWithLines:(NSArray*)lines index:(int*)index{
     return [[[self alloc] initWithLines:lines index:index] autorelease];
@@ -26,8 +39,9 @@
             return nil;
         }
         //TODO: add -[NSArray trimmedStringAtIndex:]
-        sha1 = [[[comps objectAtIndex:1] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] retain];
+        sha1 = [[[comps objectAtIndex:1] trim] retain];
         idx++;
+        parents = [[comps subarrayWithRange:NSMakeRange(2, comps.count-2)] retain];
         
         //get the rest of details
         NSString *line = nil;
@@ -71,6 +85,9 @@
             idx++;
         
         *index = idx;
+        
+        //dont belong to a lane, yet
+        _lane = -1;
     }
     return self;
 }
@@ -87,5 +104,25 @@
         return [NSString stringWithFormat:@"[%@] %@",[branches componentsJoinedByString:@"]["], self.subject];
     else
         return self.subject;
+}
+
+- (NSString*)parentsString{
+    return [NSString stringWithFormat:@"Parents: %@",[[self.parents valueForKeyPath:@"subject.ellipsisTo50"] componentsJoinedByString:@"; "]];
+}
+
+#pragma mark NSCopying
+- (id)copyWithZone:(NSZone *)zone{
+    GECommit *copy = [[GECommit allocWithZone:zone] init];
+    copy.repository = self.repository;
+    copy.sha1 = self.sha1;
+    copy.parents = self.parents;
+    copy.author = self.author;
+    copy.authorDate = self.authorDate;
+    copy.commiter = self.commiter;
+    copy.commitDate = self.commitDate;
+    copy.subject = self.subject;
+    copy.message = self.message;
+    copy.lane = self.lane;
+    return copy;
 }
 @end

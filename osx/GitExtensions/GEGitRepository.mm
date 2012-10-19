@@ -8,6 +8,7 @@
 
 #import "GEObjects.h"
 #import "GitObjects.h"
+#import "Cocoa+GitExtensions.h"
 
 @interface GEGitRepository()
 @property(nonatomic,assign,readwrite) GERepositoryStatus status;
@@ -49,6 +50,64 @@
     [self reload];
 }
 
+static BOOL availableLanes[1000];
+static NSMutableArray *commitQueue = nil;
+static int minLane = 0;
+static int maxOccupied = -1;
+
+- (NSInteger)grabLane{
+    for(int i=minLane;i<1000;i++){
+        if(availableLanes[i]){
+            availableLanes[i] = NO;
+            if(i > maxOccupied) maxOccupied = i;
+            return i;
+        }
+    }
+    return -1;
+}
+
+- (void)returnLane:(NSInteger)lane{
+    availableLanes[lane] = YES;
+}
+
+- (void)laneCommit2:(GECommit*)commit lane:(NSInteger)lane{
+    //get the first available lane
+    if(lane == -1) lane = [self grabLane];
+    //NSInteger originalLane = lane;
+    //don't re-lane if already laned
+    if(commit.lane < 0) commit.lane = lane;
+    for(GECommit *parent in commit.parents){
+        //the parent was already lane, release the current one
+        if(parent.lane >= 0){
+            [self returnLane:commit.lane];
+            return;
+        }
+        //first parent will have the same lane as the current commit
+        parent.lane = lane;
+        [commitQueue addObject:parent];
+        lane = -1;
+    }
+    //the last lane grab is not desired
+    //if(lane != originalLane) [self returnLane:lane];
+    while(commitQueue.count){
+        GECommit *queuedCommit = [commitQueue objectAtIndex:0];
+        [commitQueue removeObjectAtIndex:0];
+        [self laneCommit2:queuedCommit lane:queuedCommit.lane];
+    }
+}
+
+//also populates the parents
+- (void)laneCommit:(GECommit*)commit lane:(int*)lane{
+    if(commit.lane >= 0) return;
+    commit.lane = *lane;
+    for(int i=0; i<commit.parents.count;i++){
+        [self laneCommit:[commit.parents objectAtIndex:i] lane:lane];
+        *lane = *lane + 1;
+    }
+    if(!commit.parents.count)
+        *lane = *lane + 1;
+}
+
 - (void)reloadBranches{
     CGitRepository *rep = (CGitRepository*)gitRepository;
     rep->refreshBranches();
@@ -61,15 +120,15 @@
         if((*it)->active())
             newActiveBranch = branch;
         [newBranches addObject:branch];
-    }    
+    }
     self.activeBranch = newActiveBranch;
-    self.branches = newBranches;    
+    self.branches = newBranches;
 }
 
 - (void)reload{
     //parse the branches
     [self reloadBranches];
-    NSString *output = [self gitOutput:[NSArray arrayWithObjects:@"log", @"--parents", @"--no-color",@"--format=fuller", nil]];
+    NSString *output = [self gitOutput:[NSArray arrayWithObjects:@"log", @"--all", @"--parents", @"--no-color",@"--format=fuller", nil]];
     NSArray *lines = [output componentsSeparatedByString:@"\n"];
     int index = 0;
     NSMutableArray *repCommits = [NSMutableArray array];
@@ -79,6 +138,25 @@
         if(commit == nil) break;
         [repCommits addObject:commit];
     }
+    
+    for(GECommit *commit in repCommits){
+        NSMutableArray *parentCommits = [NSMutableArray array];
+        for(NSString *sha1 in commit.parents){
+            //NSLog(@"***%@",sha1);
+            [parentCommits addObject:[repCommits objectWithValue:sha1 forKey:@"sha1"]];
+        }
+        commit.parents = parentCommits;
+    }
+    
+    memset(&availableLanes,1,1000);
+    if(!commitQueue) commitQueue = [[NSMutableArray alloc] init];
+    for(GECommit *commit in repCommits){
+        //this makes sure that branches don't overlap
+        minLane = maxOccupied+1;
+        if(commit.lane < 0)
+            [self laneCommit2:commit lane:-1];
+    }
+    
     self.commits = repCommits;
     if(self.commits.count) self.status = GERepositoryStatusRegular;
     else self.status = GERepositoryStatusEmpty;
@@ -122,9 +200,16 @@
 - (NSArray*)branchesHashed:(NSString*)sha1{
     NSMutableArray *result = [NSMutableArray array];
     for(GEBranch *branch in self.branches){
-        if([branch.sha1 isEqual:sha1]) [result addObject:branch];;
+        if([branch.sha1 isEqual:sha1]) [result addObject:branch];
     }
     return result;
+}
+
+- (GECommit*)commitHashed:(NSString*)sha1{
+    for(GECommit *commit in self.commits){
+        if([commit.sha1 isEqual:sha1]) return commit;
+    }
+    return nil;
 }
 
 #pragma mark Commands
@@ -159,7 +244,7 @@
     }
     long len = 0;
     int exitCode = 0;
-    uint8_t *result = ((CGitCommands*)gitCommands)->rawGitOutput(argv, &len, &exitCode);
+    uint8_t *result = ((CGitCommands*)gitCommands)->rawGitOutput([repositoryPath cStringUsingEncoding:NSUTF8StringEncoding],argv, &len, &exitCode);
     self.latestExitCode = exitCode;
     return [NSData dataWithBytes:result length:len];
 }

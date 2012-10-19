@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface NSArray(GitExtensions)
-
+- (id)objectWithValue:(id)value forKey:(NSString*)key;
 @end

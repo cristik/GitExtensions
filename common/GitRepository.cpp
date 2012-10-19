@@ -44,7 +44,7 @@ void CGitRepository::refresh(){
 
 void CGitRepository::refreshBranches(){
     const char *args[] = {"branch", "--no-color", "-v", "--no-abbrev", NULL};
-    char *output = gitCommands->gitOutput(args, NULL);
+    char *output = gitCommands->gitOutput(_path, args, NULL);
     _branches->clear();
     vector<string> lines = split(string(output),'\n');
     vector<string>::iterator iter;

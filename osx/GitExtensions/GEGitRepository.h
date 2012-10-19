@@ -19,6 +19,7 @@ typedef NSUInteger GERepositoryStatus;
 
 @class GERepositoryFile;
 @class GEBranch;
+@class GECommit;
 
 @interface GEGitRepository : NSObject{
     @private
@@ -54,6 +55,7 @@ typedef NSUInteger GERepositoryStatus;
 - (NSArray*)retrieveStatus;
 - (GEBranch*)branchNamed:(NSString*)name;
 - (NSArray*)branchesHashed:(NSString*)sha1;
+- (GECommit*)commitHashed:(NSString*)sha1;
 //commands
 - (void)stageFile:(GERepositoryFile*)fileInfo;
 - (void)unstageFile:(GERepositoryFile*)fileInfo;
