@@ -20,6 +20,8 @@
     branchesToolbarItem.view = branchesPopup;
     branchesToolbarItem.minSize = NSMakeSize(150, 20);
     branchesToolbarItem.maxSize = NSMakeSize(150, 20);
+    
+    //[laneColumn bind:@"value" toObject:commitsController withKeyPath: @"arrangedObjects.self" options: nil];
 }
 
 #pragma mark Actions

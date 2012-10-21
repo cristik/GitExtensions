@@ -16,6 +16,8 @@
     IBOutlet GEGitRepository *repository;
     IBOutlet NSToolbarItem *branchesToolbarItem;
     IBOutlet NSPopUpButton *branchesPopup;
+    IBOutlet NSTableColumn *laneColumn;
+    IBOutlet NSArrayController *commitsController;
 }
 
 @property(nonatomic,assign,readwrite) GEGitRepository *repository;

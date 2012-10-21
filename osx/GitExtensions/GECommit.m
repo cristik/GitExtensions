@@ -22,8 +22,8 @@
 
 @implementation GECommit
 
-@synthesize repository, sha1,parents,author,authorDate,commiter,commitDate,subject,message;
-@synthesize lane = _lane;
+@synthesize repository, sha1,parents,children,author,authorDate,commiter,commitDate,subject,message;
+@synthesize lane = _lane, index = _index;
 
 + (id)commitWithLines:(NSArray*)lines index:(int*)index{
     return [[[self alloc] initWithLines:lines index:index] autorelease];
@@ -123,6 +123,7 @@
     copy.subject = self.subject;
     copy.message = self.message;
     copy.lane = self.lane;
+    copy.index = self.index;
     return copy;
 }
 @end

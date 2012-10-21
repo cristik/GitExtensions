@@ -139,12 +139,17 @@ static int maxOccupied = -1;
         [repCommits addObject:commit];
     }
     
+    index = 0;
     for(GECommit *commit in repCommits){
+        commit.index = index++;
         NSMutableArray *parentCommits = [NSMutableArray array];
         for(NSString *sha1 in commit.parents){
-            //NSLog(@"***%@",sha1);
-            [parentCommits addObject:[repCommits objectWithValue:sha1 forKey:@"sha1"]];
+            GECommit *parentCommit = [repCommits objectWithValue:sha1 forKey:@"sha1"];
+            [parentCommits addObject:parentCommit];
+            if(!parentCommit.children) parentCommit.children = [NSArray arrayWithObject:commit];
+            else parentCommit.children = [parentCommit.children arrayByAddingObject:commit];
         }
+        NSLog(@"commit.index=%d",commit.index);
         commit.parents = parentCommits;
     }
     
