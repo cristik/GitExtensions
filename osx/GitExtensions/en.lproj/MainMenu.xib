@@ -1749,7 +1749,7 @@
 																</array>
 																<double key="NSIntercellSpacingWidth">3</double>
 																<double key="NSIntercellSpacingHeight">2</double>
-																<object class="NSColor" key="NSBackgroundColor" id="821659504">
+																<object class="NSColor" key="NSBackgroundColor">
 																	<int key="NSColorSpace">3</int>
 																	<bytes key="NSWhite">MQA</bytes>
 																</object>
@@ -1910,6 +1910,7 @@
 																					<string key="NSContents">Text</string>
 																					<reference key="NSSupport" ref="942247717"/>
 																					<reference key="NSControlView" ref="479490048"/>
+																					<bool key="NSDrawsBackground">YES</bool>
 																					<reference key="NSBackgroundColor" ref="289552319"/>
 																					<reference key="NSTextColor" ref="237563399"/>
 																				</object>
@@ -1919,7 +1920,7 @@
 																			</object>
 																			<object class="NSTableColumn" id="379835965">
 																				<string key="NSIdentifier">subject</string>
-																				<double key="NSWidth">101</double>
+																				<double key="NSWidth">47</double>
 																				<double key="NSMinWidth">40</double>
 																				<double key="NSMaxWidth">1000</double>
 																				<object class="NSTableHeaderCell" key="NSHeaderCell">
@@ -1948,7 +1949,7 @@
 																			</object>
 																			<object class="NSTableColumn" id="590788794">
 																				<string key="NSIdentifier">commiter</string>
-																				<double key="NSWidth">101</double>
+																				<double key="NSWidth">45</double>
 																				<double key="NSMinWidth">40</double>
 																				<double key="NSMaxWidth">1000</double>
 																				<object class="NSTableHeaderCell" key="NSHeaderCell">
@@ -1977,7 +1978,7 @@
 																			</object>
 																			<object class="NSTableColumn" id="641895482">
 																				<string key="NSIdentifier">commitDate</string>
-																				<double key="NSWidth">218</double>
+																				<double key="NSWidth">40</double>
 																				<double key="NSMinWidth">40</double>
 																				<double key="NSMaxWidth">1000</double>
 																				<object class="NSTableHeaderCell" key="NSHeaderCell">
@@ -2004,7 +2005,7 @@
 																		</array>
 																		<double key="NSIntercellSpacingWidth">3</double>
 																		<double key="NSIntercellSpacingHeight">2</double>
-																		<reference key="NSBackgroundColor" ref="821659504"/>
+																		<reference key="NSBackgroundColor" ref="643964495"/>
 																		<reference key="NSGridColor" ref="177644414"/>
 																		<double key="NSRowHeight">17</double>
 																		<int key="NSTvFlags">1463812096</int>
@@ -3440,6 +3441,14 @@
 					</object>
 					<int key="connectionID">776</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">commitsTable</string>
+						<reference key="source" ref="661835050"/>
+						<reference key="destination" ref="479490048"/>
+					</object>
+					<int key="connectionID">777</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -4565,25 +4574,12 @@
 						<reference key="parent" ref="115536762"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">582</int>
-						<reference key="object" ref="641895482"/>
-						<array class="NSMutableArray" key="children">
-							<reference ref="706324556"/>
-						</array>
-						<reference key="parent" ref="479490048"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">581</int>
 						<reference key="object" ref="32603681"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="351961553"/>
 						</array>
 						<reference key="parent" ref="479490048"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">583</int>
-						<reference key="object" ref="706324556"/>
-						<reference key="parent" ref="641895482"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">585</int>
@@ -4647,33 +4643,6 @@
 						<reference key="object" ref="445548702"/>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Commits Controller</string>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">594</int>
-						<reference key="object" ref="379835965"/>
-						<array class="NSMutableArray" key="children">
-							<reference ref="897330195"/>
-						</array>
-						<reference key="parent" ref="479490048"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">595</int>
-						<reference key="object" ref="897330195"/>
-						<reference key="parent" ref="379835965"/>
-						<string key="objectName">Text Field Cell - Text Cell</string>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">596</int>
-						<reference key="object" ref="590788794"/>
-						<array class="NSMutableArray" key="children">
-							<reference ref="487425155"/>
-						</array>
-						<reference key="parent" ref="479490048"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">597</int>
-						<reference key="object" ref="487425155"/>
-						<reference key="parent" ref="590788794"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">604</int>
@@ -4949,6 +4918,46 @@
 						<reference key="object" ref="351961553"/>
 						<reference key="parent" ref="32603681"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">582</int>
+						<reference key="object" ref="641895482"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="706324556"/>
+						</array>
+						<reference key="parent" ref="479490048"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">583</int>
+						<reference key="object" ref="706324556"/>
+						<reference key="parent" ref="641895482"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">596</int>
+						<reference key="object" ref="590788794"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="487425155"/>
+						</array>
+						<reference key="parent" ref="479490048"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">597</int>
+						<reference key="object" ref="487425155"/>
+						<reference key="parent" ref="590788794"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">594</int>
+						<reference key="object" ref="379835965"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="897330195"/>
+						</array>
+						<reference key="parent" ref="479490048"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">595</int>
+						<reference key="object" ref="897330195"/>
+						<reference key="parent" ref="379835965"/>
+						<string key="objectName">Text Field Cell - Text Cell</string>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -5186,7 +5195,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">776</int>
+			<int key="maxID">777</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -5245,6 +5254,7 @@
 						<string key="branchesPopup">NSPopUpButton</string>
 						<string key="branchesToolbarItem">NSToolbarItem</string>
 						<string key="commitsController">NSArrayController</string>
+						<string key="commitsTable">NSTableView</string>
 						<string key="laneColumn">NSTableColumn</string>
 						<string key="repository">GEGitRepository</string>
 					</dictionary>
@@ -5260,6 +5270,10 @@
 						<object class="IBToOneOutletInfo" key="commitsController">
 							<string key="name">commitsController</string>
 							<string key="candidateClassName">NSArrayController</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="commitsTable">
+							<string key="name">commitsTable</string>
+							<string key="candidateClassName">NSTableView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="laneColumn">
 							<string key="name">laneColumn</string>

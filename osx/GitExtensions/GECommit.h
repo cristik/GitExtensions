@@ -23,6 +23,7 @@
 
     int _lane;
     int _index;
+    NSArray *_extraLanes;
 }
 
 //TODO: make it readonly, create an initWithRepository initializer
@@ -40,6 +41,7 @@
 
 @property(nonatomic,assign,readwrite) int lane;
 @property(nonatomic,assign,readwrite) int index;
+@property(nonatomic,retain,readwrite) NSArray *extraLanes;
 
 + (id)commitWithLines:(NSArray*)lines index:(int*)index;
 - (id)initWithLines:(NSArray*)lines index:(int*)index;

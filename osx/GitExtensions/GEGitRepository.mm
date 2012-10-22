@@ -55,22 +55,22 @@ static NSMutableArray *commitQueue = nil;
 static int minLane = 0;
 static int maxOccupied = -1;
 
-- (NSInteger)grabLane{
-    for(int i=minLane;i<1000;i++){
-        if(availableLanes[i]){
-            availableLanes[i] = NO;
-            if(i > maxOccupied) maxOccupied = i;
-            return i;
+- (int)grabLane{
+    int i=999;
+    for(;i>=0;i--){
+        if(!availableLanes[i]){
+            break;
         }
     }
-    return -1;
+    availableLanes[i+1] = NO;
+    return i+1;
 }
 
 - (void)returnLane:(NSInteger)lane{
     availableLanes[lane] = YES;
 }
 
-- (void)laneCommit2:(GECommit*)commit lane:(NSInteger)lane{
+- (void)laneCommit2:(GECommit*)commit lane:(int)lane{
     //get the first available lane
     if(lane == -1) lane = [self grabLane];
     //NSInteger originalLane = lane;
@@ -89,6 +89,10 @@ static int maxOccupied = -1;
     }
     //the last lane grab is not desired
     //if(lane != originalLane) [self returnLane:lane];
+    /*[commitQueue sortWithOptions:0 usingComparator:^NSComparisonResult(id obj1, id obj2) {
+        return ((GECommit*)obj1).index - ((GECommit*)obj2).index;
+    }];*/
+
     while(commitQueue.count){
         GECommit *queuedCommit = [commitQueue objectAtIndex:0];
         [commitQueue removeObjectAtIndex:0];
@@ -138,7 +142,8 @@ static int maxOccupied = -1;
         if(commit == nil) break;
         [repCommits addObject:commit];
     }
-    
+    NSLog(@"before");
+    //setup the UI - the lanes
     index = 0;
     for(GECommit *commit in repCommits){
         commit.index = index++;
@@ -149,7 +154,7 @@ static int maxOccupied = -1;
             if(!parentCommit.children) parentCommit.children = [NSArray arrayWithObject:commit];
             else parentCommit.children = [parentCommit.children arrayByAddingObject:commit];
         }
-        NSLog(@"commit.index=%d",commit.index);
+        //NSLog(@"commit.index=%d",commit.index);
         commit.parents = parentCommits;
     }
     
@@ -161,6 +166,18 @@ static int maxOccupied = -1;
         if(commit.lane < 0)
             [self laneCommit2:commit lane:-1];
     }
+    
+    for(GECommit *commit in repCommits){
+        for(GECommit *parent in commit.parents){
+            for(int i=commit.index+1;i<parent.index;i++){
+                GECommit *otherCommit = [repCommits objectAtIndex:i];
+                NSNumber *extraLane = [NSNumber numberWithInt:parent.lane>commit.lane?parent.lane:commit.lane];
+                if(otherCommit.extraLanes) otherCommit.extraLanes = [otherCommit.extraLanes arrayByAddingObject:extraLane];
+                else otherCommit.extraLanes = [NSArray arrayWithObject:extraLane];
+            }
+        }
+    }
+    NSLog(@"after");
     
     self.commits = repCommits;
     if(self.commits.count) self.status = GERepositoryStatusRegular;

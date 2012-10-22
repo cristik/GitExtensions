@@ -23,7 +23,7 @@
 }
 
 - (id)initWithRepository:(GEGitRepository*)aRepository rawBranch:(void*)rBranch{
-    if(self = [super init]){
+    if((self = [super init])){
         self->rawBranch = rBranch;
         repository = [aRepository retain];
         CGitBranch *branch = (CGitBranch*)rBranch;

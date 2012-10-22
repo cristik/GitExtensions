@@ -17,7 +17,7 @@
 }
 
 - (id)initWithRepository:(GEGitRepository*)repository path:(NSString*)aPath{
-    if(self = [super init]){
+    if((self = [super init])){
         parentRepository = [repository retain];
         path = [aPath retain];
     }

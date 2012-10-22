@@ -16,6 +16,7 @@
     IBOutlet GEGitRepository *repository;
     IBOutlet NSToolbarItem *branchesToolbarItem;
     IBOutlet NSPopUpButton *branchesPopup;
+    IBOutlet NSTableView *commitsTable;
     IBOutlet NSTableColumn *laneColumn;
     IBOutlet NSArrayController *commitsController;
 }
