@@ -66,6 +66,17 @@ static int maxOccupied = -1;
     return i+1;
 }
 
+- (int)grabLane3:(int)minLane{
+    int i=0;
+    for(;i<1000;i++){
+        if(availableLanes[i]){
+            break;
+        }
+    }
+    availableLanes[i] = NO;
+    return i;
+}
+
 - (void)returnLane:(NSInteger)lane{
     availableLanes[lane] = YES;
 }
@@ -73,30 +84,45 @@ static int maxOccupied = -1;
 - (void)laneCommit2:(GECommit*)commit lane:(int)lane{
     //get the first available lane
     if(lane == -1) lane = [self grabLane];
-    //NSInteger originalLane = lane;
+    int originalLane = lane;
     //don't re-lane if already laned
     if(commit.lane < 0) commit.lane = lane;
     for(GECommit *parent in commit.parents){
         //the parent was already lane, release the current one
         if(parent.lane >= 0){
-            [self returnLane:commit.lane];
-            return;
+            //[self returnLane:commit.lane];
+            //return;
         }
         //first parent will have the same lane as the current commit
-        parent.lane = lane;
-        [commitQueue addObject:parent];
-        lane = -1;
+        if(parent.lane < 0){
+            parent.lane = lane;
+            lane = [self grabLane];
+            //[commitQueue addObject:parent];
+        }        
+    }
+    for(GECommit *child in commit.children){
+        if(child.lane != commit.lane)
+            [self returnLane:child.lane];
     }
     //the last lane grab is not desired
-    //if(lane != originalLane) [self returnLane:lane];
+    if(lane != originalLane) [self returnLane:lane];
     /*[commitQueue sortWithOptions:0 usingComparator:^NSComparisonResult(id obj1, id obj2) {
         return ((GECommit*)obj1).index - ((GECommit*)obj2).index;
     }];*/
 
-    while(commitQueue.count){
+    /*while(commitQueue.count){
         GECommit *queuedCommit = [commitQueue objectAtIndex:0];
         [commitQueue removeObjectAtIndex:0];
         [self laneCommit2:queuedCommit lane:queuedCommit.lane];
+    }*/
+}
+
+- (void)laneCommit3:(GECommit*)commit{
+    if(commit.lane < 0) commit.lane = [self grabLane];
+    GECommit *child = commit.firstChild;
+    while(child){
+        child.lane = commit.lane;
+        child = child.firstChild;
     }
 }
 
@@ -160,11 +186,12 @@ static int maxOccupied = -1;
     
     memset(&availableLanes,1,1000);
     if(!commitQueue) commitQueue = [[NSMutableArray alloc] init];
-    for(GECommit *commit in repCommits){
+    for(NSUInteger i=repCommits.count;--i>0;){
+        GECommit *commit = repCommits[i];
         //this makes sure that branches don't overlap
-        minLane = maxOccupied+1;
-        if(commit.lane < 0)
-            [self laneCommit2:commit lane:-1];
+        //minLane = maxOccupied+1;
+        //if(commit.lane < 0)
+            [self laneCommit3:commit];
     }
     
     for(GECommit *commit in repCommits){

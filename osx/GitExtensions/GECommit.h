@@ -42,6 +42,8 @@
 @property(nonatomic,assign,readwrite) int lane;
 @property(nonatomic,assign,readwrite) int index;
 @property(nonatomic,retain,readwrite) NSArray *extraLanes;
+@property(nonatomic,retain,readonly) GECommit *firstParent;
+@property(nonatomic,retain,readonly) GECommit *firstChild;
 
 + (id)commitWithLines:(NSArray*)lines index:(int*)index;
 - (id)initWithLines:(NSArray*)lines index:(int*)index;

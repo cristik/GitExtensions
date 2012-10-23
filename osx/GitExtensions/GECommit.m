@@ -25,6 +25,14 @@
 @synthesize repository, sha1,parents,children,author,authorDate,commiter,commitDate,subject,message;
 @synthesize lane = _lane, index = _index, extraLanes = _extraLanes;
 
+- (GECommit*)firstParent{
+    return self.parents.count?[self.parents objectAtIndex:0]:nil;
+}
+
+- (GECommit*)firstChild{
+    return self.children.count?[self.children objectAtIndex:0]:nil;
+}
+
 + (id)commitWithLines:(NSArray*)lines index:(int*)index{
     return [[[self alloc] initWithLines:lines index:index] autorelease];
 }
