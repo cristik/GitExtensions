@@ -118,6 +118,10 @@
     return [NSString stringWithFormat:@"Parents: %@",[[self.parents valueForKeyPath:@"subject.ellipsisTo50"] componentsJoinedByString:@"; "]];
 }
 
+- (NSString*)childrenString{
+    return [NSString stringWithFormat:@"Children: %@",[[self.children valueForKeyPath:@"subject.ellipsisTo50"] componentsJoinedByString:@"; "]];
+}
+
 #pragma mark NSCopying
 - (id)copyWithZone:(NSZone *)zone{
     GECommit *copy = [[GECommit allocWithZone:zone] init];

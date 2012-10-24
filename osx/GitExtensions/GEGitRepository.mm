@@ -66,8 +66,8 @@ static int maxOccupied = -1;
     return i+1;
 }
 
-- (int)grabLane3:(int)minLane{
-    int i=0;
+- (int)grabLane3:(int)startLane{
+    int i=startLane;
     for(;i<1000;i++){
         if(availableLanes[i]){
             break;
@@ -75,6 +75,18 @@ static int maxOccupied = -1;
     }
     availableLanes[i] = NO;
     return i;
+}
+
+- (int)grabLane4:(int)lane{
+    int i=lane>=0?lane-1:999;
+    for(;i>=0;i--){
+        if(!availableLanes[i]){
+            break;
+        }
+    }
+    availableLanes[lane] = YES;
+    availableLanes[i+1] = NO;
+    return i+1;
 }
 
 - (void)returnLane:(NSInteger)lane{
@@ -123,6 +135,33 @@ static int maxOccupied = -1;
     while(child){
         child.lane = commit.lane;
         child = child.firstChild;
+    }
+}
+
+- (void)laneCommit4:(GECommit*)commit{
+    int lane = [self grabLane4:commit.lane];
+    if(lane != commit.lane){
+        [self returnLane:commit.lane];
+        commit.lane = lane;
+    }
+    for(GECommit *child in commit.children){
+        if(child.lane < 0 || child.lane > lane){
+            if(child.lane >= 0) [self returnLane:child.lane];
+            child.lane = lane;
+            lane = [self grabLane3:commit.lane];
+        }
+    }
+    if(lane != commit.lane) [self returnLane:lane];
+    else [self returnLane:commit.lane];
+}
+
+- (void)laneCommit5:(GECommit*)commit{
+    commit.lane = [self grabLane4:commit.lane];
+    [self returnLane:commit.lane];
+    for(GECommit *parent in commit.parents){
+        if(parent.lane < 0 || parent.lane > commit.lane){
+            parent.lane = [self grabLane3:commit.lane];
+        }
     }
 }
 
@@ -183,15 +222,19 @@ static int maxOccupied = -1;
         //NSLog(@"commit.index=%d",commit.index);
         commit.parents = parentCommits;
     }
-    
+    NSLog(@"lanes");
     memset(&availableLanes,1,1000);
     if(!commitQueue) commitQueue = [[NSMutableArray alloc] init];
-    for(NSUInteger i=repCommits.count;--i>0;){
-        GECommit *commit = repCommits[i];
+    /*for(NSUInteger i=repCommits.count;--i>0;){
+        GECommit *commit = [repCommits objectAtIndex:i];
         //this makes sure that branches don't overlap
         //minLane = maxOccupied+1;
         //if(commit.lane < 0)
-            [self laneCommit3:commit];
+            [self laneCommit5:commit];
+        NSLog(@"Lane %d for commit %@",commit.lane,commit.subject);
+    }*/
+    for(GECommit *commit in repCommits){
+        [self laneCommit5:commit];
     }
     
     for(GECommit *commit in repCommits){

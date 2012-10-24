@@ -77,23 +77,23 @@ NSColor **laneColors;
     for(GECommit *parent in commit.parents){
         int laneTo = parent.lane>commit.lane?parent.lane:commit.lane;
         int xp = cellFrame.origin.x + 5 + laneTo * 2 * (radius + 2) + radius;
-        [laneColors[laneTo] set];
+        [laneColors[laneTo%laneColorsCount] set];
         [NSBezierPath strokeLineFromPoint:NSMakePoint(x+radius, y+2*radius) toPoint:NSMakePoint(xp, NSMaxY(cellFrame))];
     }
     for(GECommit *child in commit.children){
         if(child.lane >= commit.lane){
             int xc = cellFrame.origin.x + 5 + child.lane * 2 * (radius + 2) + radius;
-            [laneColors[child.lane] set];
+            [laneColors[child.lane%laneColorsCount] set];
             [NSBezierPath strokeLineFromPoint:NSMakePoint(x+radius, y) toPoint:NSMakePoint(xc, NSMinY(cellFrame))];
         }else{
             int xc = cellFrame.origin.x + 5 + commit.lane * 2 * (radius + 2) + radius;
-            [laneColors[commit.lane] set];
+            [laneColors[commit.lane%laneColorsCount] set];
             [NSBezierPath strokeLineFromPoint:NSMakePoint(x+radius, y) toPoint:NSMakePoint(xc, NSMinY(cellFrame))];            
         }
     }
     for(NSNumber *extraLane in commit.extraLanes){        
         int x = cellFrame.origin.x + 5 + [extraLane intValue] * 2 * (radius + 2) + radius;
-        [laneColors[[extraLane intValue]] set];
+        [laneColors[[extraLane intValue]%laneColorsCount] set];
         [NSBezierPath strokeLineFromPoint:NSMakePoint(x, cellFrame.origin.y) toPoint:NSMakePoint(x, NSMaxY(cellFrame))];
     }
     
