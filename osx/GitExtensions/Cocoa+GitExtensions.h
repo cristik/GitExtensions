@@ -12,5 +12,6 @@
 #import "NSUserDefaults+GitExtensions.h"
 #import "NSString+GitExtensions.h"
 #import "NSArray+GitExtensions.h"
+#import "NSColor+GitExtensions.h"
 
 #endif

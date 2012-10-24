@@ -29,6 +29,7 @@ typedef NSUInteger GERepositoryStatus;
     NSString *repositoryPath;
     NSArray *commits;
     NSArray *branches;
+    NSArray *remoteBranches;
     GEBranch *activeBranch;
     
     NSString *commandInProgress; 
@@ -40,6 +41,7 @@ typedef NSUInteger GERepositoryStatus;
 @property(nonatomic,retain,readonly) NSString *repositoryPath;
 @property(nonatomic,retain,readonly) NSArray *commits;
 @property(nonatomic,retain,readonly) NSArray *branches;
+@property(nonatomic,retain,readonly) NSArray *remoteBranches;
 @property(nonatomic,retain,readonly) GEBranch *activeBranch;
 @property(nonatomic,assign,readonly) BOOL validRepository;
 
@@ -60,4 +62,5 @@ typedef NSUInteger GERepositoryStatus;
 - (void)stageFile:(GERepositoryFile*)fileInfo;
 - (void)unstageFile:(GERepositoryFile*)fileInfo;
 - (void)checkoutBranch:(GEBranch*)branch;
+- (void)checkoutRevision:(NSString*)revision;
 @end

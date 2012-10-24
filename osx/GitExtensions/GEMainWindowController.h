@@ -19,6 +19,8 @@
     IBOutlet NSTableView *commitsTable;
     IBOutlet NSTableColumn *laneColumn;
     IBOutlet NSArrayController *commitsController;
+    IBOutlet NSMenu *_commitMenu;
+    IBOutlet NSMenu *_checkoutBranchMenu;
 }
 
 @property(nonatomic,assign,readwrite) GEGitRepository *repository;

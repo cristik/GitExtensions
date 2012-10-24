@@ -56,4 +56,18 @@
     [self.repository reloadBranches];
 }
 
+- (IBAction)onCheckoutSelectedRevision:(id)sender{
+    [self.repository checkoutRevision:[commitsController.selectedObjects.lastObject sha1]];
+    [[GEOperationResultController controller] showForRepository:self.repository];
+    [self.repository reloadBranches];
+}
+
+- (void)menuWillOpen:(NSMenu *)menu{
+    if(menu == _commitMenu){
+        [_checkoutBranchMenu removeAllItems];
+        for(GEBranch *branch in [self.repository branchesHashed:[commitsController.selectedObjects.lastObject sha1]]){
+            [_checkoutBranchMenu addItemWithTitle:branch.name action:@selector(onChangeBranch:) keyEquivalent:@""];
+        }
+    }
+}
 @end

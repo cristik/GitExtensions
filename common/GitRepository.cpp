@@ -5,6 +5,7 @@ CGitRepository::CGitRepository(CGitCommands *gitCommands){
     this->gitCommands = gitCommands;
     _path = NULL;
     _branches = new vector<CGitBranch*>();
+    _remoteBranches = NULL;
     _commits = new vector<CGitCommit*>();
     _status = GitRepositoryStatusNone;
     _activeBranch = NULL;
@@ -29,6 +30,15 @@ vector<CGitBranch*> *CGitRepository::branches(){
     return _branches;
 }
 
+
+vector<CGitBranch*> *CGitRepository::remoteBranches(){
+    if(_remoteBranches == NULL){
+        _remoteBranches = new vector<CGitBranch*>();
+        retrieveBranches(_remoteBranches, "-r");
+    }
+    return _remoteBranches;
+}
+
 CGitBranch *CGitRepository::activeBranch(){
     return _activeBranch;
 }
@@ -42,10 +52,10 @@ void CGitRepository::refresh(){
     refreshBranches();
 }
 
-void CGitRepository::refreshBranches(){
-    const char *args[] = {"branch", "--no-color", "-v", "--no-abbrev", NULL};
+void CGitRepository::retrieveBranches(vector<CGitBranch*> *branches, const char *type){
+    const char *args[] = {"branch", "--no-color", type, "-v", "--no-abbrev", NULL};
     char *output = gitCommands->gitOutput(_path, args, NULL);
-    _branches->clear();
+    branches->clear();
     vector<string> lines = split(string(output),'\n');
     vector<string>::iterator iter;
     for(iter=lines.begin(); iter != lines.end(); ++iter){
@@ -53,11 +63,21 @@ void CGitRepository::refreshBranches(){
         if(line.length() < 3) continue;
         CGitBranch *branch = new CGitBranch(this);
         if(branch->parseString(line)) {
-            _branches->push_back(branch);
-            if(branch->active())
-                _activeBranch = branch;
+            branches->push_back(branch);
         }
     }
+}
+
+void CGitRepository::refreshBranches(){
+    retrieveBranches(_branches);
+    vector<CGitBranch*>::iterator iter;
+    for(iter=_branches->begin(); iter != _branches->end(); ++iter){
+        if((*iter)->active())
+            _activeBranch = *iter;
+
+    }    
+    delete _remoteBranches;
+    _remoteBranches = NULL;
 }
 
 void CGitRepository::refreshStatus(){

@@ -64,7 +64,10 @@ private:
     GitRepositoryStatus _status;
     vector<CGitCommit*> *_commits;
     vector<CGitBranch*> *_branches;
+    vector<CGitBranch*> *_remoteBranches;
     CGitBranch *_activeBranch;
+    
+    void retrieveBranches(vector<CGitBranch*> *branches, const char *type="");
 public:
     CGitRepository(CGitCommands *gitCommands);
     ~CGitRepository(void);
@@ -73,6 +76,7 @@ public:
     GitRepositoryStatus status();
     vector<CGitCommit*> *commits();
     vector<CGitBranch*> *branches();
+    vector<CGitBranch*> *remoteBranches();
     CGitBranch *activeBranch();
     
     void open(const char* path);

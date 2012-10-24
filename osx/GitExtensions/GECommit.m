@@ -114,6 +114,17 @@
         return self.subject;
 }
 
+- (NSAttributedString*)fullDescription2{
+    NSMutableAttributedString *result = [[[NSMutableAttributedString alloc] init] autorelease];
+    for(GEBranch *branch in [self.repository branchesHashed:self.sha1]){
+        NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[NSColor colorForLane:self.lane], NSForegroundColorAttributeName, nil];
+        NSAttributedString *str = [[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"[%@]",branch.name] attributes:attributes] autorelease];
+        [result appendAttributedString:str];
+    }
+    [result appendAttributedString:[[[NSAttributedString alloc] initWithString:self.subject]  autorelease]];
+    return result;
+}
+
 - (NSString*)parentsString{
     return [NSString stringWithFormat:@"Parents: %@",[[self.parents valueForKeyPath:@"subject.ellipsisTo50"] componentsJoinedByString:@"; "]];
 }

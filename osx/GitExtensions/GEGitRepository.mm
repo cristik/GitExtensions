@@ -15,6 +15,7 @@
 @property(nonatomic,retain,readwrite) NSString *repositoryPath;
 @property(nonatomic,retain,readwrite) NSArray *commits;
 @property(nonatomic,retain,readwrite) NSArray *branches;
+@property(nonatomic,retain,readwrite) NSArray *remoteBranches;
 @property(nonatomic,retain,readwrite) GEBranch *activeBranch;
 
 @property(nonatomic,retain,readwrite) NSString *commandInProgress; 
@@ -24,7 +25,7 @@
 
 @implementation GEGitRepository
 
-@synthesize status, repositoryPath, commits, branches, activeBranch;
+@synthesize status, repositoryPath, commits, branches, remoteBranches, activeBranch;
 @synthesize commandInProgress,latestOutput,latestExitCode;
 
 - (id)init{
@@ -52,8 +53,6 @@
 
 static BOOL availableLanes[1000];
 static NSMutableArray *commitQueue = nil;
-static int minLane = 0;
-static int maxOccupied = -1;
 
 - (int)grabLane{
     int i=999;
@@ -93,88 +92,15 @@ static int maxOccupied = -1;
     availableLanes[lane] = YES;
 }
 
-- (void)laneCommit2:(GECommit*)commit lane:(int)lane{
-    //get the first available lane
-    if(lane == -1) lane = [self grabLane];
-    int originalLane = lane;
-    //don't re-lane if already laned
-    if(commit.lane < 0) commit.lane = lane;
-    for(GECommit *parent in commit.parents){
-        //the parent was already lane, release the current one
-        if(parent.lane >= 0){
-            //[self returnLane:commit.lane];
-            //return;
-        }
-        //first parent will have the same lane as the current commit
-        if(parent.lane < 0){
-            parent.lane = lane;
-            lane = [self grabLane];
-            //[commitQueue addObject:parent];
-        }        
-    }
-    for(GECommit *child in commit.children){
-        if(child.lane != commit.lane)
-            [self returnLane:child.lane];
-    }
-    //the last lane grab is not desired
-    if(lane != originalLane) [self returnLane:lane];
-    /*[commitQueue sortWithOptions:0 usingComparator:^NSComparisonResult(id obj1, id obj2) {
-        return ((GECommit*)obj1).index - ((GECommit*)obj2).index;
-    }];*/
-
-    /*while(commitQueue.count){
-        GECommit *queuedCommit = [commitQueue objectAtIndex:0];
-        [commitQueue removeObjectAtIndex:0];
-        [self laneCommit2:queuedCommit lane:queuedCommit.lane];
-    }*/
-}
-
-- (void)laneCommit3:(GECommit*)commit{
-    if(commit.lane < 0) commit.lane = [self grabLane];
-    GECommit *child = commit.firstChild;
-    while(child){
-        child.lane = commit.lane;
-        child = child.firstChild;
-    }
-}
-
-- (void)laneCommit4:(GECommit*)commit{
-    int lane = [self grabLane4:commit.lane];
-    if(lane != commit.lane){
-        [self returnLane:commit.lane];
-        commit.lane = lane;
-    }
-    for(GECommit *child in commit.children){
-        if(child.lane < 0 || child.lane > lane){
-            if(child.lane >= 0) [self returnLane:child.lane];
-            child.lane = lane;
-            lane = [self grabLane3:commit.lane];
-        }
-    }
-    if(lane != commit.lane) [self returnLane:lane];
-    else [self returnLane:commit.lane];
-}
-
 - (void)laneCommit5:(GECommit*)commit{
     commit.lane = [self grabLane4:commit.lane];
     [self returnLane:commit.lane];
     for(GECommit *parent in commit.parents){
         if(parent.lane < 0 || parent.lane > commit.lane){
+            if(parent.lane >=0) [self returnLane:parent.lane];
             parent.lane = [self grabLane3:commit.lane];
         }
     }
-}
-
-//also populates the parents
-- (void)laneCommit:(GECommit*)commit lane:(int*)lane{
-    if(commit.lane >= 0) return;
-    commit.lane = *lane;
-    for(int i=0; i<commit.parents.count;i++){
-        [self laneCommit:[commit.parents objectAtIndex:i] lane:lane];
-        *lane = *lane + 1;
-    }
-    if(!commit.parents.count)
-        *lane = *lane + 1;
 }
 
 - (void)reloadBranches{
@@ -192,6 +118,14 @@ static int maxOccupied = -1;
     }
     self.activeBranch = newActiveBranch;
     self.branches = newBranches;
+    
+    newBranches = [NSMutableArray array];
+    rawBranches = rep->remoteBranches();
+    for(it=rawBranches->begin(); it!=rawBranches->end(); ++it){
+        GEBranch *branch = [GEBranch branchWithRepository:self rawBranch:*it];
+        [newBranches addObject:branch];
+    }
+    self.remoteBranches = newBranches;
 }
 
 - (void)reload{
@@ -201,11 +135,13 @@ static int maxOccupied = -1;
     NSArray *lines = [output componentsSeparatedByString:@"\n"];
     int index = 0;
     NSMutableArray *repCommits = [NSMutableArray array];
+    NSMutableDictionary *commitsDict = [NSMutableDictionary dictionaryWithCapacity:repCommits.count];
     while(index<lines.count){
         GECommit *commit = [GECommit commitWithLines:lines index:&index];
         commit.repository = self;
         if(commit == nil) break;
         [repCommits addObject:commit];
+        [commitsDict setObject:commit forKey:commit.sha1];
     }
     NSLog(@"before");
     //setup the UI - the lanes
@@ -214,7 +150,7 @@ static int maxOccupied = -1;
         commit.index = index++;
         NSMutableArray *parentCommits = [NSMutableArray array];
         for(NSString *sha1 in commit.parents){
-            GECommit *parentCommit = [repCommits objectWithValue:sha1 forKey:@"sha1"];
+            GECommit *parentCommit = [commitsDict objectForKey:sha1];//[repCommits objectWithValue:sha1 forKey:@"sha1"];
             [parentCommits addObject:parentCommit];
             if(!parentCommit.children) parentCommit.children = [NSArray arrayWithObject:commit];
             else parentCommit.children = [parentCommit.children arrayByAddingObject:commit];
@@ -224,15 +160,6 @@ static int maxOccupied = -1;
     }
     NSLog(@"lanes");
     memset(&availableLanes,1,1000);
-    if(!commitQueue) commitQueue = [[NSMutableArray alloc] init];
-    /*for(NSUInteger i=repCommits.count;--i>0;){
-        GECommit *commit = [repCommits objectAtIndex:i];
-        //this makes sure that branches don't overlap
-        //minLane = maxOccupied+1;
-        //if(commit.lane < 0)
-            [self laneCommit5:commit];
-        NSLog(@"Lane %d for commit %@",commit.lane,commit.subject);
-    }*/
     for(GECommit *commit in repCommits){
         [self laneCommit5:commit];
     }
@@ -294,6 +221,9 @@ static int maxOccupied = -1;
     for(GEBranch *branch in self.branches){
         if([branch.sha1 isEqual:sha1]) [result addObject:branch];
     }
+    for(GEBranch *branch in self.remoteBranches){
+        if([branch.sha1 isEqual:sha1]) [result addObject:branch];
+    }
     return result;
 }
 
@@ -316,6 +246,10 @@ static int maxOccupied = -1;
 
 - (void)checkoutBranch:(GEBranch*)branch{
     [self gitOutput:[NSArray arrayWithObjects:@"checkout", branch.name, nil]];
+}
+
+- (void)checkoutRevision:(NSString*)revision{
+    [self gitOutput:[NSArray arrayWithObjects:@"checkout", revision, nil]];
 }
     
 #pragma mark Helpers
