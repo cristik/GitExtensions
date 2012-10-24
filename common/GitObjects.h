@@ -20,6 +20,9 @@
 #include <sstream>
 #include <algorithm>
 #include <iterator>
+#ifdef WIN32
+#include <windows.h>
+#endif
 using namespace std;
 
 #ifdef WIN32
@@ -27,6 +30,14 @@ using namespace std;
 #define pclose _pclose
 typedef unsigned char uint8_t;
 #endif
+
+#include "GitObject.h"
+#include "GitBranch.h"
+#include "GitFile.h"
+#include "GitProcess.h"
+#include "GitRemote.h"
+#include "GitRepository.h"
+#include "GitRevision.h"
 
 class GITWRAPPER_API CGitCommands {
 private:
@@ -37,85 +48,6 @@ public:
     char* gitOutput(const char *workingDir, const char** argv, int *exitCode);
 };
 
-typedef void (PropChangedFunc)(char *propName, void *context);
-
-class GITWRAPPER_API CGitObject{
-public:
-    PropChangedFunc propChangedFunc;
-    void *propChangedContext;
-    bool parseString(string s);
-};
-
-typedef enum{
-    GitRepositoryStatusNone,
-    GitRepositoryStatusNoRepository,
-    GitRepositoryStatusEmpty,
-    GitRepositoryStatusRegular
-}GitRepositoryStatus;
-
-class CGitCommit;
-class CGitBranch;
-class CGitFile;
-
-class GITWRAPPER_API CGitRepository{
-private:
-    CGitCommands *gitCommands;
-    char *_path;
-    GitRepositoryStatus _status;
-    vector<CGitCommit*> *_commits;
-    vector<CGitBranch*> *_branches;
-    vector<CGitBranch*> *_remoteBranches;
-    CGitBranch *_activeBranch;
-    
-    void retrieveBranches(vector<CGitBranch*> *branches, const char *type="");
-public:
-    CGitRepository(CGitCommands *gitCommands);
-    ~CGitRepository(void);
-    
-    char *path();
-    GitRepositoryStatus status();
-    vector<CGitCommit*> *commits();
-    vector<CGitBranch*> *branches();
-    vector<CGitBranch*> *remoteBranches();
-    CGitBranch *activeBranch();
-    
-    void open(const char* path);
-    void refresh();
-    void refreshBranches();
-    void refreshStatus();
-        
-    CGitBranch *branchWithName(char* name);
-    vector<CGitBranch*> *branchesWithHash(char *sha1);
-
-    //commands
-    void stageFile(CGitFile *file);
-    void unstageFile(CGitFile *file);
-    void checkoutBranch(CGitBranch *branch);
-};
-
-class GITWRAPPER_API CGitCommit: public CGitObject{
-private:
-public:
-
-};
-
-class GITWRAPPER_API CGitBranch: public CGitObject{
-private:
-    CGitRepository *_repository;
-    const char *_name;
-    const char *_sha1;
-    bool _active;
-public:
-    CGitBranch(CGitRepository *repository);
-    bool parseString(string s);
-    const char *name();
-    const char *sha1();    
-    bool active();
-};
-
-class GITWRAPPER_API CGitFile: public CGitObject{
-    
-};
 
 char *strtrim(const char *str);
 vector<string> &split(const string &s, char delim, vector<string> &elems);
