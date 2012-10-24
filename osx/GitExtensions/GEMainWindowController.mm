@@ -49,7 +49,7 @@
 }
 
 - (IBAction)onChangeBranch:(id)sender{
-    NSString *branchName = [[sender selectedItem] title];
+    NSString *branchName = [[sender isKindOfClass:[NSPopUpButton class]]?[sender selectedItem]:sender title];
     GEBranch *branch = [self.repository branchNamed:branchName];
     [self.repository checkoutBranch:branch];
     [[GEOperationResultController controller] showForRepository:self.repository];
@@ -57,7 +57,8 @@
 }
 
 - (IBAction)onCheckoutSelectedRevision:(id)sender{
-    [self.repository checkoutRevision:[commitsController.selectedObjects.lastObject sha1]];
+    GECommit *commit = [commitsController.arrangedObjects objectAtIndex:commitsTable.clickedRow];
+    [self.repository checkoutRevision:commit.sha1];
     [[GEOperationResultController controller] showForRepository:self.repository];
     [self.repository reloadBranches];
 }
@@ -65,7 +66,8 @@
 - (void)menuWillOpen:(NSMenu *)menu{
     if(menu == _commitMenu){
         [_checkoutBranchMenu removeAllItems];
-        for(GEBranch *branch in [self.repository branchesHashed:[commitsController.selectedObjects.lastObject sha1]]){
+        GECommit *commit = [commitsController.arrangedObjects objectAtIndex:commitsTable.clickedRow];
+        for(GEBranch *branch in [self.repository branchesHashed:commit.sha1]){
             [_checkoutBranchMenu addItemWithTitle:branch.name action:@selector(onChangeBranch:) keyEquivalent:@""];
         }
     }
