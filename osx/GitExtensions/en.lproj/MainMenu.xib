@@ -1635,7 +1635,7 @@
 							<reference key="NSNextKeyView" ref="75181902"/>
 							<array class="NSMutableArray" key="NSTabViewItems">
 								<object class="NSTabViewItem" id="837505194">
-									<string key="NSIdentifier">1</string>
+									<string key="NSIdentifier">0</string>
 									<object class="NSView" key="NSView" id="590388611">
 										<nil key="NSNextResponder"/>
 										<int key="NSvFlags">256</int>
@@ -1795,6 +1795,7 @@
 														<int key="NSvFlags">-2147483392</int>
 														<string key="NSFrame">{{1, 119}, {223, 15}}</string>
 														<reference key="NSSuperview" ref="987017339"/>
+														<reference key="NSNextKeyView"/>
 														<int key="NSsFlags">1</int>
 														<reference key="NSTarget" ref="987017339"/>
 														<string key="NSAction">_doScroller:</string>
@@ -1824,28 +1825,31 @@
 									<reference key="NSTabView" ref="45381930"/>
 								</object>
 								<object class="NSTabViewItem" id="1016231726">
-									<string key="NSIdentifier">2</string>
+									<string key="NSIdentifier">1</string>
 									<object class="NSView" key="NSView" id="39632094">
 										<nil key="NSNextResponder"/>
 										<int key="NSvFlags">256</int>
 										<string key="NSFrame">{{10, 33}, {476, 330}}</string>
-										<reference key="NSNextKeyView" ref="45381930"/>
+										<reference key="NSNextKeyView"/>
 									</object>
 									<string key="NSLabel">NoRep</string>
 									<reference key="NSColor" ref="289552319"/>
 									<reference key="NSTabView" ref="45381930"/>
 								</object>
 								<object class="NSTabViewItem" id="666487758">
+									<string key="NSIdentifier">2</string>
 									<object class="NSView" key="NSView" id="46719136">
 										<nil key="NSNextResponder"/>
 										<int key="NSvFlags">256</int>
 										<string key="NSFrame">{{10, 33}, {476, 330}}</string>
+										<reference key="NSNextKeyView"/>
 									</object>
 									<string key="NSLabel">Empty</string>
 									<reference key="NSColor" ref="289552319"/>
 									<reference key="NSTabView" ref="45381930"/>
 								</object>
 								<object class="NSTabViewItem" id="360459667">
+									<string key="NSIdentifier">3</string>
 									<object class="NSView" key="NSView" id="75181902">
 										<reference key="NSNextResponder" ref="45381930"/>
 										<int key="NSvFlags">256</int>

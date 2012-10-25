@@ -32,6 +32,8 @@ private:
     CGitBranch *_activeBranch;
     
     void retrieveBranches(vector<CGitBranch*> *branches, const char *type=NULL);
+    GitRepositoryStatus processGitCode(int code);
+    void setStatus(GitRepositoryStatus value);
 public:
     CGitRepository(char *gitPath);
     ~CGitRepository(void);

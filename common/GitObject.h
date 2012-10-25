@@ -13,8 +13,8 @@ typedef void (PropChangedFunc)(char *propName, void *context);
 
 class GITWRAPPER_API CGitObject{
 public:
-    PropChangedFunc propChangedFunc;
-    void *propChangedContext;
+    PropChangedFunc *_propChangedFunc;
+    void *_propChangedContext;
     bool parseString(string s);
 };
 

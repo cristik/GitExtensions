@@ -52,11 +52,31 @@ void CGitRepository::refresh(){
     refreshBranches();
 }
 
+GitRepositoryStatus CGitRepository::processGitCode(int code){
+    if(code == 0){
+        return GitRepositoryStatusRegular;
+    }else if(code == 128){
+        return GitRepositoryStatusNoRepository;
+    }
+    return GitRepositoryStatusNone;
+}
+
+void CGitRepository::setStatus(GitRepositoryStatus value){
+    _status = value;
+    if(_propChangedFunc){
+        _propChangedFunc((char*)"status", _propChangedContext);
+    }
+}
+
 void CGitRepository::retrieveBranches(vector<CGitBranch*> *branches, const char *type){
     const char *args[] = {"branch", "--no-color", "-v", "--no-abbrev", type, NULL};
     CGitProcess *process = new CGitProcess(_gitPath,(char**)args,_repositoryPath,true);
     char *output = process->grabOutput();
     //printf("_exitCode: %d\noutput: %s\n",process->exitCode(),output);
+    setStatus(processGitCode(process->exitCode()));
+    if( _status != GitRepositoryStatusRegular){
+        return;
+    }
     branches->clear();
     vector<string> lines = split(string(output),'\n');
     vector<string>::iterator iter;

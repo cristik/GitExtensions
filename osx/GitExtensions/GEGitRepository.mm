@@ -23,6 +23,8 @@
 @property(nonatomic,assign,readwrite) int latestExitCode;
 @end
 
+void gitRepositoryPropChangedFunc(char *propName, void *context);
+
 @implementation GEGitRepository
 
 @synthesize status, repositoryPath, commits, branches, remoteBranches, activeBranch;
@@ -30,8 +32,11 @@
 
 - (id)init{
     if((self = [super init])){
-        gitRepository = new CGitRepository((char*)"/usr/bin/git");
-        status = (NSUInteger)((CGitRepository*)gitRepository)->status();
+        CGitRepository *rep = new CGitRepository((char*)"/usr/bin/git");
+        gitRepository = rep;
+        rep->_propChangedFunc = &gitRepositoryPropChangedFunc;
+        rep->_propChangedContext = self;
+        status = (NSUInteger)rep->status();
     }
     return self;
 }
@@ -182,6 +187,9 @@ static NSMutableArray *commitQueue = nil;
     self.commits = repCommits;
     if(self.commits.count) self.status = GERepositoryStatusRegular;
     else self.status = GERepositoryStatusEmpty;
+    
+    CGitRepository *rep = (CGitRepository*)gitRepository;
+    self.status = rep->status();
 }
 
 - (NSArray*)retrieveStatus{
@@ -283,4 +291,13 @@ static NSMutableArray *commitQueue = nil;
 - (NSAttributedString*)latestOutputAttributed{
     return [[[NSAttributedString alloc] initWithString:self.latestOutput] autorelease];
 }
+
+#pragma mark private
+- (void)gitRepositoryPropChanges:(char*)propName{
+    self.status = ((CGitRepository*)gitRepository)->status();
+}
 @end
+
+void gitRepositoryPropChangedFunc(char *propName, void *context){
+    [(GEGitRepository*)context gitRepositoryPropChanges:propName];
+}
