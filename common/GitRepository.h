@@ -31,7 +31,7 @@ private:
     vector<CGitBranch*> *_remoteBranches;
     CGitBranch *_activeBranch;
     
-    void retrieveBranches(vector<CGitBranch*> *branches, const char *type="");
+    void retrieveBranches(vector<CGitBranch*> *branches, const char *type=NULL);
 public:
     CGitRepository(CGitCommands *gitCommands);
     ~CGitRepository(void);

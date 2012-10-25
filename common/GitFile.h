@@ -9,8 +9,11 @@
 #ifndef GitExtensions_GitFile_h_
 #define GitExtensions_GitFile_h_
 
+class CGitRepository;
+
 class GITWRAPPER_API CGitFile: public CGitObject{
-    
+private:
+    CGitRepository *_repository;
 };
 
 #endif

@@ -1,14 +1,20 @@
 #include "GitObjects.h"
+#ifdef WIN32
+#else
+#include <unistd.h>
+#endif
 
-CGitProcess::CGitProcess(char *cmd, char *args[], char *workDir, bool stderr2stdout)
-{
+CGitProcess::CGitProcess(const char *cmd, char **args, char *workDir, bool stderr2stdout){
 	_cmd = strdup(cmd);
+    _args = args;
 	_workDir = workDir?strdup(workDir):NULL;
     _stderr2stdout = stderr2stdout;
+    _stderr = _stdout = _stdin = 0;
+    _pid = 0;
+    _running = false;
 }
 
-CGitProcess::~CGitProcess(void)
-{
+CGitProcess::~CGitProcess(void){
 }
 
 void CGitProcess::launch(){
@@ -74,8 +80,14 @@ void CGitProcess::launch(){
     int pipe_err[2], pipe_out[2], pipe_in[2];
 
     if (pipe(pipe_err) || pipe(pipe_out) || pipe(pipe_in)) { // abbreviated error detection
-         perror("pipe");
+         printf("********pipe");
          return;
+    }
+    if(_stderr2stdout){
+        close(pipe_err[0]);
+        close(pipe_err[1]);
+        pipe_err[0] = dup(pipe_out[0]);
+        pipe_err[1] = dup(pipe_out[1]);
     }
 
     pid_t pid = fork();
@@ -93,14 +105,23 @@ void CGitProcess::launch(){
         // close any other files that you don't want the new program
         // to get access to here unless you know that they have the
         // O_CLOEXE bit set
-        
-        //execvp(cmd, _args, );
+        //printf("_workDir=%s",_workDir);
+        if(_workDir) chdir(_workDir);
+        execvp(_cmd, _args);
         /* only gets here if there is an error executing the program */
      } else { // in the parent
          if (pid < 0) {
-               perror("fork");
-               return;
+             printf("********fork");
+             close(pipe_err[0]);
+             close(pipe_err[1]);
+             close(pipe_out[0]);
+             close(pipe_out[1]);
+             close(pipe_in[0]);
+             close(pipe_in[1]);
+             return;
          }
+         _pid = pid;
+         _running = true;
          _stderr = pipe_err[0];
          close(pipe_err[1]);
          _stdout = pipe_out[0];
@@ -116,14 +137,13 @@ char *CGitProcess::grabOutput(){
 	int maxLen = BUF_SIZE;
 	int curLen = 0;
 	char *result = (char*)malloc(BUF_SIZE+1);
-	unsigned long dwRead = 0;
+    long dwRead = 0;
 #ifdef WIN32    
-	while(ReadFile((HANDLE)_stderr, result+curLen, BUF_SIZE/2, &dwRead, NULL))
+	while(ReadFile((HANDLE)_stdout, result+curLen, BUF_SIZE/2, &dwRead, NULL))
 #else
-    while((dwRead = read(_stderr, result+curLen, BUF_SIZE/2)))
+    while((dwRead = read(_stdout, result+curLen, BUF_SIZE/2)) > 0)
 #endif
-    {        
-		if(dwRead <= 0) break;
+    {
 		curLen += dwRead;
 		if(curLen > maxLen - BUF_SIZE/2){
 			char *tmp = (char*)malloc(maxLen+BUF_SIZE+1);
@@ -137,7 +157,14 @@ char *CGitProcess::grabOutput(){
 	return result;
 }
 
-bool CGitProcess::running(){
+bool CGitProcess::running(bool block){
+    int status = 0;
+    if(waitpid(_pid, &status, block?0:WNOHANG)){
+        _running = false;
+        _exitCode = WEXITSTATUS(status);
+    }else{
+        printf("not yet\n");
+    }
 	return _running;
 }
 

@@ -53,8 +53,12 @@ void CGitRepository::refresh(){
 }
 
 void CGitRepository::retrieveBranches(vector<CGitBranch*> *branches, const char *type){
-    const char *args[] = {"branch", "--no-color", type, "-v", "--no-abbrev", NULL};
-    char *output = gitCommands->gitOutput(_path, args, NULL);
+    const char *args[] = {"/usr/bin/git", "branch1", "--no-color", "-v", "--no-abbrev", type, NULL};
+    CGitProcess *process = new CGitProcess("/usr/bin/git",(char**)args,(char*)_path,true);
+    process->launch();
+    char *output = process->grabOutput();
+    process->running(true);
+    printf("_exitCode: %d\noutput:%s\n",process->exitCode(),output);
     branches->clear();
     vector<string> lines = split(string(output),'\n');
     vector<string>::iterator iter;
