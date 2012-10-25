@@ -16,11 +16,11 @@ private:
 	int _exitCode;
 	
 public:
-	CGitProcess(const char *cmd, char **args, char *workDir = NULL, bool stderr2stdout = false);
+	CGitProcess(const char *cmd, char **args, const char *workDir = NULL, bool stderr2stdout = false);
 	~CGitProcess(void);
 
 	void launch();
-	char *grabOutput();
+	char *grabOutput(int *len = NULL);
 
 	bool running(bool block = false);
 	int exitCode();

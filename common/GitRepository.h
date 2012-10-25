@@ -21,10 +21,10 @@ class CGitCommit;
 class CGitBranch;
 class CGitFile;
 
-class GITWRAPPER_API CGitRepository{
+class GITWRAPPER_API CGitRepository: public CGitObject{
 private:
-    CGitCommands *gitCommands;
-    char *_path;
+    char *_gitPath;
+    char *_repositoryPath;
     GitRepositoryStatus _status;
     vector<CGitCommit*> *_commits;
     vector<CGitBranch*> *_branches;
@@ -33,10 +33,10 @@ private:
     
     void retrieveBranches(vector<CGitBranch*> *branches, const char *type=NULL);
 public:
-    CGitRepository(CGitCommands *gitCommands);
+    CGitRepository(char *gitPath);
     ~CGitRepository(void);
     
-    char *path();
+    char *repositoryPath();
     GitRepositoryStatus status();
     vector<CGitCommit*> *commits();
     vector<CGitBranch*> *branches();
@@ -52,6 +52,7 @@ public:
     vector<CGitBranch*> *branchesWithHash(char *sha1);
     
     //commands
+    CGitProcess *customCommand(char *args[]);
     void stageFile(CGitFile *file);
     void unstageFile(CGitFile *file);
     void checkoutBranch(CGitBranch *branch);

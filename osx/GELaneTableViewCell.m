@@ -24,7 +24,12 @@
     
     [NSBezierPath setDefaultLineWidth:lineWidth];
     NSBezierPath *path = [NSBezierPath bezierPath];
-    [path appendBezierPathWithOvalInRect:NSMakeRect(x, y, radius*2, radius*2)];
+    if([commit.repository branchesHashed:commit.sha1].count > 0){
+        [path appendBezierPathWithRect:NSMakeRect(x, y, radius*2, radius*2)];
+    }else{
+        [path appendBezierPathWithOvalInRect:NSMakeRect(x, y, radius*2, radius*2)];   
+    }
+    
     [path fill];
     for(GECommit *parent in commit.parents){
         int laneTo = parent.lane>commit.lane?parent.lane:commit.lane;

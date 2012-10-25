@@ -39,15 +39,6 @@ typedef unsigned char uint8_t;
 #include "GitRepository.h"
 #include "GitRevision.h"
 
-class GITWRAPPER_API CGitCommands {
-private:
-    char *gitPath;
-public:
-	CGitCommands(const char *gitPath);
-    uint8_t* rawGitOutput(const char *workingDir, const char** argv, long *length, int *exitCode);
-    char* gitOutput(const char *workingDir, const char** argv, int *exitCode);
-};
-
 
 char *strtrim(const char *str);
 vector<string> &split(const string &s, char delim, vector<string> &elems);

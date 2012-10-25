@@ -20,7 +20,6 @@
 		B669586E1541AE820010B6E6 /* GEOperationResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = B669586D1541AE820010B6E6 /* GEOperationResultController.m */; };
 		B66958701541AEAE0010B6E6 /* OperationResult.xib in Resources */ = {isa = PBXBuildFile; fileRef = B669586F1541AEAE0010B6E6 /* OperationResult.xib */; };
 		B6736CB0157E5A5500E7C02F /* GitRepository.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B6736CAC157E5A5500E7C02F /* GitRepository.cpp */; };
-		B6736CB1157E5A5500E7C02F /* GitCommands.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B6736CAE157E5A5500E7C02F /* GitCommands.cpp */; };
 		B6736CB4157E5BF900E7C02F /* GitObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B6736CB3157E5BF800E7C02F /* GitObject.cpp */; };
 		B6BF1F021551198600AB50E6 /* NSUserDefaults+GitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = B6BF1F011551198600AB50E6 /* NSUserDefaults+GitExtensions.m */; };
 		B6D42F5D153EC2A300485FFD /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6D42F5C153EC2A300485FFD /* Cocoa.framework */; };
@@ -75,7 +74,6 @@
 		B669586D1541AE820010B6E6 /* GEOperationResultController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEOperationResultController.m; sourceTree = "<group>"; };
 		B669586F1541AEAE0010B6E6 /* OperationResult.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OperationResult.xib; sourceTree = "<group>"; };
 		B6736CAC157E5A5500E7C02F /* GitRepository.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GitRepository.cpp; sourceTree = "<group>"; };
-		B6736CAE157E5A5500E7C02F /* GitCommands.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GitCommands.cpp; sourceTree = "<group>"; };
 		B6736CB3157E5BF800E7C02F /* GitObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GitObject.cpp; sourceTree = "<group>"; };
 		B6736CB7157E5CC500E7C02F /* GitObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GitObjects.h; sourceTree = "<group>"; };
 		B6BF1EFF1551196400AB50E6 /* Cocoa+GitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Cocoa+GitExtensions.h"; sourceTree = "<group>"; };
@@ -143,7 +141,6 @@
 				AA733BF516384B1C0032A602 /* GitRemote.h */,
 				AA733BEE163849530032A602 /* GitRepository.h */,
 				AA733BF616384B1C0032A602 /* GitRevision.h */,
-				B6736CAE157E5A5500E7C02F /* GitCommands.cpp */,
 				B651D5FB157F8C9C00B85A86 /* GitBranch.cpp */,
 				B651D5FE157F8CA700B85A86 /* GitFile.cpp */,
 				B6736CB3157E5BF800E7C02F /* GitObject.cpp */,
@@ -366,7 +363,6 @@
 				B669586E1541AE820010B6E6 /* GEOperationResultController.m in Sources */,
 				B6BF1F021551198600AB50E6 /* NSUserDefaults+GitExtensions.m in Sources */,
 				B6736CB0157E5A5500E7C02F /* GitRepository.cpp in Sources */,
-				B6736CB1157E5A5500E7C02F /* GitCommands.cpp in Sources */,
 				B6736CB4157E5BF900E7C02F /* GitObject.cpp in Sources */,
 				B651D5FC157F8C9C00B85A86 /* GitBranch.cpp in Sources */,
 				B651D5FF157F8CA700B85A86 /* GitFile.cpp in Sources */,

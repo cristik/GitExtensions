@@ -2,11 +2,17 @@
 #ifdef WIN32
 #else
 #include <unistd.h>
+#include <errno.h>
 #endif
 
-CGitProcess::CGitProcess(const char *cmd, char **args, char *workDir, bool stderr2stdout){
+CGitProcess::CGitProcess(const char *cmd, char **args, const char *workDir, bool stderr2stdout){
 	_cmd = strdup(cmd);
-    _args = args;
+    //adding the cmd as first parameter
+    int cnt = 0;
+    for(char **ptr=args;*ptr;ptr++,cnt++);
+    _args = (char**)malloc((cnt+2)*sizeof(char*));
+    memcpy(_args+1, args, (cnt+1)*sizeof(char*));
+    _args[0] = _cmd;
 	_workDir = workDir?strdup(workDir):NULL;
     _stderr2stdout = stderr2stdout;
     _stderr = _stdout = _stdin = 0;
@@ -18,6 +24,8 @@ CGitProcess::~CGitProcess(void){
 }
 
 void CGitProcess::launch(){
+    //already launched
+    if(_pid) return;
 #ifdef WIN32
 	//create the pipes for stdout and stderr
 	HANDLE stdoutReadTmp=NULL, stdoutRead=NULL, stdoutWrite=NULL, stderrReadTmp=NULL, stderrRead=NULL, stderrWrite=NULL;
@@ -107,7 +115,7 @@ void CGitProcess::launch(){
         // O_CLOEXE bit set
         //printf("_workDir=%s",_workDir);
         if(_workDir) chdir(_workDir);
-        execvp(_cmd, _args);
+        exit(execvp(_cmd, _args));
         /* only gets here if there is an error executing the program */
      } else { // in the parent
          if (pid < 0) {
@@ -132,12 +140,14 @@ void CGitProcess::launch(){
 #endif
 }
 
-char *CGitProcess::grabOutput(){
+char *CGitProcess::grabOutput(int *len){
+    //BUF_SIZE needs to be odd to make sure the NULL terminator is not set somewhere undesired
 #define BUF_SIZE 65535
 	int maxLen = BUF_SIZE;
 	int curLen = 0;
 	char *result = (char*)malloc(BUF_SIZE+1);
     long dwRead = 0;
+    launch();
 #ifdef WIN32    
 	while(ReadFile((HANDLE)_stdout, result+curLen, BUF_SIZE/2, &dwRead, NULL))
 #else
@@ -154,21 +164,23 @@ char *CGitProcess::grabOutput(){
 		}
 	}
 	result[curLen] = 0;
+    if(len) *len = curLen;
 	return result;
 }
 
 bool CGitProcess::running(bool block){
+    if(!_running) return false;
     int status = 0;
-    if(waitpid(_pid, &status, block?0:WNOHANG)){
+    while(!waitpid(_pid, &status, WNOHANG) && block);
+    if(WIFEXITED(status) || WIFSIGNALED(status) || WIFSTOPPED(status)){
         _running = false;
         _exitCode = WEXITSTATUS(status);
-    }else{
-        printf("not yet\n");
     }
 	return _running;
 }
 
 int CGitProcess::exitCode(){
+    running(true);
 	return _exitCode;
 }
 

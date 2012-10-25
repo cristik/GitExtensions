@@ -1,9 +1,9 @@
 #include "GitObjects.h"
 
 
-CGitRepository::CGitRepository(CGitCommands *gitCommands){
-    this->gitCommands = gitCommands;
-    _path = NULL;
+CGitRepository::CGitRepository(char *gitPath){
+    _gitPath = strdup(gitPath);
+    _repositoryPath = NULL;
     _branches = new vector<CGitBranch*>();
     _remoteBranches = NULL;
     _commits = new vector<CGitCommit*>();
@@ -14,8 +14,8 @@ CGitRepository::CGitRepository(CGitCommands *gitCommands){
 CGitRepository::~CGitRepository(void){
 }
 
-char* CGitRepository::path(){
-    return _path;
+char* CGitRepository::repositoryPath(){
+    return _repositoryPath;
 }
 
 GitRepositoryStatus CGitRepository::status(){
@@ -44,7 +44,7 @@ CGitBranch *CGitRepository::activeBranch(){
 }
 
 void CGitRepository::open(const char* path){
-    _path = strdup(path);
+    _repositoryPath = strdup(path);
     this->refresh();
 }
 
@@ -53,12 +53,10 @@ void CGitRepository::refresh(){
 }
 
 void CGitRepository::retrieveBranches(vector<CGitBranch*> *branches, const char *type){
-    const char *args[] = {"/usr/bin/git", "branch1", "--no-color", "-v", "--no-abbrev", type, NULL};
-    CGitProcess *process = new CGitProcess("/usr/bin/git",(char**)args,(char*)_path,true);
-    process->launch();
+    const char *args[] = {"branch", "--no-color", "-v", "--no-abbrev", type, NULL};
+    CGitProcess *process = new CGitProcess(_gitPath,(char**)args,_repositoryPath,true);
     char *output = process->grabOutput();
-    process->running(true);
-    printf("_exitCode: %d\noutput:%s\n",process->exitCode(),output);
+    //printf("_exitCode: %d\noutput: %s\n",process->exitCode(),output);
     branches->clear();
     vector<string> lines = split(string(output),'\n');
     vector<string>::iterator iter;
@@ -97,6 +95,11 @@ vector<CGitBranch*> *CGitRepository::branchesWithHash(char *sha1){
 }
 
 //commands
+
+CGitProcess *CGitRepository::customCommand(char *args[]){
+    return new CGitProcess(_gitPath,(char**)args,_repositoryPath,false);
+}
+
 void CGitRepository::stageFile(CGitFile *file){
     
 }

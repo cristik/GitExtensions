@@ -30,8 +30,7 @@
 
 - (id)init{
     if((self = [super init])){
-        gitCommands = new CGitCommands("/usr/bin/git");
-        gitRepository = new CGitRepository((CGitCommands*)gitCommands);
+        gitRepository = new CGitRepository((char*)"/usr/bin/git");
         status = (NSUInteger)((CGitRepository*)gitRepository)->status();
     }
     return self;
@@ -272,10 +271,10 @@ static NSMutableArray *commitQueue = nil;
         *ptr = strdup([argument cStringUsingEncoding:NSUTF8StringEncoding]);
         ptr++;
     }
-    long len = 0;
-    int exitCode = 0;
-    uint8_t *result = ((CGitCommands*)gitCommands)->rawGitOutput([repositoryPath cStringUsingEncoding:NSUTF8StringEncoding],argv, &len, &exitCode);
-    self.latestExitCode = exitCode;
+    int len = 0;
+    CGitProcess *process = ((CGitRepository*)gitRepository)->customCommand((char**)argv);
+    uint8_t *result = (uint8_t*)process->grabOutput(&len);
+    self.latestExitCode = process->exitCode();
     return [NSData dataWithBytes:result length:len];
 }
 
