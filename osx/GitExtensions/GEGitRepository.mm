@@ -154,6 +154,10 @@ static NSMutableArray *commitQueue = nil;
             [parentCommits addObject:parentCommit];
             if(!parentCommit.children) parentCommit.children = [NSArray arrayWithObject:commit];
             else parentCommit.children = [parentCommit.children arrayByAddingObject:commit];
+            //no parent should be above it's children
+            if(parentCommit.index < commit.index){
+                
+            }
         }
         //NSLog(@"commit.index=%d",commit.index);
         commit.parents = parentCommits;

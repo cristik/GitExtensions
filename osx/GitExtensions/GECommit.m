@@ -54,7 +54,12 @@
         //get the rest of details
         NSString *line = nil;
         while(idx<lines.count && (line=[lines objectAtIndex:idx]) && line.length){
-            comps = [line componentsSeparatedByString:@":"];
+            int p = (int)[line rangeOfString:@":"].location;
+            if(p != NSNotFound){
+                comps = [NSArray arrayWithObjects:[line substringToIndex:p], [line substringFromIndex:p+1],nil];
+            }else{
+                comps = [NSArray arrayWithObject:line];
+            }
             NSString *prop = [comps objectAtIndex:0];
             if(comps.count < 2) continue;
             NSString *val = [[comps objectAtIndex:1] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
