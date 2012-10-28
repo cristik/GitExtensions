@@ -15,19 +15,19 @@ CGitBranch::CGitBranch(CGitRepository *repository){
     _active = false;
 }
 
-bool CGitBranch::parseString(string s){
-    if(s.length() < 3) return false;
+GitStringParseResult CGitBranch::parseString(string s){
+    if(s.length() < 3) return GitStringParseFailed;
     vector<string> comps = split(s, ' ');
     unsigned int i = 1;
     while(i<comps.size() && comps[i].length()==0) i++;
-    if(i>=comps.size()) return false;
+    if(i>=comps.size()) return GitStringParseFailed;
     _name = strdup(comps[i].c_str());
     i++;
     while(i<comps.size() && comps[i].length()==0) i++;
-    if(i>=comps.size()) return false;
+    if(i>=comps.size()) return GitStringParseFailed;
     _sha1 = strtrim(comps[i].c_str());
     _active = s[0] == '*';
-    return true;   
+    return GitStringParseParsed;   
 }
 
 const char *CGitBranch::name(){

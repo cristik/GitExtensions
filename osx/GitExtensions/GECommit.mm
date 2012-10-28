@@ -8,6 +8,7 @@
 
 #import "GEObjects.h"
 #import "Cocoa+GitExtensions.h"
+#include "GitObjects.h"
 
 @interface GECommit()
 @property(nonatomic,retain,readwrite) NSString *sha1;
@@ -37,12 +38,36 @@
     return [[[self alloc] initWithLines:lines index:index] autorelease];
 }
 
++ (id)commitWithRawRevision:(CGitRevision*)rawRev{
+    return [[[self alloc] initWithRawRevision:rawRev] autorelease];
+}
+
+- (id)initWithRawRevision:(CGitRevision*)rawRev{
+    if((self = [super init])){
+        sha1 = [[NSString stringWithUTF8String:rawRev->_sha1->c_str()] retain];
+        author = [[NSString stringWithUTF8String:rawRev->_author->c_str()] retain];
+        authorDate = [[NSString stringWithUTF8String:rawRev->_authorDate->c_str()] retain];
+        commiter = [[NSString stringWithUTF8String:rawRev->_commiter->c_str()] retain];
+        commitDate = [[NSString stringWithUTF8String:rawRev->_commitDate->c_str()] retain];
+        char *msg = strdup(rawRev->_message->c_str());
+        char *p = strchr(msg,'\n');
+        if(p){
+            *p = 0;
+            subject = [[NSString stringWithUTF8String:msg] retain];
+            message = [[NSString stringWithUTF8String:p+1] retain];
+        }else{
+            subject = [[NSString stringWithUTF8String:msg] retain];
+        }
+    }
+    return self;
+}
+
 - (id)initWithLines:(NSArray*)lines index:(int*)index{
     if(self == [super init]){
         int idx = *index;
         //get the sha1
         NSArray *comps = [[lines objectAtIndex:idx] componentsSeparatedByString:@" "];
-        if(![[comps objectAtIndex:0] isEqual:@"commit"] || comps.count<2){
+        if(![[comps objectAtIndex:0] isEqual:@"commit"] || [comps count] < 2){
             [self autorelease];
             return nil;
         }
@@ -61,7 +86,7 @@
                 comps = [NSArray arrayWithObject:line];
             }
             NSString *prop = [comps objectAtIndex:0];
-            if(comps.count < 2) continue;
+            if([comps count] < 2) continue;
             NSString *val = [[comps objectAtIndex:1] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
             if([prop isEqual:@"Merge"]){
                 

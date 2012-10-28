@@ -29,7 +29,7 @@
 		B6D42F70153EC2A300485FFD /* GEAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D42F6F153EC2A300485FFD /* GEAppDelegate.m */; };
 		B6D42F73153EC2A300485FFD /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6D42F71153EC2A300485FFD /* MainMenu.xib */; };
 		B6D42F7F153EC34A00485FFD /* GEGitRepository.mm in Sources */ = {isa = PBXBuildFile; fileRef = B6D42F7E153EC34A00485FFD /* GEGitRepository.mm */; };
-		B6D62147153EF7CB006521B2 /* GECommit.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D62146153EF7CB006521B2 /* GECommit.m */; };
+		B6D62147153EF7CB006521B2 /* GECommit.mm in Sources */ = {isa = PBXBuildFile; fileRef = B6D62146153EF7CB006521B2 /* GECommit.mm */; };
 		B6D6214A153F13E4006521B2 /* Commit.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6D62149153F13E4006521B2 /* Commit.xib */; };
 		B6D6214D153F19D0006521B2 /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = B6D6214C153F19D0006521B2 /* refresh.png */; };
 		B6D6214F153F1ACB006521B2 /* open.png in Resources */ = {isa = PBXBuildFile; fileRef = B6D6214E153F1ACB006521B2 /* open.png */; };
@@ -95,7 +95,7 @@
 		B6D42F7D153EC34A00485FFD /* GEGitRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEGitRepository.h; sourceTree = "<group>"; };
 		B6D42F7E153EC34A00485FFD /* GEGitRepository.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GEGitRepository.mm; sourceTree = "<group>"; };
 		B6D62145153EF7CB006521B2 /* GECommit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GECommit.h; sourceTree = "<group>"; };
-		B6D62146153EF7CB006521B2 /* GECommit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GECommit.m; sourceTree = "<group>"; };
+		B6D62146153EF7CB006521B2 /* GECommit.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GECommit.mm; sourceTree = "<group>"; };
 		B6D62149153F13E4006521B2 /* Commit.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Commit.xib; sourceTree = "<group>"; };
 		B6D6214C153F19D0006521B2 /* refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = refresh.png; sourceTree = "<group>"; };
 		B6D6214E153F1ACB006521B2 /* open.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = open.png; sourceTree = "<group>"; };
@@ -267,7 +267,7 @@
 				B6D42F7D153EC34A00485FFD /* GEGitRepository.h */,
 				B6D42F7E153EC34A00485FFD /* GEGitRepository.mm */,
 				B6D62145153EF7CB006521B2 /* GECommit.h */,
-				B6D62146153EF7CB006521B2 /* GECommit.m */,
+				B6D62146153EF7CB006521B2 /* GECommit.mm */,
 				B6FA807E153FF07800F8F67A /* GERepositoryFile.h */,
 				B6FA807F153FF07800F8F67A /* GERepositoryFile.m */,
 				B6FA8081153FF08800F8F67A /* GEObjects.h */,
@@ -355,7 +355,7 @@
 				B6D42F69153EC2A300485FFD /* main.m in Sources */,
 				B6D42F70153EC2A300485FFD /* GEAppDelegate.m in Sources */,
 				B6D42F7F153EC34A00485FFD /* GEGitRepository.mm in Sources */,
-				B6D62147153EF7CB006521B2 /* GECommit.m in Sources */,
+				B6D62147153EF7CB006521B2 /* GECommit.mm in Sources */,
 				B6D62154153F1E77006521B2 /* GECommitController.m in Sources */,
 				B6FA8080153FF07800F8F67A /* GERepositoryFile.m in Sources */,
 				B6FA80881540128700F8F67A /* GEBranch.mm in Sources */,

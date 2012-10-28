@@ -6,7 +6,8 @@ CGitRepository::CGitRepository(char *gitPath){
     _repositoryPath = NULL;
     _branches = new vector<CGitBranch*>();
     _remoteBranches = NULL;
-    _commits = new vector<CGitCommit*>();
+    _commits = new vector<CGitRevision*>();
+    _revisionMap = new map<string, CGitRevision*>();
     _status = GitRepositoryStatusNone;
     _activeBranch = NULL;
 }
@@ -22,7 +23,7 @@ GitRepositoryStatus CGitRepository::status(){
     return this->_status;
 }
 
-vector<CGitCommit*> *CGitRepository::commits(){
+vector<CGitRevision*> *CGitRepository::commits(){
     return _commits;
 }
 
@@ -50,6 +51,8 @@ void CGitRepository::open(const char* path){
 
 void CGitRepository::refresh(){
     refreshBranches();
+    retrieveRevisions();
+    printf("having %lu commits",_commits->size());
 }
 
 GitRepositoryStatus CGitRepository::processGitCode(int code){
@@ -86,6 +89,42 @@ void CGitRepository::retrieveBranches(vector<CGitBranch*> *branches, const char 
         CGitBranch *branch = new CGitBranch(this);
         if(branch->parseString(line)) {
             branches->push_back(branch);
+        }
+    }
+}
+
+void CGitRepository::retrieveRevisions(){
+    const char *args[] = {"log", "--all", "--parents", "--no-color", "--format=fuller", NULL};
+    CGitProcess *process = new CGitProcess(_gitPath,(char**)args,_repositoryPath,true);
+    char *output = process->grabOutput();
+    setStatus(processGitCode(process->exitCode()));
+    if( _status != GitRepositoryStatusRegular){
+        return;
+    }
+    vector<string> lines = split(string(output),'\n');
+    lines.push_back("");
+    vector<string>::iterator iter;
+    _commits->clear();
+    CGitRevision *revision = NULL;
+    for(iter=lines.begin(); iter != lines.end(); ++iter){
+        if(!revision) revision = new CGitRevision(this);
+        GitStringParseResult res = revision->parseString(*iter);
+        //printf("parsed\n");
+        if(res == GitStringParseParsed){
+            revision->_index = (int)_commits->size();
+            _commits->push_back(revision);
+            _revisionMap->insert(make_pair(*revision->_sha1, revision));
+            revision = new CGitRevision(this);
+        }else if(res == GitStringParseFailed){
+            delete revision;
+            revision = new CGitRevision(this);
+        }
+    }
+    for(int i=0;i<_commits->size();i++){
+        CGitRevision *rev = (*_commits)[i];
+        for(int j=0;j<rev->_parents->size();j++){
+            CGitRevision *parent = (*rev->_parents)[j];
+            (*rev->_parents)[j] = (*_revisionMap)[*parent->_sha1];
         }
     }
 }

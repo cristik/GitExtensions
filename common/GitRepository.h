@@ -17,21 +17,23 @@ typedef enum{
 }GitRepositoryStatus;
 
 class CGitCommands;
-class CGitCommit;
 class CGitBranch;
 class CGitFile;
+class CGitRevision;
 
 class GITWRAPPER_API CGitRepository: public CGitObject{
 private:
     char *_gitPath;
     char *_repositoryPath;
     GitRepositoryStatus _status;
-    vector<CGitCommit*> *_commits;
+    vector<CGitRevision*> *_commits;
+    map<string, CGitRevision*> *_revisionMap;
     vector<CGitBranch*> *_branches;
     vector<CGitBranch*> *_remoteBranches;
     CGitBranch *_activeBranch;
     
     void retrieveBranches(vector<CGitBranch*> *branches, const char *type=NULL);
+    void retrieveRevisions();
     GitRepositoryStatus processGitCode(int code);
     void setStatus(GitRepositoryStatus value);
 public:
@@ -40,7 +42,7 @@ public:
     
     char *repositoryPath();
     GitRepositoryStatus status();
-    vector<CGitCommit*> *commits();
+    vector<CGitRevision*> *commits();
     vector<CGitBranch*> *branches();
     vector<CGitBranch*> *remoteBranches();
     CGitBranch *activeBranch();

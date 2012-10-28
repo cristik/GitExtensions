@@ -19,7 +19,7 @@ private:
     bool _active;
 public:
     CGitBranch(CGitRepository *repository);
-    bool parseString(string s);
+    virtual GitStringParseResult parseString(string s);
     const char *name();
     const char *sha1();    
     bool active();

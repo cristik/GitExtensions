@@ -135,6 +135,8 @@ static NSMutableArray *commitQueue = nil;
 - (void)reload{
     //parse the branches
     [self reloadBranches];
+    CGitRepository *rep = (CGitRepository*)gitRepository;
+    rep->refresh();
     NSString *output = [self gitOutput:[NSArray arrayWithObjects:@"log", @"--all", @"--parents", @"--no-color",@"--format=fuller", nil]];
     NSArray *lines = [output componentsSeparatedByString:@"\n"];
     int index = 0;

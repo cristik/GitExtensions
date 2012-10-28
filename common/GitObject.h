@@ -11,11 +11,18 @@
 
 typedef void (PropChangedFunc)(char *propName, void *context);
 
+typedef enum{
+    GitStringParseFailed,
+    GitStringParseParsed,
+    GitStringParseNeedMore,
+    GitStringParseNotNeeded
+}GitStringParseResult;
+
 class GITWRAPPER_API CGitObject{
 public:
     PropChangedFunc *_propChangedFunc;
     void *_propChangedContext;
-    bool parseString(string s);
+    virtual GitStringParseResult parseString(string s);
 };
 
 #endif

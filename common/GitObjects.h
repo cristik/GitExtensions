@@ -14,6 +14,7 @@
 #endif
 
 #include <vector>
+#include <map>
 #include <wchar.h>
 #include <iostream>
 #include <string>

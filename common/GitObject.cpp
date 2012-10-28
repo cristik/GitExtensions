@@ -8,6 +8,10 @@
 
 #include "GitObjects.h"
 
+GitStringParseResult CGitObject::parseString(string s){
+    return GitStringParseNotNeeded;
+}
+
 char *strtrim(const char *str){
     const char *p1 = strchr(str, ' ');
     const char *p2 = strrchr(str, ' ');
